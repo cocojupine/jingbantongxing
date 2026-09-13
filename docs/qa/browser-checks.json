@@ -1,0 +1,849 @@
+{
+  "routes": [
+    {
+      "route": "/",
+      "brokenImages": [],
+      "empty": false,
+      "pageOverflow": false,
+      "phoneOverflow": false,
+      "text": "9:41选择身份Hello~我是小白欢迎来到长乔海洋极地公园请选择您的身份心青年我是心青年本人家长我是心青年的家长登录注册"
+    },
+    {
+      "route": "/login?mode=register&role=parent",
+      "brokenImages": [],
+      "empty": false,
+      "pageOverflow": false,
+      "phoneOverflow": false,
+      "text": "9:41注册家长手机号注册请输入手机号获取验证码手机号+86验证码获取验证码注册密码登录已有账号？ 去登录体验前请阅读 《使用说明》 和 《隐私说明》"
+    },
+    {
+      "route": "/main",
+      "brokenImages": [],
+      "empty": false,
+      "pageOverflow": false,
+      "phoneOverflow": false,
+      "text": "9:41Hello~中午好，测试小鲸今天也来看海洋朋友吗？「海狮欢乐秀」13:00 开演 · 海狮广场距开场 83 分钟看场次感官友好书包降噪耳机 · 墨镜 · 安抚玩具入园即可免"
+    },
+    {
+      "route": "/profile",
+      "brokenImages": [],
+      "empty": false,
+      "pageOverflow": false,
+      "phoneOverflow": false,
+      "text": "9:41我的鲸伴同行心青年测试小鲸让每一次游园，都更安心编辑个人档案33%继续完善听觉敏感我的游园准备好，慢慢出发书包预约为游园多一份安心我的收藏把喜欢的留在这里家人的陪伴一起安心"
+    },
+    {
+      "route": "/chat",
+      "brokenImages": [],
+      "empty": false,
+      "pageOverflow": false,
+      "phoneOverflow": false,
+      "text": "小白 · AI 助手 智能体你好我是小白，游园小助手✦ 祝你今天玩得开心你可以这样问门票和优惠怎么买？›今天有哪些表演？›怎么借感官友好书包？›哪里有安静休息室？›🔒 对话内容仅"
+    },
+    {
+      "route": "/backpack",
+      "brokenImages": [],
+      "empty": false,
+      "pageOverflow": false,
+      "phoneOverflow": false,
+      "text": "9:41感官友好书包感官友好书包为感官敏感的孩子免费准备入园即可借用，让游园更安心免费借用 · 押金 100 元书包里有什么降噪耳机降低场馆音响与人群噪音儿童墨镜缓解强光与闪光灯刺"
+    },
+    {
+      "route": "/stories",
+      "brokenImages": [],
+      "empty": false,
+      "pageOverflow": false,
+      "phoneOverflow": false,
+      "text": "9:41社交故事全部入园准备看演出生活场景安全守护推荐入园准备第一次来海洋公园入园全流程 · 约 3 分钟看演出观看表演不害怕剧场场景 · 约 2 分钟安全守护和家人走散了怎么办安"
+    },
+    {
+      "route": "/stories/first-visit",
+      "brokenImages": [],
+      "empty": false,
+      "pageOverflow": false,
+      "phoneOverflow": false,
+      "text": "9:41场景 1 / 6第一次来海洋公园入园准备约 3 分钟 · 6 个场景故事简介第一次来有点紧张？没关系，跟着小白一步步走一遍。场景 1今天我要去海洋公园。到了门口，先排队检票"
+    },
+    {
+      "route": "/venues",
+      "brokenImages": [],
+      "empty": false,
+      "pageOverflow": false,
+      "phoneOverflow": false,
+      "text": "9:41场馆全部剧场展馆户外热门场馆剧场白鲸剧场 4.8 · 中央区 · 近东门展馆水母宫 4.5 · 东区 · 海底隧道旁展馆海底隧道 4.7 · 东区 · 近水母宫白鲸剧场中央"
+    },
+    {
+      "route": "/venues/beluga",
+      "brokenImages": [],
+      "empty": false,
+      "pageOverflow": false,
+      "phoneOverflow": false,
+      "text": "9:41白鲸剧场 中央区 · 近东门 4.8简介「白鲸之恋」演出主场馆，白鲸与驯养师的水下华尔兹是公园最受欢迎的节目。图集感官刺激指数 声音高 灯光高 拥挤高⚠️ 声音较响，建议佩"
+    },
+    {
+      "route": "/map",
+      "brokenImages": [],
+      "empty": false,
+      "pageOverflow": false,
+      "phoneOverflow": false,
+      "text": "9:41园区地图鲸伴同行先了解场馆位置，再按自己的节奏出发。北区 · 极地馆中央区白鲸 / 海豚剧场东区水母宫 / 海底隧道南区 · 海狮广场分区示意，以现场标识为准；暂不提供实时"
+    },
+    {
+      "route": "/shows",
+      "brokenImages": [],
+      "empty": false,
+      "pageOverflow": false,
+      "phoneOverflow": false,
+      "text": "9:41今日演出鲸伴同行提前安排，给自己留一点从容的时间。白鲸之恋10:30 / 14:00 · 白鲸剧场海豚奇缘11:30 / 15:30 · 海豚剧场海狮欢乐秀13:00 / "
+    },
+    {
+      "route": "/favorites",
+      "brokenImages": [],
+      "empty": false,
+      "pageOverflow": false,
+      "phoneOverflow": false,
+      "text": "9:41我的收藏鲸伴同行喜欢的场馆与故事，随时回来看看。还没有收藏点击场馆或故事上的爱心，就能在这里找到它。去看看场馆"
+    },
+    {
+      "route": "/help",
+      "brokenImages": [],
+      "empty": false,
+      "pageOverflow": false,
+      "phoneOverflow": false,
+      "text": "9:41帮助中心鲸伴同行有需要，就找小白一起把游园的小问题理清楚。和小白聊一聊门票、演出与游园服务问答书包怎么领取与归还？在哪里可以安静休息？第一次游园怎么准备？需要现场帮助请前往"
+    },
+    {
+      "route": "/policy",
+      "brokenImages": [],
+      "empty": false,
+      "pageOverflow": false,
+      "phoneOverflow": false,
+      "text": "9:41使用与隐私说明鲸伴同行关于这个演示版本鲸伴同行帮助你了解场馆、准备游园。页面中的场次、预约和绑定用于功能演示，不代表真实订单、邀请或现场服务承诺。资料保存在本机你填写的档案"
+    },
+    {
+      "route": "/stories/missing",
+      "brokenImages": [],
+      "empty": false,
+      "pageOverflow": false,
+      "phoneOverflow": false,
+      "text": "9:41故事不存在鲸伴同行这个页面暂时找不到了我们回到熟悉的地方，继续探索吧。返回故事列表"
+    },
+    {
+      "route": "/venues/missing",
+      "brokenImages": [],
+      "empty": false,
+      "pageOverflow": false,
+      "phoneOverflow": false,
+      "text": "9:41场馆不存在鲸伴同行这个页面暂时找不到了我们回到熟悉的地方，继续探索吧。返回场馆列表"
+    },
+    {
+      "route": "/missing",
+      "brokenImages": [],
+      "empty": false,
+      "pageOverflow": false,
+      "phoneOverflow": false,
+      "text": "9:41页面不存在鲸伴同行这个页面暂时找不到了我们回到熟悉的地方，继续探索吧。返回首页"
+    }
+  ],
+  "flows": [
+    {
+      "test": "首页地图按钮",
+      "url": "http://127.0.0.1:5173/#/map"
+    },
+    {
+      "test": "演出横幅",
+      "url": "http://127.0.0.1:5173/#/shows"
+    },
+    {
+      "test": "场馆位置",
+      "url": "http://127.0.0.1:5173/#/map?venue=beluga",
+      "destination": "目的地\n白鲸剧场\n\n中央区 · 近东门\n\n附近休息点：出口服务区安静休息室 · 步行约 3 分钟\n\n查看场馆详情"
+    },
+    {
+      "test": "收藏刷新持久化",
+      "pressed": "true"
+    },
+    {
+      "test": "个人中心收藏列表",
+      "text": "喜欢的场馆与故事，随时回来看看。\n\n白鲸剧场\n剧场"
+    },
+    {
+      "test": "故事搜索",
+      "results": "我想去洗手间\n生活场景\n约 2 分钟\n4 个场景"
+    },
+    {
+      "test": "无搜索结果",
+      "results": "没有找到相关故事，换个关键词试试～"
+    },
+    {
+      "test": "绑定自校验与添加",
+      "text": "演\n演示家人我的孩子\n\n130****0003\n\n解绑\n绑定心青年"
+    },
+    {
+      "test": "重复绑定拦截",
+      "pass": true
+    },
+    {
+      "test": "书包数量上限",
+      "disabled": true
+    },
+    {
+      "test": "预约刷新保留",
+      "text": "东门游客中心 · 2026-09-13 · 3 套"
+    },
+    {
+      "test": "取消预约二次确认保留",
+      "pass": true
+    },
+    {
+      "test": "退出后清除活动身份",
+      "loggedOut": true,
+      "defaultName": true
+    },
+    {
+      "test": "原账号重新登录恢复档案",
+      "restored": true
+    },
+    {
+      "test": "知识库文字回复",
+      "hasReply": true
+    },
+    {
+      "test": "聊天刷新保留",
+      "text": "我\n门票多少钱？\n长乔海"
+    },
+    {
+      "test": "关闭通话扬声器",
+      "changed": true
+    },
+    {
+      "test": "通话结束返回聊天",
+      "text": "我\n门票多少钱？\n长乔海洋极地\n语音通"
+    },
+    {
+      "test": "停止小白回复",
+      "pass": true
+    },
+    {
+      "test": "详情返回保留搜索",
+      "url": "http://127.0.0.1:5173/#/stories?q=%E6%B4%97%E6%89%8B%E9%97%B4",
+      "value": "洗手间"
+    },
+    {
+      "test": "个人中心底部无文字遮挡",
+      "last": {
+        "bottom": 761.4772300720215,
+        "height": 16.998104095458984,
+        "left": 17.992422103881836,
+        "right": 365.64391136169434,
+        "top": 744.4791259765625,
+        "width": 347.6514892578125,
+        "x": 17.992422103881836,
+        "y": 744.4791259765625
+      },
+      "lastTextAboveNavigation": true,
+      "scrollAtEnd": true,
+      "scrollBounds": {
+        "bottom": 787.5283660888672,
+        "height": 697.537841796875,
+        "left": 0,
+        "right": 392.7272338867187,
+        "top": 89.99052429199219,
+        "width": 392.7272338867187,
+        "x": 0,
+        "y": 89.99052429199219
+      }
+    },
+    {
+      "test": "子目录部署样机加载",
+      "pass": true
+    },
+    {
+      "test": "录音演示取消",
+      "pass": true
+    }
+  ],
+  "responsive": [
+    {
+      "requested": {
+        "width": 352,
+        "height": 625
+      },
+      "route": "/main",
+      "containers": [
+        {
+          "height": 199,
+          "name": "main-body",
+          "scrollWidth": 311,
+          "width": 311
+        }
+      ],
+      "pageHorizontalOverflow": false,
+      "phoneOutsideViewport": false,
+      "viewport": [
+        320,
+        568
+      ]
+    },
+    {
+      "requested": {
+        "width": 352,
+        "height": 625
+      },
+      "route": "/profile",
+      "containers": [
+        {
+          "height": 414,
+          "name": "jb-scroll profile-scroll",
+          "scrollWidth": 311,
+          "width": 311
+        }
+      ],
+      "pageHorizontalOverflow": false,
+      "phoneOutsideViewport": false,
+      "viewport": [
+        320,
+        568
+      ]
+    },
+    {
+      "requested": {
+        "width": 352,
+        "height": 625
+      },
+      "route": "/login?mode=register&role=parent",
+      "containers": [],
+      "pageHorizontalOverflow": false,
+      "phoneOutsideViewport": false,
+      "viewport": [
+        320,
+        568
+      ]
+    },
+    {
+      "requested": {
+        "width": 352,
+        "height": 625
+      },
+      "route": "/backpack",
+      "containers": [
+        {
+          "height": 480,
+          "name": "bp-body",
+          "scrollWidth": 311,
+          "width": 311
+        }
+      ],
+      "pageHorizontalOverflow": false,
+      "phoneOutsideViewport": false,
+      "viewport": [
+        320,
+        568
+      ]
+    },
+    {
+      "requested": {
+        "width": 352,
+        "height": 625
+      },
+      "route": "/stories",
+      "containers": [
+        {
+          "height": 480,
+          "name": "list-body",
+          "scrollWidth": 311,
+          "width": 311
+        }
+      ],
+      "pageHorizontalOverflow": false,
+      "phoneOutsideViewport": false,
+      "viewport": [
+        320,
+        568
+      ]
+    },
+    {
+      "requested": {
+        "width": 352,
+        "height": 625
+      },
+      "route": "/stories/first-visit",
+      "containers": [
+        {
+          "height": 524,
+          "name": "list-body",
+          "scrollWidth": 311,
+          "width": 311
+        }
+      ],
+      "pageHorizontalOverflow": false,
+      "phoneOutsideViewport": false,
+      "viewport": [
+        320,
+        568
+      ]
+    },
+    {
+      "requested": {
+        "width": 352,
+        "height": 625
+      },
+      "route": "/venues/beluga",
+      "containers": [
+        {
+          "height": 444,
+          "name": "list-body",
+          "scrollWidth": 311,
+          "width": 311
+        }
+      ],
+      "pageHorizontalOverflow": false,
+      "phoneOutsideViewport": false,
+      "viewport": [
+        320,
+        568
+      ]
+    },
+    {
+      "requested": {
+        "width": 352,
+        "height": 625
+      },
+      "route": "/chat",
+      "containers": [
+        {
+          "height": 384,
+          "name": "chat-body",
+          "scrollWidth": 311,
+          "width": 311
+        }
+      ],
+      "pageHorizontalOverflow": false,
+      "phoneOutsideViewport": false,
+      "viewport": [
+        320,
+        568
+      ]
+    },
+    {
+      "requested": {
+        "width": 352,
+        "height": 625
+      },
+      "route": "/policy",
+      "containers": [
+        {
+          "height": 478,
+          "name": "jb-scroll",
+          "scrollWidth": 311,
+          "width": 311
+        }
+      ],
+      "pageHorizontalOverflow": false,
+      "phoneOutsideViewport": false,
+      "viewport": [
+        320,
+        568
+      ]
+    },
+    {
+      "requested": {
+        "width": 432,
+        "height": 937
+      },
+      "route": "/main",
+      "containers": [
+        {
+          "height": 484,
+          "name": "main-body",
+          "scrollWidth": 384,
+          "width": 384
+        }
+      ],
+      "pageHorizontalOverflow": false,
+      "phoneOutsideViewport": false,
+      "viewport": [
+        393,
+        852
+      ]
+    },
+    {
+      "requested": {
+        "width": 432,
+        "height": 937
+      },
+      "route": "/profile",
+      "containers": [
+        {
+          "height": 698,
+          "name": "jb-scroll profile-scroll",
+          "scrollWidth": 384,
+          "width": 384
+        }
+      ],
+      "pageHorizontalOverflow": false,
+      "phoneOutsideViewport": false,
+      "viewport": [
+        393,
+        852
+      ]
+    },
+    {
+      "requested": {
+        "width": 432,
+        "height": 937
+      },
+      "route": "/login?mode=register&role=parent",
+      "containers": [],
+      "pageHorizontalOverflow": false,
+      "phoneOutsideViewport": false,
+      "viewport": [
+        393,
+        852
+      ]
+    },
+    {
+      "requested": {
+        "width": 432,
+        "height": 937
+      },
+      "route": "/backpack",
+      "containers": [
+        {
+          "height": 764,
+          "name": "bp-body",
+          "scrollWidth": 384,
+          "width": 384
+        }
+      ],
+      "pageHorizontalOverflow": false,
+      "phoneOutsideViewport": false,
+      "viewport": [
+        393,
+        852
+      ]
+    },
+    {
+      "requested": {
+        "width": 432,
+        "height": 937
+      },
+      "route": "/stories",
+      "containers": [
+        {
+          "height": 764,
+          "name": "list-body",
+          "scrollWidth": 384,
+          "width": 384
+        }
+      ],
+      "pageHorizontalOverflow": false,
+      "phoneOutsideViewport": false,
+      "viewport": [
+        393,
+        852
+      ]
+    },
+    {
+      "requested": {
+        "width": 432,
+        "height": 937
+      },
+      "route": "/stories/first-visit",
+      "containers": [
+        {
+          "height": 808,
+          "name": "list-body",
+          "scrollWidth": 384,
+          "width": 384
+        }
+      ],
+      "pageHorizontalOverflow": false,
+      "phoneOutsideViewport": false,
+      "viewport": [
+        393,
+        852
+      ]
+    },
+    {
+      "requested": {
+        "width": 432,
+        "height": 937
+      },
+      "route": "/venues/beluga",
+      "containers": [
+        {
+          "height": 728,
+          "name": "list-body",
+          "scrollWidth": 384,
+          "width": 384
+        }
+      ],
+      "pageHorizontalOverflow": false,
+      "phoneOutsideViewport": false,
+      "viewport": [
+        393,
+        852
+      ]
+    },
+    {
+      "requested": {
+        "width": 432,
+        "height": 937
+      },
+      "route": "/chat",
+      "containers": [
+        {
+          "height": 690,
+          "name": "chat-body",
+          "scrollWidth": 393,
+          "width": 393
+        }
+      ],
+      "pageHorizontalOverflow": false,
+      "phoneOutsideViewport": false,
+      "viewport": [
+        393,
+        852
+      ]
+    },
+    {
+      "requested": {
+        "width": 432,
+        "height": 937
+      },
+      "route": "/policy",
+      "containers": [
+        {
+          "height": 762,
+          "name": "jb-scroll",
+          "scrollWidth": 393,
+          "width": 393
+        }
+      ],
+      "pageHorizontalOverflow": false,
+      "phoneOutsideViewport": false,
+      "viewport": [
+        393,
+        852
+      ]
+    },
+    {
+      "requested": {
+        "width": 1584,
+        "height": 990
+      },
+      "route": "/main",
+      "containers": [
+        {
+          "height": 484,
+          "name": "main-body",
+          "scrollWidth": 384,
+          "width": 384
+        }
+      ],
+      "pageHorizontalOverflow": false,
+      "phoneOutsideViewport": false,
+      "phoneWidth": 393,
+      "viewport": [
+        1440,
+        900
+      ]
+    },
+    {
+      "requested": {
+        "width": 1584,
+        "height": 990
+      },
+      "route": "/profile",
+      "containers": [
+        {
+          "height": 697,
+          "name": "jb-scroll profile-scroll",
+          "scrollWidth": 384,
+          "width": 384
+        }
+      ],
+      "pageHorizontalOverflow": false,
+      "phoneOutsideViewport": false,
+      "phoneWidth": 393,
+      "viewport": [
+        1440,
+        900
+      ]
+    },
+    {
+      "requested": {
+        "width": 1584,
+        "height": 990
+      },
+      "route": "/login?mode=register&role=parent",
+      "containers": [],
+      "pageHorizontalOverflow": false,
+      "phoneOutsideViewport": false,
+      "phoneWidth": 393,
+      "viewport": [
+        1440,
+        900
+      ]
+    },
+    {
+      "requested": {
+        "width": 1584,
+        "height": 990
+      },
+      "route": "/backpack",
+      "containers": [
+        {
+          "height": 764,
+          "name": "bp-body",
+          "scrollWidth": 384,
+          "width": 384
+        }
+      ],
+      "pageHorizontalOverflow": false,
+      "phoneOutsideViewport": false,
+      "phoneWidth": 393,
+      "viewport": [
+        1440,
+        900
+      ]
+    },
+    {
+      "requested": {
+        "width": 1584,
+        "height": 990
+      },
+      "route": "/stories",
+      "containers": [
+        {
+          "height": 764,
+          "name": "list-body",
+          "scrollWidth": 384,
+          "width": 384
+        }
+      ],
+      "pageHorizontalOverflow": false,
+      "phoneOutsideViewport": false,
+      "phoneWidth": 393,
+      "viewport": [
+        1440,
+        900
+      ]
+    },
+    {
+      "requested": {
+        "width": 1584,
+        "height": 990
+      },
+      "route": "/stories/first-visit",
+      "containers": [
+        {
+          "height": 808,
+          "name": "list-body",
+          "scrollWidth": 384,
+          "width": 384
+        }
+      ],
+      "pageHorizontalOverflow": false,
+      "phoneOutsideViewport": false,
+      "phoneWidth": 393,
+      "viewport": [
+        1440,
+        900
+      ]
+    },
+    {
+      "requested": {
+        "width": 1584,
+        "height": 990
+      },
+      "route": "/venues/beluga",
+      "containers": [
+        {
+          "height": 728,
+          "name": "list-body",
+          "scrollWidth": 384,
+          "width": 384
+        }
+      ],
+      "pageHorizontalOverflow": false,
+      "phoneOutsideViewport": false,
+      "phoneWidth": 393,
+      "viewport": [
+        1440,
+        900
+      ]
+    },
+    {
+      "requested": {
+        "width": 1584,
+        "height": 990
+      },
+      "route": "/chat",
+      "containers": [
+        {
+          "height": 690,
+          "name": "chat-body",
+          "scrollWidth": 393,
+          "width": 393
+        }
+      ],
+      "pageHorizontalOverflow": false,
+      "phoneOutsideViewport": false,
+      "phoneWidth": 393,
+      "viewport": [
+        1440,
+        900
+      ]
+    },
+    {
+      "requested": {
+        "width": 1584,
+        "height": 990
+      },
+      "route": "/policy",
+      "containers": [
+        {
+          "height": 762,
+          "name": "jb-scroll",
+          "scrollWidth": 393,
+          "width": 393
+        }
+      ],
+      "pageHorizontalOverflow": false,
+      "phoneOutsideViewport": false,
+      "phoneWidth": 393,
+      "viewport": [
+        1440,
+        900
+      ]
+    }
+  ],
+  "finalDesktop": [
+    {
+      "route": "/main",
+      "containerOverflow": false,
+      "pageOverflow": false,
+      "phoneWidth": 393
+    },
+    {
+      "route": "/profile",
+      "containerOverflow": false,
+      "pageOverflow": false,
+      "phoneWidth": 393
+    },
+    {
+      "route": "/chat",
+      "containerOverflow": false,
+      "pageOverflow": false,
+      "phoneWidth": 393
+    },
+    {
+      "route": "/policy",
+      "containerOverflow": false,
+      "pageOverflow": false,
+      "phoneWidth": 393
+    }
+  ]
+}

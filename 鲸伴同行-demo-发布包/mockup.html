@@ -159,7 +159,8 @@
       } catch (e) { /* 跨源时保持原样 */ }
       iframe.classList.add('loaded');
     });
-    iframe.src = location.origin + '/' + route;
+    // Resolve from this folder so the mockup also works under a deployment subpath.
+    iframe.src = new URL('./index.html' + (route.startsWith('#/') ? route : '#/main'), location.href).href;
   }
 
   // 1080×1440 构图整体缩放适配窗口（居中、不变形、四周留白均匀）

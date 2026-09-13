@@ -1,0 +1,16 @@
+{
+  "name": "jingbantongxing",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "dev": "python -m http.server 5173 --bind 127.0.0.1 --directory 鲸伴同行-demo-发布包",
+    "test": "node --test"
+  },
+  "devDependencies": {
+    "acorn": "^8.15.0",
+    "esbuild": "^0.28.2",
+    "prettier": "^3.8.0"
+  }
+}

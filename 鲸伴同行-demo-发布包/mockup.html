@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>鲸伴同行 · 样机展示</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    background:
+      radial-gradient(60% 45% at 50% 0%, rgba(30, 147, 247, 0.06), transparent 65%),
+      #FBFCFE;
+    font-family: 'PingFang SC', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+    overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  /* 1080×1440 构图画布，整体缩放适配窗口 */
+  .stage {
+    width: 1080px; height: 1440px;
+    position: relative;
+    flex-shrink: 0;
+    transform-origin: center center;
+  }
+
+  .corner {
+    position: absolute;
+    font-size: 15px; font-weight: 600;
+    letter-spacing: 6px;
+    color: #12263F;
+    text-transform: uppercase;
+  }
+  .corner small { display: block; font-size: 11px; letter-spacing: 3px; color: #8496AC; margin-top: 6px; font-weight: 500; }
+  .corner.tl { top: 64px; left: 72px; }
+  .corner.tr { top: 64px; right: 72px; text-align: right; }
+  .corner.bl { bottom: 64px; left: 72px; letter-spacing: 3px; }
+  .corner.bl small { letter-spacing: 2px; }
+
+  /* ── iPhone 样机 ──
+     屏幕 393×852；bezel 厚 13px；外圆角 62px，
+     屏幕圆角 = 62 - 13 = 49px（同心匹配） */
+  .device-wrap {
+    position: absolute; left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .device {
+    position: relative;
+    width: 419px; height: 878px;
+    background: linear-gradient(145deg, #2a2c31, #101114 30%);
+    border-radius: 62px;
+    padding: 13px;
+    box-shadow:
+      0 50px 100px rgba(14, 75, 133, 0.16),
+      0 16px 36px rgba(14, 75, 133, 0.10),
+      inset 0 0 0 1.5px #34373d;
+  }
+  .screen {
+    width: 393px; height: 852px;
+    border-radius: 49px;
+    overflow: hidden;
+    background: #F3F7FC;
+    position: relative;
+  }
+  .screen iframe {
+    width: 393px; height: 852px;
+    border: none; display: block;
+    opacity: 0;
+    transition: opacity 600ms ease;
+  }
+  .screen iframe.loaded { opacity: 1; }
+
+  /* Dynamic Island：居中于屏幕顶部，只盖住状态栏中部，不遮挡 9:41 / 信号 */
+  .island {
+    position: absolute; top: 12px; left: 50%;
+    transform: translateX(-50%);
+    width: 118px; height: 33px;
+    background: #101114;
+    border-radius: 17px;
+    z-index: 5;
+    pointer-events: none;
+  }
+  /* 侧键：与边框齐平外凸 */
+  .btn-side { position: absolute; background: #1c1e22; border-radius: 2px; }
+  .btn-power  { right: -3px; top: 232px; width: 4px; height: 88px; }
+  .btn-vol-up { left: -3px;  top: 196px; width: 4px; height: 56px; }
+  .btn-vol-dn { left: -3px;  top: 262px; width: 4px; height: 56px; }
+  .btn-mute   { left: -3px;  top: 152px; width: 4px; height: 30px; }
+
+  /* file:// 直开提示 */
+  .hint {
+    position: absolute; left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    width: 320px; text-align: center;
+    color: #4A5E78; font-size: 14px; line-height: 1.9;
+    background: #fff; border: 1px solid rgba(18,60,110,0.08);
+    border-radius: 16px; padding: 28px 24px;
+    box-shadow: 0 12px 32px rgba(14,75,133,0.12);
+    display: none; z-index: 6;
+  }
+  .hint b { color: #12263F; }
+  .hint code { background: #F0F7FF; color: #0B78DC; border-radius: 6px; padding: 2px 8px; font-size: 13px; }
+</style>
+</head>
+<body>
+  <div class="stage" id="stage">
+    <div class="corner tl">原创设计<small>ORIGINAL DESIGN</small></div>
+    <div class="corner tr">DESIGN FOR 鲸伴同行<small>CHANGQIAO OCEAN PARK</small></div>
+    <div class="corner bl"><span id="pageName">主页</span><small>鲸伴同行 · 无障碍陪伴 APP</small></div>
+
+    <div class="device-wrap">
+      <div class="device">
+        <span class="btn-side btn-power"></span>
+        <span class="btn-side btn-vol-up"></span>
+        <span class="btn-side btn-vol-dn"></span>
+        <span class="btn-side btn-mute"></span>
+        <div class="screen">
+          <div class="island"></div>
+          <iframe id="app" title="鲸伴同行 App" scrolling="no"></iframe>
+          <div class="hint" id="hint">
+            <b>请通过开发服务器访问本页</b><br />
+            直接双击 file:// 打开无法加载 App。<br />
+            请先运行 <code>npm run dev</code>，再访问<br />
+            <code>http://&lt;dev 端口&gt;/mockup.html</code>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+  var params = new URLSearchParams(location.search);
+  var route = params.get('route') || '#/main';
+  var name = params.get('name') || '主页';
+
+  document.getElementById('pageName').textContent = name;
+
+  var iframe = document.getElementById('app');
+
+  // file:// 直开时 location.origin 为 'null'，给出友好提示
+  if (location.origin === 'null' || location.protocol === 'file:') {
+    document.getElementById('hint').style.display = 'block';
+  } else {
+    // 同源相对地址：跟随 Kimi Work 预览实际分配的端口，不硬编码
+    iframe.addEventListener('load', function () {
+      // 同源注入：去掉 App 自带的桌面 backdrop / 手机壳圆角与投影，
+      // 让界面与样机屏幕四边完全贴合
+      try {
+        var doc = iframe.contentDocument;
+        if (doc && doc.head) {
+          var fit = doc.createElement('style');
+          fit.textContent =
+            'body { padding: 0 !important; background: #F3F7FC !important; min-height: 852px !important; }' +
+            '#root { display: block !important; }' +
+            '.phone { width: 100% !important; min-height: 852px !important; height: 852px !important;' +
+            '  border-radius: 0 !important; box-shadow: none !important; }';
+          doc.head.appendChild(fit);
+        }
+      } catch (e) { /* 跨源时保持原样 */ }
+      iframe.classList.add('loaded');
+    });
+    iframe.src = location.origin + '/' + route;
+  }
+
+  // 1080×1440 构图整体缩放适配窗口（居中、不变形、四周留白均匀）
+  function fit() {
+    var s = Math.min(window.innerWidth / 1080, window.innerHeight / 1440) * 0.96;
+    document.getElementById('stage').style.transform = 'scale(' + s + ')';
+  }
+  window.addEventListener('resize', fit);
+  fit();
+</script>
+</body>
+</html>

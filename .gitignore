@@ -1,0 +1,29 @@
+# Dependencies and caches
+node_modules/
+.npm/
+.cache/
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Secrets and local environment
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Local tools and temporary output
+.DS_Store
+Thumbs.db
+Desktop.ini
+.idea/
+.vscode/
+*.log
+*.tmp
+*.bak
+playwright-report/
+test-results/
+
+# The static release bundle and UI images are intentionally tracked.

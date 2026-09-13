@@ -1,4 +1,5 @@
 import { questions, readState, answerCount, complete, validAnswer, setAnswer, submit, storageKey } from './model.mjs';
+import { introMarkup } from './intro.mjs?v=4';
 
 const content = document.querySelector('#content');
 const actions = document.querySelector('#actions');
@@ -9,7 +10,7 @@ const key = storageKey(account);
 let serialized = null;
 try { serialized = localStorage.getItem(key); } catch { /* In-memory fallback. */ }
 const state = readState(serialized);
-let stage = state.completedAt ? 'done' : 'intro';
+let stage = new URLSearchParams(location.search).has('intro') ? 'intro' : state.completedAt ? 'done' : 'intro';
 let saved = true;
 
 const escapeHtml = value => String(value).replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]);
@@ -45,13 +46,10 @@ function button(label, action, cls = 'primary', disabled = false) {
 }
 function renderIntro() {
   const count = answerCount(state);
-  content.innerHTML = `
-    <section class="start-page">
-      <p class="start-count">共 ${questions.length} 题</p>
-      <h1>行前感官问卷</h1>
-      <p class="start-description">按平时的真实感受选择，没有对错。</p>
-      ${count ? `<p class="draft-note">已填写 ${count} / ${questions.length} 题</p>` : ''}
-    </section>`;
+  content.innerHTML = introMarkup({
+    title: '行前感官问卷', description: '按平时的真实感受选择，没有对错。',
+    total: questions.length, answered: count, kind: 'sensory',
+  });
   footer(`${button(count ? '继续填写' : '开始填写', 'start')}<p class="footer-hint">进度保存在当前设备，可随时继续</p>`);
 }
 function renderQuestion() {
@@ -80,9 +78,6 @@ function renderDone() {
 function render() {
   document.querySelector('.device').dataset.stage = stage;
   ({ intro: renderIntro, question: renderQuestion, done: renderDone })[stage]();
-  const home = document.querySelector('#home');
-  home.textContent = stage === 'question' ? '稍后继续' : '我的';
-  home.setAttribute('aria-label', stage === 'question' ? '保存进度并返回我的' : '返回我的');
   document.querySelector('#back').setAttribute('aria-label', stage === 'intro' || stage === 'done' ? '返回我的' : '返回问卷首页');
 }
 
@@ -109,7 +104,6 @@ document.addEventListener('click', event => {
     } else navigateQuestion(state.index + 1);
   }
 });
-document.querySelector('#home').addEventListener('click', persist);
 document.querySelector('#back').addEventListener('click', () => {
   if (stage === 'intro' || stage === 'done') location.href = '../#/profile';
   else { persist(); show('intro'); }

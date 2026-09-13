@@ -27,6 +27,13 @@ if (previousEntry && !previousEntry.startsWith('!a&&v.jsxs("a",{className:"trip-
   throw new Error('Unexpected content before the family binding card');
 }
 bundle = bundle.slice(0, entryStart) + invitation + bundle.slice(entryEnd);
+// Feedback uses the same menu row and icon style as the adjacent profile links.
+const storyAnchor = '{icon:v.jsx(Hy,{"code-path":"src\\\\pages\\\\Profile.tsx:80:13"';
+const feedbackRow = '{icon:v.jsx(w_,{size:20,strokeWidth:1.8}),label:"反馈问卷",desc:"分享这次游园的感受",onClick:()=>{window.location.href="./feedback/"}},';
+if (!bundle.includes('label:"反馈问卷"')) {
+  if (bundle.split(storyAnchor).length !== 2) throw new Error('Cannot locate a unique social-story menu row');
+  bundle = bundle.replace(storyAnchor, feedbackRow + storyAnchor);
+}
 await fs.writeFile(bundlePath, bundle, 'utf8');
 
 const indexPath = path.join(release, 'index.html');

@@ -1,0 +1,36 @@
+.back { display: flex; align-items: center; justify-content: center; }
+.feedback-meta { color: #698198; }
+.option:has(input[type="checkbox"]) .radio-mark { border-radius: 5px; }
+.option:has(input[type="checkbox"]:checked) .radio-mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #2788ec;
+  background: #2788ec;
+  color: #fff;
+}
+.option:has(input[type="checkbox"]:checked) .radio-mark::after { content: "✓"; font-size: 13px; }
+.rating-options { display: flex; gap: 8px; margin-top: 28px; }
+.rating-choice { position: relative; cursor: pointer; flex: 1; min-width: 0; }
+.rating-choice input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.rating-choice span { display: flex; justify-content: center; align-items: center; min-height: 52px; }
+.rating-choice svg { width: 34px; height: 34px; fill: #fff; stroke: #829ab1; stroke-width: 1.5; stroke-linejoin: round; }
+.rating-choice[data-filled="true"] svg { fill: #f8c65e; stroke: #cc9426; }
+.rating-choice:has(input:focus-visible) span { outline: 3px solid #147bea; outline-offset: 2px; border-radius: 8px; }
+.rating-value { margin-top: 12px; min-height: 22px; color: #6a7e91; text-align: center; font-size: 13px; }
+.optional-feedback { margin-top: 26px; }
+.optional-feedback label { display: flex; align-items: center; gap: 8px; color: #446780; font-size: 13px; line-height: 1.6; }
+.optional-feedback label span { font-size: 11px; color: #8597a6; }
+.feedback-comment { display: block; width: 100%; min-height: 130px; margin-top: 10px; padding: 13px 14px; border: 1px solid #d7e5f0; border-radius: 14px; background: #fff; color: #163451; font: inherit; font-size: 14px; line-height: 1.7; resize: vertical; }
+.feedback-comment::placeholder { color: #91a1ae; }
+.feedback-comment:focus-visible { outline: 2px solid #388cdb; outline-offset: 2px; border-color: transparent; }
+@container (max-height: 620px) {
+  .rating-options { margin-top: 18px; }
+  .optional-feedback { margin-top: 18px; }
+  .feedback-comment { min-height: 96px; }
+}
+.feedback-text { width: 100%; min-height: 160px; margin-top: 20px; padding: 14px; border: 1.5px solid #d8e5f0; border-radius: 15px; resize: vertical; font: inherit; line-height: 1.7; color: #163451; }
+.feedback-text:focus-visible { outline: 3px solid #147bea; outline-offset: 2px; }
+.feedback-done { padding-top: 52px; }
+.feedback-done h1 { font-size: 26px; }
+.feedback-done .done-check { width: 56px; height: 56px; margin-bottom: 24px; }

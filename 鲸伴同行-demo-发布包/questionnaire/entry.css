@@ -1,0 +1,20 @@
+.trip-invitation {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+  padding: var(--space-5);
+  border: 2px solid #9dc8f4;
+  border-radius: var(--r-lg);
+  background: var(--bg-surface);
+  box-shadow: var(--shadow-sm);
+  color: var(--text-primary);
+  text-decoration: none;
+  flex-shrink: 0;
+}
+.trip-invitation:hover { border-color: #6fa9e4; }
+.trip-invitation:focus-visible { outline: 3px solid #1677d2; outline-offset: 3px; }
+.trip-invitation-copy { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+.trip-invitation-title { font-size: 15px; font-weight: 700; line-height: 1.4; letter-spacing: .2px; }
+.trip-invitation-desc { font-size: 12px; line-height: 1.5; color: #5d7994; }
+.trip-invitation-arrow { margin-left: auto; font-size: 26px; line-height: 1; color: #1677d2; }

@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import { questions, version, readState, answerCount, complete, setAnswer, submit, storageKey } from '../鲸伴同行-demo-发布包/questionnaire/model.mjs';
+import { buildSensoryReport, supportNotes } from '../鲸伴同行-demo-发布包/questionnaire/report-model.mjs';
 
 test('preview uses the supplied questionnaire without changing any source wording', async () => {
   const source = await fs.readFile(new URL('../file/questionnaire.js', import.meta.url), 'utf8');
@@ -42,14 +43,21 @@ test('each account has a separate questionnaire storage key', () => {
   assert.notEqual(storageKey('account-a'), storageKey('account-b'));
   assert.notEqual(storageKey('account-a'), storageKey(null));
 });
-test('the actual profile insertion is shown to heart-youth users and hidden from parents', async () => {
+test('the profile report replaces the former one-role questionnaire invitation', async () => {
   const bundle = await fs.readFile(new URL('../鲸伴同行-demo-发布包/assets/index-BTDJbxyr.js', import.meta.url), 'utf8');
-  const fragment = bundle.split('className:"me-body",children:[')[1].split(',v.jsxs("div",{"code-path":"src\\\\pages\\\\Profile.tsx:115:9"')[0];
-  const v = { jsx: (type, props) => ({ type, props }), jsxs: (type, props) => ({ type, props }) };
-  const renderEntry = new Function('v', 'a', 'w_', `return (${fragment});`);
-  const evaluate = (renderer, parent) => renderEntry(renderer, parent, 'file-text');
-  assert.equal(evaluate(v, true), false);
-  const entry = evaluate(v, false);
-  assert.equal(entry.type, 'a');
-  assert.equal(entry.props.href, './questionnaire/');
+  const anchor = 'className:"me-body",children:[';
+  const binding = 'v.jsxs("div",{"code-path":"src\\\\pages\\\\Profile.tsx:115:9"';
+  const afterAnchor = bundle.indexOf(anchor) + anchor.length;
+  const fragment = bundle.slice(afterAnchor, bundle.indexOf(binding, afterAnchor));
+  assert.equal(fragment, '');
+  const html = await fs.readFile(new URL('../鲸伴同行-demo-发布包/index.html', import.meta.url), 'utf8');
+  assert.match(html, /questionnaire\/profile-report\.mjs\?v=[a-f0-9]{12}/);
+});
+test('a completed five-dimension questionnaire creates a sensitivity report', () => {
+  const answers = Object.fromEntries(questions.map(question => [question.id, question.dimension === 'visual' ? 5 : 1]));
+  const report = buildSensoryReport(JSON.stringify({ version, answers, completedAt: '2026-09-13T12:00:00.000Z' }));
+  assert.equal(report.completed, true);
+  assert.deepEqual(report.scores.map(score => score.title), ['视觉', '听觉', '嗅觉', '触觉', '味觉']);
+  assert.deepEqual(report.scores.map(score => score.sensitivity), [100, 0, 0, 0, 0]);
+  assert.equal(supportNotes.length, 3);
 });

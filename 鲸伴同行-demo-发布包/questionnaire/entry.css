@@ -18,3 +18,33 @@
 .trip-invitation-title { font-size: 15px; font-weight: 700; line-height: 1.4; letter-spacing: .2px; }
 .trip-invitation-desc { font-size: 12px; line-height: 1.5; color: #5d7994; }
 .trip-invitation-arrow { margin-left: auto; font-size: 26px; line-height: 1; color: #1677d2; }
+
+.sensory-report-card { border: 1px solid #d9e9f8; margin-bottom: var(--space-4); }
+.sensory-report-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.sensory-kicker { margin: 0 0 3px; color: #3978b7; font-size: 12px; font-weight: 700; letter-spacing: .5px; }
+.sensory-report-heading h2 { margin: 0; color: #183b5c; font-size: 18px; line-height: 1.4; }
+.sensory-updated { margin: 4px 0 0; color: #698097; font-size: 12px; }
+.sensory-edit-link { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 44px; margin-top: 14px; padding: 0 14px; color: #1677d2; background: #f2f8ff; border-radius: 12px; font-size: 14px; font-weight: 700; text-decoration: none; }
+.sensory-edit-link span { font-size: 23px; line-height: 1; }
+.sensory-edit-link.compact { min-height: 34px; margin-top: 0; padding: 0 10px; white-space: nowrap; }
+.sensory-share-tag { padding: 5px 8px; border-radius: 10px; color: #3978b7; background: #edf7ff; font-size: 12px; font-weight: 700; white-space: nowrap; }
+.sensory-empty-copy { margin: 12px 0 0; color: #536c83; font-size: 14px; line-height: 1.7; }
+.sensory-report-main { display: flex; align-items: center; gap: 6px; margin-top: 10px; }
+.sensory-radar { width: 53%; min-width: 0; overflow: visible; }
+.sensory-radar .radar-grid { fill: #f5faff; stroke: #cfe1f4; stroke-width: .8; }
+.sensory-radar line { stroke: #d8e7f5; stroke-width: .8; }
+.sensory-radar .radar-area { fill: rgba(65, 145, 222, .24); stroke: #3187d6; stroke-width: 2; }
+.sensory-radar .radar-dot { fill: #3187d6; stroke: #fff; stroke-width: 1.2; }
+.sensory-radar text { fill: #46647e; font-size: 11px; font-weight: 700; }
+.sensory-score-list { flex: 1; min-width: 0; display: grid; gap: 7px; }
+.sensory-score-row { display: flex; align-items: center; justify-content: space-between; gap: 5px; color: #4e687f; font-size: 12px; }
+.sensory-score-row span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.sensory-score-row i { display: inline-block; width: 7px; height: 7px; margin-right: 5px; border-radius: 50%; }
+.sensory-score-row strong { color: #244d73; font-size: 14px; }
+.sensory-score-row small { color: #7b8c9c; font-size: 10px; font-weight: 500; }
+.companion-notes { margin-top: 12px; padding: 12px; border-radius: 12px; background: #f5f9fc; }
+.companion-notes h3 { margin: 0 0 7px; color: #244d73; font-size: 14px; }
+.companion-notes ul { display: grid; gap: 7px; margin: 0; padding: 0; list-style: none; }
+.companion-notes li { position: relative; padding-left: 14px; color: #526b83; font-size: 12px; line-height: 1.6; }
+.companion-notes li::before { position: absolute; left: 1px; color: #3187d6; content: '•'; }
+@media (max-width: 350px) { .sensory-report-main { gap: 1px; } .sensory-radar { width: 55%; } .sensory-score-row { font-size: 11px; } }

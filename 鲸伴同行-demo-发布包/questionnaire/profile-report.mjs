@@ -34,28 +34,25 @@ function radarSvg(scores) {
   const values = scores.map((score, index) => point(index, score.sensitivity / 100).map(value => value.toFixed(1)).join(',')).join(' ');
   const labels = scores.map((score, index) => {
     const [x, y] = point(index, 1.28);
-    return `<text x="${x.toFixed(1)}" y="${(y + 4).toFixed(1)}" text-anchor="middle">${escapeHtml(score.title)}</text>`;
+    return `<text class="radar-label" x="${x.toFixed(1)}" y="${(y + 4).toFixed(1)}" text-anchor="middle">${escapeHtml(score.title)}</text>`;
   }).join('');
   return `<svg class="sensory-radar" viewBox="0 0 184 184" role="img" aria-label="五维感官敏感度雷达图">
+    <polygon class="radar-bg" points="${polygon(1)}" />
     <polygon class="radar-grid" points="${polygon(1)}" />
     <polygon class="radar-grid" points="${polygon(.66)}" />
     <polygon class="radar-grid" points="${polygon(.33)}" />
-    ${scores.map((_, index) => { const [x, y] = point(index); return `<line x1="${centre}" y1="${centre}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}" />`; }).join('')}
+    ${scores.map((_, index) => { const [x, y] = point(index); return `<line class="radar-axis" x1="${centre}" y1="${centre}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}" />`; }).join('')}
     <polygon class="radar-area" points="${values}" />
-    ${scores.map((score, index) => { const [x, y] = point(index, score.sensitivity / 100); return `<circle class="radar-dot" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3.2" />`; }).join('')}
+    ${scores.map((score, index) => { const [x, y] = point(index, score.sensitivity / 100); return `<circle class="radar-dot" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3.4" />`; }).join('')}
     ${labels}
   </svg>`;
 }
 
 function scoreRows(scores) {
   return `<div class="sensory-score-list">${scores.map(score => `<div class="sensory-score-row">
-    <span><i style="background:${scoreColor(score.id)}"></i>${escapeHtml(score.title)}</span>
+    <span>${escapeHtml(score.title)}</span>
     <strong>${score.average.toFixed(1)}<small>/5</small></strong>
   </div>`).join('')}</div>`;
-}
-
-function scoreColor(id) {
-  return ({ visual: '#5F9AE6', auditory: '#8E7AE6', olfactory: '#E7A54B', tactile: '#4AAE8B', gustatory: '#C878DC' })[id] || '#5F9AE6';
 }
 
 function renderReport() {
@@ -78,9 +75,7 @@ function renderReport() {
     card.innerHTML = `<div class="sensory-report-heading"><div><p class="sensory-kicker">个人感官画像</p><h2>${title}</h2></div></div>
       <p class="sensory-empty-copy">${copy}</p>${companion ? '' : '<a class="sensory-edit-link" href="./questionnaire/">填写问卷 <span>›</span></a>'}`;
   } else {
-    const title = companion ? `${escapeHtml(person.name || '陪伴对象')}的感官画像` : '我的感官画像';
-    const updated = new Date(report.completedAt).toLocaleDateString('zh-CN', { month: 'long', day: 'numeric' });
-    card.innerHTML = `<div class="sensory-report-heading"><div><p class="sensory-kicker">个人感官画像</p><h2>${title}</h2><p class="sensory-updated">问卷已完成 · ${updated} 更新</p></div>${companion ? '<span class="sensory-share-tag">伴游参考</span>' : '<a class="sensory-edit-link compact" href="./questionnaire/">编辑问卷</a>'}</div>
+    card.innerHTML = `<div class="sensory-report-heading"><p class="sensory-kicker">个人感官画像</p>${companion ? '<span class="sensory-share-tag">伴游参考</span>' : '<a class="sensory-edit-link compact" href="./questionnaire/">编辑问卷</a>'}</div>
       <div class="sensory-report-main">${radarSvg(report.scores)}${scoreRows(report.scores)}</div>
       <div class="companion-notes"><h3>伴游关注要点</h3><ul>${supportNotes.map(note => `<li>${note}</li>`).join('')}</ul></div>`;
   }

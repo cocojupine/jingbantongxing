@@ -63,19 +63,20 @@ function renderReport() {
   const person = linkedPerson();
   const account = reportAccount();
   const report = buildSensoryReport(account ? savedQuestionnaire(account) : null);
+  const heading = companion ? '陪伴对象的五感测评' : '我的五感测评';
   const card = document.createElement('section');
   card.className = 'card sensory-report-card';
 
   if (companion && !person) {
-    card.innerHTML = `<div class="sensory-report-heading"><div><p class="sensory-kicker">个人感官画像</p><h2>关联陪伴对象后查看</h2></div></div>
-      <p class="sensory-empty-copy">关联心青年账号后，可在这里查看其完成问卷后生成的五维雷达图和陪伴关注要点。</p>`;
+    card.innerHTML = `<div class="sensory-report-heading"><div><p class="sensory-kicker">${heading}</p><h2>关联陪伴对象后查看</h2></div></div>
+      <p class="sensory-empty-copy">关联心青年账号后，可在这里查看其完成问卷后的五感测评结果和陪伴关注要点。</p>`;
   } else if (!report.completed) {
-    const title = companion ? `${escapeHtml(person.name || '陪伴对象')}的感官画像` : '我的感官画像';
-    const copy = companion ? '对方完成行前感官问卷后，这里会生成可供陪伴参考的五维雷达图。' : '完成行前感官问卷后，这里会生成你的五维雷达图，帮助安排更舒适的游园节奏。';
-    card.innerHTML = `<div class="sensory-report-heading"><div><p class="sensory-kicker">个人感官画像</p><h2>${title}</h2></div></div>
+    const title = companion ? `${escapeHtml(person.name || '陪伴对象')}的五感测评` : '完成问卷后查看结果';
+    const copy = companion ? '对方完成行前感官问卷后，这里会生成可供陪伴参考的五感测评结果。' : '完成行前感官问卷后，这里会生成你的五感测评结果，帮助安排更舒适的游园节奏。';
+    card.innerHTML = `<div class="sensory-report-heading"><div><p class="sensory-kicker">${heading}</p><h2>${title}</h2></div></div>
       <p class="sensory-empty-copy">${copy}</p>${companion ? '' : '<a class="sensory-edit-link" href="./questionnaire/">填写问卷 <span>›</span></a>'}`;
   } else {
-    card.innerHTML = `<div class="sensory-report-heading"><p class="sensory-kicker">个人感官画像</p>${companion ? '<span class="sensory-share-tag">伴游参考</span>' : '<a class="sensory-edit-link compact" href="./questionnaire/">编辑问卷</a>'}</div>
+    card.innerHTML = `<div class="sensory-report-heading"><p class="sensory-kicker">${heading}</p>${companion ? '<span class="sensory-share-tag">伴游参考</span>' : '<a class="sensory-edit-link compact" href="./questionnaire/">编辑问卷</a>'}</div>
       <div class="sensory-report-main">${radarSvg(report.scores)}${scoreRows(report.scores)}</div>
       <div class="companion-notes"><h3>伴游关注要点</h3><ul>${supportNotes.map(note => `<li>${note}</li>`).join('')}</ul></div>`;
   }

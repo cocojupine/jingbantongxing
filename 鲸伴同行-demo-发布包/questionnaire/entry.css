@@ -19,6 +19,12 @@
 .trip-invitation-desc { font-size: 12px; line-height: 1.5; color: #5d7994; }
 .trip-invitation-arrow { margin-left: auto; font-size: 26px; line-height: 1; color: #1677d2; }
 
+.sensory-profile-entry { padding: 13px 14px; border: 1px solid #d9e9f8; border-radius: 14px; background: #f7fbff; }
+.sensory-profile-entry .form-label { margin-bottom: 5px; }
+.sensory-profile-copy { margin: 0; color: #536c83; font-size: 12px; line-height: 1.65; }
+.sensory-profile-link { display: flex; align-items: center; justify-content: center; min-height: 42px; margin-top: 10px; border: 1px solid #8fc1ee; border-radius: 11px; color: #146fbe; background: #fff; font-size: 14px; font-weight: 700; text-decoration: none; }
+.sensory-profile-link:focus-visible { outline: 3px solid #1677d2; outline-offset: 2px; }
+
 .sensory-report-card { border: 1px solid #d9e9f8; margin-bottom: var(--space-4); }
 .sensory-report-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .sensory-kicker { margin: 0; color: #285f91; font-size: 13px; font-weight: 750; letter-spacing: .35px; }

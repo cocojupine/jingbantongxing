@@ -67,6 +67,35 @@ for (const [sources, to] of wording) {
   }
   if (!bundle.includes(to)) throw new Error(`Cannot update wording: ${JSON.stringify(sources)}`);
 }
+
+// The personal profile should use the supplied 17-item sensory assessment,
+// rather than a separate set of coarse sensory tags. Keep the established
+// questionnaire as the single source of answers and link to it from the modal.
+const profileItemMarker = '{"code-path":"src\\\\components\\\\ProfileModal.tsx:142:7"';
+const nextProfileItem = 'v.jsxs("div",{"code-path":"src\\\\components\\\\ProfileModal.tsx:151:7"';
+const profileMarkerIndex = bundle.indexOf(profileItemMarker);
+const profileItemStart = bundle.lastIndexOf('v.jsxs("div",', profileMarkerIndex);
+const profileItemEnd = bundle.indexOf(nextProfileItem, profileItemStart);
+if (profileMarkerIndex === -1 || profileItemStart === -1 || profileItemEnd === -1) {
+  throw new Error('Cannot locate the profile sensory item');
+}
+const existingProfileItem = bundle.slice(profileItemStart, profileItemEnd);
+if (!existingProfileItem.includes('children:"感官敏感度（可多选）"')
+    && !existingProfileItem.includes('className:"form-row sensory-profile-entry"')) {
+  throw new Error('Unexpected profile sensory item');
+}
+const profileQuestionnaireItem = 'v.jsxs("div",{"code-path":"src\\\\components\\\\ProfileModal.tsx:142:7",className:"form-row sensory-profile-entry",children:['
+  + 'v.jsx("label",{"code-path":"src\\\\components\\\\ProfileModal.tsx:143:9",className:"form-label",children:"感官测评（17题）"}),'
+  + 'v.jsx("p",{className:"sensory-profile-copy",children:"包含视觉4题、听觉4题、嗅觉3题、触觉3题和味觉3题，均按1-5分记录敏感程度。"}),'
+  + 'v.jsx("a",{className:"sensory-profile-link",href:"./questionnaire/",onClick:S=>{S.preventDefault();if(!i.name.trim()){a.warning("请先填写姓名");return}jbWrite("profile",i),localStorage.setItem("profileCompleted","1"),window.location.href="./questionnaire/"},children:"保存档案并填写感官测评"})]}),';
+bundle = bundle.slice(0, profileItemStart) + profileQuestionnaireItem + bundle.slice(profileItemEnd);
+
+const profileFieldsWithLegacySensory = 'const i2=["name","gender","birthday","region","emergencyPhone","avatar","sensory","interests","advice"]';
+const profileFields = 'const i2=["name","gender","birthday","region","emergencyPhone","avatar","interests","advice"]';
+if (bundle.includes(profileFieldsWithLegacySensory)) {
+  bundle = bundle.replace(profileFieldsWithLegacySensory, profileFields);
+}
+if (!bundle.includes(profileFields)) throw new Error('Cannot update profile completeness fields');
 // Feedback uses the same menu row and icon style as the adjacent profile links.
 const storyAnchor = '{icon:v.jsx(Hy,{"code-path":"src\\\\pages\\\\Profile.tsx:80:13"';
 const feedbackRow = '{icon:v.jsx(w_,{size:20,strokeWidth:1.8}),label:"反馈问卷",desc:"分享这次游园的感受",onClick:()=>{window.location.href="./feedback/"}},';

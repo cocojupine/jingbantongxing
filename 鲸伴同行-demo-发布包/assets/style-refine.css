@@ -328,3 +328,51 @@ body {
   border-color: var(--sea-300);
   box-shadow: var(--shadow-sm), 0 0 0 4px var(--sea-100);
 }
+
+.bp-nav-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  min-height: 34px;
+  margin-top: 0;
+  padding: 0 12px;
+  border-radius: var(--r-md);
+  background: var(--sea-500);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.bp-points .bp-point {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-rows: auto auto;
+  align-items: center;
+  column-gap: 10px;
+}
+
+.bp-points .bp-point-name {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.bp-points .bp-point-hint {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.bp-points .bp-nav-link {
+  grid-column: 2;
+  grid-row: 1 / 3;
+  min-width: 72px;
+  justify-self: end;
+  align-self: center;
+}
+
+.bp-nav-link:hover,
+.bp-nav-link:focus-visible {
+  background: var(--sea-600);
+  color: #fff;
+}

@@ -57,15 +57,20 @@ function scoreRows(scores) {
 
 function renderReport() {
   const body = document.querySelector('.me-body');
-  if (!body || body.querySelector('.sensory-report-card')) return;
+  if (!body) return;
   const role = localStorage.getItem('userRole') || 'xinqingnian';
   const companion = role === 'parent';
   const person = linkedPerson();
   const account = reportAccount();
-  const report = buildSensoryReport(account ? savedQuestionnaire(account) : null);
+  const serialized = account ? savedQuestionnaire(account) : null;
+  const signature = JSON.stringify([role, person?.phone, person?.name, serialized]);
+  const existing = body.querySelector('.sensory-report-card');
+  if (existing?.dataset.signature === signature) return;
+  const report = buildSensoryReport(serialized);
   const heading = companion ? '陪伴对象的五感测评' : '我的五感测评';
   const card = document.createElement('section');
   card.className = 'card sensory-report-card';
+  card.dataset.signature = signature;
 
   if (companion && !person) {
     card.innerHTML = `<div class="sensory-report-heading"><div><p class="sensory-kicker">${heading}</p><h2>关联陪伴对象后查看</h2></div></div>
@@ -80,8 +85,11 @@ function renderReport() {
       <div class="sensory-report-main">${radarSvg(report.scores)}${scoreRows(report.scores)}</div>
       <div class="companion-notes"><h3>伴游关注要点</h3><ul>${supportNotes.map(note => `<li>${note}</li>`).join('')}</ul></div>`;
   }
-  const bindingCard = body.querySelector('.card');
-  body.insertBefore(card, bindingCard || null);
+  if (existing) existing.replaceWith(card);
+  else {
+    const bindingCard = body.querySelector('.card');
+    body.insertBefore(card, bindingCard || null);
+  }
 }
 
 function scheduleRender() { requestAnimationFrame(renderReport); }

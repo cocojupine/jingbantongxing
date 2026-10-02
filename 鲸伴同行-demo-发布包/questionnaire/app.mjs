@@ -11,6 +11,7 @@ let serialized = null;
 try { serialized = localStorage.getItem(key); } catch { /* In-memory fallback. */ }
 const state = readState(serialized);
 let stage = new URLSearchParams(location.search).has('intro') ? 'intro' : state.completedAt ? 'done' : 'intro';
+const returnTo = new URLSearchParams(location.search).get('guide') === '1' ? '../#/profile?guide=1' : '../#/profile';
 let saved = true;
 
 const escapeHtml = value => String(value).replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]);
@@ -73,12 +74,12 @@ function renderQuestion() {
 function renderDone() {
   const date = new Date(state.completedAt).toLocaleString('zh-CN', { month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' });
   content.innerHTML = `<section class="done-hero"><div class="done-check" aria-hidden="true">✓</div><span class="eyebrow">${questions.length} / ${questions.length} 题已完成</span><h1>谢谢你告诉小白<br>你的感受</h1><p>行前感官问卷已完成。<br>${saved ? '答案已保存在当前设备，可以随时回来查看或修改。' : '答案暂时保留在本页，请留意上方保存提示。'}</p><img class="done-mascot" src="../assets/xiaobai.png" alt="小白陪着你"></section><section class="completion-card"><span>本次填写</span><strong>五感 · ${questions.length} 题</strong><span>完成时间</span><strong>${escapeHtml(date)}</strong></section>`;
-  footer(`<a class="primary" href="../#/profile">返回我的</a>${button('修改答案', 'edit', 'text-button')}`);
+  footer(`<a class="primary" href="${returnTo}">${returnTo.includes('guide=1') ? '返回填写指引' : '返回我的'}</a>${button('修改答案', 'edit', 'text-button')}`);
 }
 function render() {
   document.querySelector('.device').dataset.stage = stage;
   ({ intro: renderIntro, question: renderQuestion, done: renderDone })[stage]();
-  document.querySelector('#back').setAttribute('aria-label', stage === 'intro' || stage === 'done' ? '返回我的' : '返回问卷首页');
+  document.querySelector('#back').setAttribute('aria-label', stage === 'intro' || stage === 'done' ? returnTo.includes('guide=1') ? '返回填写指引' : '返回我的' : '返回问卷首页');
 }
 
 document.addEventListener('change', event => {
@@ -105,7 +106,7 @@ document.addEventListener('click', event => {
   }
 });
 document.querySelector('#back').addEventListener('click', () => {
-  if (stage === 'intro' || stage === 'done') location.href = '../#/profile';
+  if (stage === 'intro' || stage === 'done') location.href = returnTo;
   else { persist(); show('intro'); }
 });
 render();

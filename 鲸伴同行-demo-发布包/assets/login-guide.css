@@ -1,0 +1,43 @@
+/* Ocean-blue preparation guide; the coral goldfish is its single visual accent. */
+.jg-dialog {
+  width: min(375px, calc(100vw - 24px)); height: auto;
+  max-width: none; max-height: min(640px, calc(100dvh - 40px)); margin: auto; padding: 0; border: 0;
+  border-radius: 28px; color: var(--ink-900, #12263f); background: var(--sea-50, #f0f7ff);
+  box-shadow: 0 16px 42px rgba(14, 75, 133, .16); overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+}
+.jg-dialog[open] { display: flex; flex-direction: column; }
+.jg-dialog::backdrop { background: rgba(8, 58, 112, .38); }
+.jg-scroll { min-height: 0; flex: 1; overflow-y: auto; overscroll-behavior: contain; padding: 16px 20px 14px; }
+.jg-topline { display: flex; justify-content: space-between; align-items: center; color: var(--sea-700, #0b5faf); font-size: 13px; font-weight: 600; }
+.jg-close { min-width: 44px; min-height: 44px; font-size: 26px; line-height: 1; color: var(--ink-600, #4a5e78); }
+.jg-welcome { display: flex; align-items: center; gap: 10px; margin: 4px 0 10px; }
+.jg-welcome > img { width: 76px; height: auto; flex-shrink: 0; animation: jg-float 3s ease-in-out infinite; }
+.jg-dialog h1 { margin: 0; font-size: 20px; line-height: 1.4; font-weight: 700; letter-spacing: -.3px; }
+.jg-intro { margin-top: 3px; font-size: 13px; color: var(--ink-600, #4a5e78); line-height: 1.6; }
+.jg-progress { margin: 8px 0 12px; color: var(--sea-700, #0b5faf); font-size: 12px; line-height: 1.6; font-weight: 600; }
+.jg-steps { display: grid; gap: 10px; }
+.jg-step { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 12px; padding: 13px 14px; border: 1px solid var(--sea-100, #ddeeff); border-radius: 16px; background: #fff; }
+.jg-step-heading { display: flex; align-items: center; gap: 9px; }
+.jg-step-number { display: grid; place-items: center; width: 26px; height: 26px; flex-shrink: 0; border-radius: 50%; background: var(--sea-50, #f0f7ff); color: var(--sea-700, #0b5faf); font-size: 13px; font-weight: 700; }
+.jg-step h2 { font-size: 15px; line-height: 1.45; font-weight: 650; }
+.jg-status { margin-top: 2px; color: var(--ink-600, #4a5e78); font-size: 12px; }
+.jg-action { display: flex; align-items: center; gap: 7px; min-height: 40px; padding: 8px 11px; border-radius: 11px; background: var(--sea-600, #0b78dc); color: #fff; font-size: 13px; font-weight: 600; white-space: nowrap; }
+.jg-step-done .jg-step-number { background: #e7f6ee; color: #238654; }
+.jg-step-done .jg-status { color: #238654; }
+.jg-footer { flex-shrink: 0; padding: 10px 20px max(14px, env(safe-area-inset-bottom)); background: #fff; border-top: 1px solid var(--sea-100, #ddeeff); }
+.jg-later { width: 100%; min-height: 44px; color: var(--sea-700, #0b5faf); font-size: 14px; font-weight: 600; }
+.jg-dialog button:focus-visible, .jg-visit-hint button:focus-visible { outline: 3px solid var(--sea-400, #54afff); outline-offset: 3px; }
+.jg-home-banner { width: calc(100% - 40px); margin: var(--space-4, 16px) 20px 0; padding: 12px 14px; display: flex; align-items: center; gap: 12px; border: 1px solid rgba(255,255,255,.6); border-radius: var(--r-lg, 18px); background: rgba(255,255,255,.96); color: var(--ink-900, #12263f); box-shadow: var(--shadow-md, 0 4px 10px rgba(14,75,133,.08)); text-align: left; cursor: pointer; position: relative; z-index: 2; }
+.jg-home-banner > img { width: 44px; height: 44px; object-fit: contain; flex-shrink: 0; }
+.jg-home-banner > span:nth-child(2) { flex: 1; min-width: 0; }
+.jg-home-banner strong { display: block; font-size: 14px; line-height: 1.45; }
+.jg-home-banner small { display: block; margin-top: 2px; color: var(--ink-600, #4a5e78); font-size: 12px; line-height: 1.45; }
+.jg-home-cta { flex-shrink: 0; padding: 6px 11px; border-radius: var(--r-full, 999px); background: var(--sea-600, #0b78dc); color: #fff; font-size: 12px; font-weight: 700; }
+.jg-home-banner:focus-visible { outline: 3px solid var(--sea-400, #54afff); outline-offset: 3px; }
+.jg-visit-hint { margin-bottom: 12px; padding: 12px; background: var(--sea-50, #f0f7ff); border-radius: 12px; color: var(--ink-600, #4a5e78); font-size: 13px; line-height: 1.8; }
+.jg-visit-hint button { min-height: 44px; color: var(--sea-700, #0b5faf); font-weight: 600; }
+@keyframes jg-float { 50% { transform: translateY(-4px); } }
+@media (max-width: 600px) { .jg-dialog { width: calc(100vw - 24px); max-height: calc(100dvh - 24px); border-radius: 24px; } }
+@media (max-width: 360px) { .jg-scroll { padding-inline: 16px; } .jg-welcome > img { width: 68px; } .jg-step { padding: 12px; gap: 8px; } .jg-action { padding-inline: 9px; } }
+@media (prefers-reduced-motion: reduce) { .jg-welcome > img { animation: none; } }

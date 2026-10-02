@@ -6,11 +6,32 @@ body { height: 100dvh; min-height: 0; padding: 20px 12px; overflow: hidden; }
 .phone .main-body, .phone .me-body, .phone .bp-body, .phone .list-body, .phone .chat-body { min-height: 0; overscroll-behavior-y: contain; scroll-padding-block: 12px 24px; }
 .phone .main-body { margin-top: 0; padding: 14px 16px 12px; z-index: auto; }
 .main-hero { padding-bottom: 16px; }
-/* Keep the helper in its own row so it never covers scrolling text. */
-.main-page > .ai-mascot-fab { position: static; order: 3; align-self: flex-end; flex-shrink: 0; flex-direction: row; gap: 6px; margin: 0 18px 10px auto; min-height: 40px; }
-.main-page > .ai-mascot-fab img { width: 40px; height: 40px; }
-.main-page > .ai-mascot-fab .ai-mascot-label { font-size: 12px; margin-top: 0; }
-.main-page > .tab-bar { order: 4; margin-top: 14px; }
+/* Scroll the home hero and content as one surface; keep only the tab bar anchored. */
+.main-page { overflow-y: auto; overscroll-behavior-y: contain; scrollbar-width: none; }
+.main-page::-webkit-scrollbar { display: none; }
+.main-page > .main-body { flex: none; min-height: auto; overflow-y: visible; padding-bottom: 96px; }
+.main-page > .tab-bar {
+  position: fixed;
+  left: 50%;
+  bottom: max(36px, calc((100dvh - 812px) / 2 + 16px));
+  width: min(343px, calc(100vw - 32px));
+  margin: 0;
+  transform: translateX(-50%);
+}
+/* Keep Xiaobai floating above the anchored tab bar while the page scrolls. */
+.main-page > .ai-mascot-fab {
+  position: fixed;
+  right: max(14px, calc((100vw - 375px) / 2 + 14px));
+  bottom: max(108px, calc((100dvh - 812px) / 2 + 108px));
+  z-index: 20;
+  flex-direction: column;
+  gap: 0;
+  margin: 0;
+  min-height: 0;
+}
+.main-page > .ai-mascot-fab img { width: 64px; height: 64px; }
+.main-page > .ai-mascot-fab .ai-mascot-label { font-size: 10px; margin-top: -4px; }
+.main-page > .tab-bar { order: 4; margin: 0; }
 .phone .me-body, .phone .bp-body, .phone .list-body { padding-bottom: max(20px, env(safe-area-inset-bottom)); }
 .me-hero { padding-bottom: 18px; }
 .me-user { padding: 10px 20px 0; gap: 12px; }
@@ -54,6 +75,8 @@ body { height: 100dvh; min-height: 0; padding: 20px 12px; overflow: hidden; }
 @media (max-width: 600px) {
   body { padding: 0; }
   .phone { width: 100vw; height: 100dvh; border-radius: 0; box-shadow: none; }
+  .main-page > .tab-bar { bottom: 16px; }
+  .main-page > .ai-mascot-fab { right: 14px; bottom: 108px; }
 }
 @media (max-width: 360px) {
   .me-user { padding-inline: 16px; }

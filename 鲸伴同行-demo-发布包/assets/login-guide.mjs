@@ -165,7 +165,7 @@ function sync() {
   if (current.path === '/main') syncHomeBanner(state);
   if (['/main', '/profile'].includes(current.path) && current.params.get('guide') === '1' && appRoot.querySelector(current.path === '/main' ? '.main-page' : '.me-page')) {
     consumeRequest();
-    if (current.path === '/profile') showGuide();
+    showGuide();
   }
   if (!profileVisit || current.path !== '/profile') return;
   addVisitHint();

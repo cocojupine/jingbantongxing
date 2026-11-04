@@ -33,9 +33,6 @@ test-results/
 map_demo/*.png
 map_demo/*.json
 
-# UI 设计稿参考图（样机版 / 透明背景版）
-鲸伴同行-UI稿件/
-
 # 地点卡片素材里未被代码引用的备选图
 鲸伴同行-demo-发布包/assets/animals/penguin-left.png
 鲸伴同行-demo-发布包/assets/animals/capybara-dr.png
@@ -46,3 +43,6 @@ map_demo/*.json
 
 # 临时生成脚本
 scripts/compose-map-reference.py
+
+# 源素材图（800方形透明PNG 等，保留在仓库根目录，不提交）
+素材切分/

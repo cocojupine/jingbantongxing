@@ -131,7 +131,8 @@
 <script>
   var params = new URLSearchParams(location.search);
   var route = params.get('route') || '#/main';
-  var name = params.get('name') || '主页';
+  var isMapRoute = route === 'map' || route === '/map.html';
+  var name = params.get('name') || (isMapRoute ? '园区地图' : '主页');
 
   document.getElementById('pageName').textContent = name;
 
@@ -159,7 +160,9 @@
       } catch (e) { /* 跨源时保持原样 */ }
       iframe.classList.add('loaded');
     });
-    iframe.src = location.origin + '/' + route;
+    iframe.src = isMapRoute
+      ? new URL('./map.html', location.href).href
+      : location.origin + '/' + route;
   }
 
   // 1080×1440 构图整体缩放适配窗口（居中、不变形、四周留白均匀）

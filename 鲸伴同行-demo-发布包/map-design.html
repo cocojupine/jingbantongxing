@@ -1,0 +1,621 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#eaf6ff" />
+    <title>园区地图 · 新版设计稿</title>
+    <link rel="stylesheet" href="./assets/map-design.css?v=20" />
+  </head>
+  <body>
+    <main class="design-app">
+      <header class="design-header">
+        <div class="status-bar" aria-hidden="true">
+          <span>9:41</span>
+          <span class="status-icons"><i></i><i></i><i></i><b></b></span>
+        </div>
+        <div class="header-row">
+          <button class="back-button" type="button" aria-label="返回">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6" /></svg>
+          </button>
+          <div class="header-copy">
+            <h1>园区地图</h1>
+            <p>今天想先去看哪位海洋朋友？</p>
+          </div>
+          <button class="profile-button" id="profileButton" type="button" aria-label="我的资料">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle class="avatar-head" cx="12" cy="8" r="3.5" /><path class="avatar-body" d="M5 20c.8-3.7 3.1-5.5 7-5.5s6.2 1.8 7 5.5Z" /></svg>
+          </button>
+        </div>
+        <div class="search-row">
+          <label class="search-box">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8" /><path d="m16 16 4.5 4.5" /></svg>
+            <input id="placeSearch" class="search-input" type="search" autocomplete="off" placeholder="搜索场馆、餐饮或休息区" aria-label="搜索地点" aria-controls="searchResults" aria-expanded="false" />
+          </label>
+          <button class="filter-button" id="filterToggle" type="button" aria-expanded="false" aria-controls="filterOptions">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M7 12h10m-7 6h4" /></svg>
+            <span>分类</span>
+            <svg class="chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m7 10 5 5 5-5" /></svg>
+          </button>
+        </div>
+        <div class="search-results" id="searchResults" role="listbox" hidden></div>
+        <div class="filter-options" id="filterOptions" aria-hidden="true" inert>
+          <div class="filter-options-inner">
+            <button class="filter-chip is-active" type="button" data-category="all">全部</button>
+            <button class="filter-chip" type="button" data-category="venue">场馆</button>
+            <button class="filter-chip" type="button" data-category="dining">餐饮</button>
+            <button class="filter-chip" type="button" data-category="leisure">休闲</button>
+            <button class="filter-chip" type="button" data-category="gift">礼品</button>
+            <button class="filter-chip" type="button" data-category="restroom">卫生间</button>
+            <button class="filter-chip" type="button" data-category="entrance">出入口</button>
+          </div>
+        </div>
+      </header>
+
+      <section class="map-view" aria-label="园区手绘地图">
+        <div class="map-scene">
+          <img class="park-map" src="./assets/park-map.png?v=6" alt="长乔海洋公园手绘地图" />
+          <svg class="map-markers" viewBox="0 0 1800 2400" preserveAspectRatio="xMidYMid slice" role="group" aria-label="园区地点与路线">
+          <defs>
+            <linearGradient id="routeGradient" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#1672c9" />
+              <stop offset="55%" stop-color="#1c83dc" />
+              <stop offset="100%" stop-color="#3a98f2" />
+            </linearGradient>
+            <clipPath id="placeCircleClip">
+              <circle cx="0" cy="0" r="100" />
+            </clipPath>
+          </defs>
+          <g class="route-layer">
+            <path class="route-casing" id="routeCasing" />
+            <path class="route-line" id="routeMain" />
+            <g id="routeAccess"></g>
+          </g>
+          <g class="my-location" transform="translate(361 1714) scale(1.55)" aria-label="我的位置">
+            <circle class="location-pulse" cy="-15" r="48" />
+            <path class="location-pin" d="M0 42C-11 26-31 4-31-15a31 31 0 1 1 62 0C31 4 11 26 0 42Z" />
+            <circle class="location-center" cy="-15" r="9" />
+            <rect class="location-label-bg" x="33" y="-38" width="178" height="46" rx="23" />
+            <text class="location-label" x="122" y="-15">我的位置</text>
+          </g>
+          <g class="map-place-card" data-place data-route-id="dolphin" data-name="雨林海豚湾" data-type="海洋场馆" data-summary="海豚主题展示 · 建议停留 30 分钟" data-description="近距离了解海豚与雨林生态，适合亲子慢慢探索。" data-services="无障碍通道|休息座椅|卫生间" data-rating="4.9" role="button" tabindex="0" aria-pressed="false" aria-label="查看雨林海豚湾详情" transform="translate(900 350) scale(.86)">
+            <rect class="place-chip-bg" width="410" height="118" rx="34" />
+            <circle class="place-icon-bg" cx="58" cy="59" r="39" />
+            <g class="place-icon" transform="translate(58 59) scale(1.25)">
+              <path class="icon-main" d="M-20 0C-12-9-3-11 6-8l9-7-2 9c5 2 8 4 10 7-6 0-10 2-14 6C0 14-12 11-19 4l-5 4 2-8Z" />
+              <path class="icon-detail" d="M-8 5c5 3 10 3 15 0m-6 5-3 7" />
+              <circle class="icon-eye" cx="10" cy="-3" r="1.4" />
+            </g>
+            <text class="place-label-title" x="112" y="56">雨林海豚湾</text>
+            <text class="place-label-type" x="112" y="88">海洋场馆</text>
+          </g>
+          <g class="map-place-card" data-place data-route-id="penguin" data-name="企鹅岛" data-type="极地场馆" data-summary="极地动物展区 · 亲子互动体验" data-description="观察企鹅生活状态，园内亲子游览热门点位。" data-services="无障碍通道|休息区|母婴室" data-rating="4.8" role="button" tabindex="0" aria-pressed="false" aria-label="查看企鹅岛详情" transform="translate(1050 250) scale(.86)">
+            <rect class="place-chip-bg" width="390" height="118" rx="34" />
+            <circle class="place-icon-bg" cx="58" cy="59" r="39" />
+            <g class="place-icon" transform="translate(58 59) scale(1.25)">
+              <path class="icon-main" d="M0-21C-10-21-15-12-14-1l2 16c7 7 17 7 24 0l2-16C15-12 10-21 0-21Z" />
+              <path class="icon-belly" d="M-8-2c1 7 3 12 8 15 5-3 7-8 8-15Z" />
+              <path class="icon-beak" d="m-3-5 3 3 3-3Z" />
+              <path class="icon-feet" d="m-8 17-5 4 7-1m14-3 5 4-7-1" />
+              <circle class="icon-eye" cx="-4" cy="-9" r="1.5" />
+              <circle class="icon-eye" cx="4" cy="-9" r="1.5" />
+            </g>
+            <text class="place-label-title" x="112" y="56">企鹅岛</text>
+            <text class="place-label-type" x="112" y="88">亲子必看</text>
+          </g>
+          <g class="map-place-card" data-place data-route-id="theater" data-name="海象剧场" data-type="演出场馆" data-summary="海洋动物演出 · 建议提前入场" data-description="海象主题演出场馆，可提前查看演出安排与入场提示。" data-services="无障碍席位|卫生间|休息区" data-rating="4.9" role="button" tabindex="0" aria-pressed="false" aria-label="查看海象剧场详情" transform="translate(620 1375) scale(.86)">
+            <rect class="place-chip-bg" width="410" height="118" rx="34" />
+            <circle class="place-icon-bg" cx="58" cy="59" r="39" />
+            <g class="place-icon" transform="translate(58 59) scale(1.25)">
+              <path class="icon-main" d="M-20 3C-20-8-12-17 0-17S20-8 20 3c0 11-8 17-20 17S-20 14-20 3Z" />
+              <path class="icon-muzzle" d="M-11 2c2-5 6-7 11-7s9 2 11 7c-1 7-5 11-11 11S-10 9-11 2Z" />
+              <path class="icon-tusk" d="m-7 7 2 12 3-9m9-3-2 12-3-9" />
+              <path class="icon-whisker" d="m-9 5-8-2m8 5-8 1m26-4 8-2m-8 5 8 1" />
+              <circle class="icon-eye" cx="-7" cy="-6" r="1.5" />
+              <circle class="icon-eye" cx="7" cy="-6" r="1.5" />
+            </g>
+            <text class="place-label-title" x="112" y="56">海象剧场</text>
+            <text class="place-label-type" x="112" y="88">演出场馆</text>
+          </g>
+          <g class="route-layer" id="routeStops"></g>
+          </svg>
+        </div>
+        <div class="map-bottom-surface" aria-hidden="true"></div>
+
+        <button class="map-count" id="itineraryToggle" type="button" aria-pressed="false" aria-label="显示行程路线，共 0 个地点">
+          <i class="count-dot" aria-hidden="true"></i><span>行程</span><strong id="itineraryCount" aria-live="polite">0</strong>
+        </button>
+        <div class="map-controls" aria-label="地图控制">
+          <button type="button" data-zoom="in" aria-label="放大">+</button>
+          <span></span>
+          <button type="button" data-zoom="out" aria-label="缩小">−</button>
+          <span></span>
+          <button type="button" data-locate aria-label="定位到我的位置">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s7-6.2 7-13a7 7 0 1 0-14 0c0 6.8 7 13 7 13Z" /><circle cx="12" cy="9" r="2.5" /></svg>
+          </button>
+        </div>
+        <div class="route-note" id="routeNote" hidden>
+          <span class="route-note-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M5 19c0-3 2-4 5-5s5-2 5-5 2-4 4-4" /><circle cx="5" cy="19" r="2" /><circle cx="19" cy="5" r="2" /></svg>
+          </span>
+          <span><strong id="routeNoteTitle">行程还是空的</strong><small id="routeNoteText">先在地点详情中加入规划</small></span>
+        </div>
+
+        <button class="ai-mascot-fab" type="button" aria-label="问小白">
+          <img src="./assets/xiaobai.png" alt="问小白" />
+          <span class="ai-mascot-label">问小白</span>
+        </button>
+
+        <article class="place-card">
+          <div class="place-card-top">
+            <span class="place-card-icon" aria-hidden="true">
+              <svg viewBox="0 0 48 48">
+                <g class="place-card-icon-glyph" id="placeCardIconGlyph" transform="translate(24 24)">
+                  <g class="place-line-icon">
+                    <circle cx="0" cy="0" r="18" />
+                    <path d="M0-7v1M0 0v9" />
+                    <circle class="icon-eye" cx="0" cy="-10" r="1.2" />
+                  </g>
+                </g>
+              </svg>
+            </span>
+            <div class="place-card-copy">
+              <span class="eyebrow" id="placeType">游园规划</span>
+              <h2 id="placeName">还没有规划行程</h2>
+              <p id="placeSummary">在地图上选择地点加入规划</p>
+            </div>
+            <div class="place-card-actions">
+              <button class="add-plan-button" id="addToPlan" type="button" aria-pressed="false">推荐行程</button>
+              <a class="more-link" href="./index.html#/venues" aria-label="更多场馆详情">更多
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7" /></svg>
+              </a>
+            </div>
+          </div>
+          <div class="place-card-details" id="placeDetails" aria-hidden="true" inert>
+            <div class="place-card-details-inner">
+              <section class="venue-intro-section" aria-labelledby="venueIntroHeading">
+                <div class="service-heading" id="venueIntroHeading">场馆介绍</div>
+                <p class="detail-description" id="placeDescription">场馆介绍演示内容。</p>
+                <div class="service-types" id="serviceTypes"></div>
+              </section>
+              <div class="recommend-row">
+                <span class="recommend-label">场馆推荐度</span>
+                <span class="recommend-stars" id="placeRating" aria-label="5 星演示评分">
+                  <span class="is-filled">★</span><span class="is-filled">★</span><span class="is-filled">★</span><span class="is-filled">★</span><span class="is-filled">★</span>
+                </span>
+                <span class="rating-note">演示</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      </section>
+    </main>
+    <dialog class="recommend-dialog" id="recommendDialog" aria-labelledby="recommendTitle">
+      <form id="recommendForm">
+        <div class="dialog-heading">
+          <div>
+            <span class="dialog-eyebrow">轻松游园</span>
+            <h2 id="recommendTitle">为你推荐一条路线</h2>
+          </div>
+          <button class="dialog-close" id="recommendClose" type="button" aria-label="关闭">×</button>
+        </div>
+        <p class="dialog-intro">告诉我们你的时间和偏好，帮你安排合适的游览节奏。</p>
+        <fieldset class="recommend-field">
+          <legend>希望游玩时间</legend>
+          <div class="choice-row">
+            <label class="choice-pill"><input type="radio" name="duration" value="short" checked /><span>约 1 小时</span></label>
+            <label class="choice-pill"><input type="radio" name="duration" value="medium" /><span>2-3 小时</span></label>
+            <label class="choice-pill"><input type="radio" name="duration" value="long" /><span>半日游</span></label>
+          </div>
+        </fieldset>
+        <fieldset class="recommend-field">
+          <legend>偏好游玩方式</legend>
+          <div class="choice-row">
+            <label class="choice-pill"><input type="radio" name="style" value="relaxed" checked /><span>轻松慢游</span></label>
+            <label class="choice-pill"><input type="radio" name="style" value="shows" /><span>演出优先</span></label>
+            <label class="choice-pill"><input type="radio" name="style" value="family" /><span>亲子互动</span></label>
+          </div>
+        </fieldset>
+        <button class="recommend-submit" type="submit">生成推荐路线</button>
+      </form>
+    </dialog>
+    <dialog class="recommend-dialog itinerary-dialog" id="itineraryDialog" aria-labelledby="itineraryTitle">
+      <div class="dialog-heading">
+        <div>
+          <span class="dialog-eyebrow">游园规划</span>
+          <h2 id="itineraryTitle">调整行程</h2>
+        </div>
+        <button class="dialog-close" id="itineraryClose" type="button" aria-label="关闭">×</button>
+      </div>
+      <p class="dialog-intro">已选地点按园区路网规划顺序，从“我的位置”出发。</p>
+      <div class="itinerary-list" id="itineraryList"></div>
+      <div class="itinerary-start-note"><span aria-hidden="true">↗</span><span><strong>从我的位置出发</strong><small>静态演示位置，不读取设备定位</small></span></div>
+      <p class="route-data-note">路线顺序依据现有园区路网计算，不包含真实游览时长。</p>
+      <button class="recommend-submit" id="planRouteButton" type="button">规划路线</button>
+      <button class="itinerary-clear" id="clearItineraryButton" type="button">清空行程</button>
+    </dialog>
+    <script>
+      if (new URLSearchParams(window.location.search).get("mode") !== "app") {
+      const toggle = document.getElementById("filterToggle");
+      const options = document.getElementById("filterOptions");
+      const app = document.querySelector(".design-app");
+      const mapMarkers = document.querySelector(".map-markers");
+      mapMarkers.append(mapMarkers.querySelector(".my-location"));
+      const mapView = document.querySelector(".map-view");
+      const mapScene = document.querySelector(".map-scene");
+      const placeCard = document.querySelector(".place-card");
+      const placeDetails = document.getElementById("placeDetails");
+      const placeType = document.getElementById("placeType");
+      const placeName = document.getElementById("placeName");
+      const placeCardIconGlyph = document.getElementById("placeCardIconGlyph");
+      const placeSummary = document.getElementById("placeSummary");
+      const placeDescription = document.getElementById("placeDescription");
+      const placeRating = document.getElementById("placeRating");
+      const serviceTypes = document.getElementById("serviceTypes");
+      const addToPlan = document.getElementById("addToPlan");
+      const routeNote = document.getElementById("routeNote");
+      const routeNoteTitle = document.getElementById("routeNoteTitle");
+      const routeNoteText = document.getElementById("routeNoteText");
+      const itineraryToggle = document.getElementById("itineraryToggle");
+      const itineraryCount = document.getElementById("itineraryCount");
+      const routeCasing = document.getElementById("routeCasing");
+      const routeMain = document.getElementById("routeMain");
+      const routeAccess = document.getElementById("routeAccess");
+      const routeStops = document.getElementById("routeStops");
+      const recommendDialog = document.getElementById("recommendDialog");
+      const recommendForm = document.getElementById("recommendForm");
+      const recommendClose = document.getElementById("recommendClose");
+      const routeDefinitions = {
+        visitor: { order: 0, anchor: [361, 1696], path: "M361 1696" },
+        theater: {
+          order: 1,
+          anchor: [573, 1374],
+          target: [679, 1380],
+          path: "M361 1696 C407 1689 464 1630 498 1591 C532 1552 554 1553 567 1517 C580 1481 563 1424 573 1374",
+          access: "M573 1374 C610 1362 642 1372 679 1380",
+        },
+        dolphin: {
+          order: 2,
+          anchor: [1065, 329],
+          target: [922, 351],
+          path: "M361 1696 C407 1689 464 1630 498 1591 C532 1552 554 1553 567 1517 C580 1481 563 1424 573 1374 C583 1324 609 1269 629 1218 C649 1167 666 1116 691 1069 C716 1023 754 983 779 939 C804 896 786 865 841 808 C896 751 1061 652 1109 597 C1157 542 1134 524 1127 479 C1120 434 1081 377 1065 329",
+          access: "M1065 329 C1030 337 977 345 922 351",
+        },
+        penguin: {
+          order: 3,
+          anchor: [1401, 180],
+          target: [1470, 267],
+          path: "M361 1696 C407 1689 464 1630 498 1591 C532 1552 554 1553 567 1517 C580 1481 563 1424 573 1374 C583 1324 609 1269 629 1218 C649 1167 666 1116 691 1069 C716 1023 754 983 779 939 C804 896 786 865 841 808 C896 751 1061 652 1109 597 C1157 542 1134 524 1127 479 C1120 434 1081 377 1065 329 C1050 281 1022 229 1034 193 C1047 157 1092 132 1140 112 C1188 92 1277 64 1320 75 C1364 86 1347 145 1401 180",
+          access: "M1401 180 C1425 209 1452 239 1470 267",
+        },
+      };
+      let selectedPlaceId = null;
+      let routeHeadline = "";
+      const itinerary = new Set();
+      let mapOffset = { x: 0, y: 0 };
+      let mapScale = 1.25;
+      let dragState = null;
+      let suppressMapClick = false;
+
+      function clampMapOffset(x, y, scale = mapScale) {
+        const bounds = mapView.getBoundingClientRect();
+        const maxX = (bounds.width * (scale - 1)) / 2;
+        const maxY = (bounds.height * (scale - 1)) / 2;
+        return {
+          x: Math.max(-maxX, Math.min(maxX, x)),
+          y: Math.max(-maxY, Math.min(maxY, y)),
+        };
+      }
+
+      function applyMapTransform() {
+        mapOffset = clampMapOffset(mapOffset.x, mapOffset.y);
+        mapScene.style.transform = `translate(${mapOffset.x}px, ${mapOffset.y}px) scale(${mapScale})`;
+        mapMarkers.querySelectorAll(".map-place-card, .my-location").forEach((marker) => {
+          const baseTransform = marker.dataset.baseTransform || marker.getAttribute("transform");
+          if (!baseTransform) return;
+          marker.dataset.baseTransform = baseTransform;
+          marker.setAttribute(
+            "transform",
+            baseTransform.replace(/scale\(([^)]+)\)/, (_, scale) => `scale(${Number(scale) / mapScale})`)
+          );
+        });
+      }
+
+      function zoomMap(factor) {
+        mapScale = Math.max(1, Math.min(3, mapScale * factor));
+        applyMapTransform();
+      }
+
+      toggle.addEventListener("click", () => {
+        const expanded = toggle.getAttribute("aria-expanded") === "true";
+        toggle.setAttribute("aria-expanded", String(!expanded));
+        options.setAttribute("aria-hidden", String(expanded));
+        options.inert = expanded;
+        options.classList.toggle("is-open", !expanded);
+        app.classList.toggle("filters-open", !expanded);
+      });
+      options.addEventListener("click", (event) => {
+        const chip = event.target.closest(".filter-chip");
+        if (!chip) return;
+        options.querySelector(".is-active")?.classList.remove("is-active");
+        chip.classList.add("is-active");
+      });
+
+      function updateItineraryCount() {
+        const count = itinerary.size;
+        itineraryCount.textContent = String(count);
+        itineraryToggle.setAttribute("aria-label", `显示行程路线，共 ${count} 个地点`);
+      }
+
+function updateAddButton() {
+        const added = selectedPlaceId && itinerary.has(selectedPlaceId);
+        const canAddPlace = selectedPlaceId && selectedPlaceId !== "visitor";
+        addToPlan.textContent = !itinerary.size
+          ? "推荐行程"
+          : canAddPlace
+            ? added ? "已加入" : "加入规划"
+            : "查看行程";
+        addToPlan.setAttribute("aria-pressed", String(added));
+        addToPlan.classList.toggle("is-added", Boolean(added));
+        addToPlan.disabled = false;
+      }
+
+      function renderItinerary() {
+        const active = mapView.classList.contains("route-active");
+        const entries = active
+          ? [...itinerary].sort((a, b) => routeDefinitions[a].order - routeDefinitions[b].order)
+          : [];
+        mapView.classList.toggle("has-itinerary", active && entries.length > 0);
+        const lastRoute = entries.at(-1);
+        const path = lastRoute ? routeDefinitions[lastRoute].path : "";
+        routeCasing.setAttribute("d", path);
+        routeMain.setAttribute("d", path);
+        routeAccess.replaceChildren();
+        routeStops.replaceChildren();
+
+        mapMarkers.querySelectorAll("[data-place]").forEach((marker) => {
+          marker.classList.toggle("is-in-itinerary", active && itinerary.has(marker.dataset.routeId));
+          const hidden = active && entries.length > 0 && !itinerary.has(marker.dataset.routeId);
+          marker.classList.toggle("is-route-hidden", hidden);
+          marker.setAttribute("aria-hidden", String(hidden));
+          marker.setAttribute("tabindex", hidden ? "-1" : "0");
+        });
+        mapMarkers.querySelector(".my-location").classList.toggle("is-in-itinerary", active && itinerary.has("visitor"));
+
+        entries.forEach((id, index) => {
+          const definition = routeDefinitions[id];
+          if (definition.access) {
+            const casing = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            casing.setAttribute("class", "route-access-casing");
+            casing.setAttribute("d", definition.access);
+            routeAccess.append(casing);
+            const access = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            access.setAttribute("class", "route-access");
+            access.setAttribute("d", definition.access);
+            routeAccess.append(access);
+          }
+          const stop = document.createElementNS("http://www.w3.org/2000/svg", "g");
+          stop.setAttribute("class", "route-stop");
+          stop.setAttribute("transform", `translate(${definition.anchor[0]} ${definition.anchor[1]})`);
+          const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+          circle.setAttribute("r", "37");
+          const number = document.createElementNS("http://www.w3.org/2000/svg", "text");
+          number.setAttribute("y", "1");
+          number.textContent = String(index + 1);
+          stop.append(circle, number);
+          routeStops.append(stop);
+        });
+
+        if (active && entries.length) {
+          routeNoteTitle.textContent = routeHeadline || `游园路线 · ${entries.length} 个地点`;
+          routeNoteText.textContent = `${entries.map((id) => document.querySelector(`[data-route-id="${id}"]`)?.dataset.name).filter(Boolean).join(" → ")} · 起点：我的位置`;
+        }
+      }
+
+      function showPlace(marker) {
+        const previous = mapMarkers.querySelector(".is-selected");
+        previous?.classList.remove("is-selected");
+        previous?.setAttribute("aria-pressed", "false");
+        marker.classList.add("is-selected");
+        marker.setAttribute("aria-pressed", "true");
+        selectedPlaceId = marker.dataset.routeId;
+        placeCard.dataset.placeId = selectedPlaceId;
+        placeType.textContent = marker.dataset.type;
+        placeName.textContent = marker.dataset.name;
+        const sourceIcon = marker.querySelector(".place-icon");
+        if (sourceIcon) {
+          placeCardIconGlyph.replaceChildren(...Array.from(sourceIcon.children, (child) => child.cloneNode(true)));
+        }
+        placeSummary.textContent = marker.dataset.summary;
+        placeDescription.textContent = marker.dataset.description;
+        const score = Math.max(0, Math.min(5, Math.round(Number(marker.dataset.rating) || 0)));
+        placeRating.replaceChildren(...Array.from({ length: 5 }, (_, index) => {
+          const star = document.createElement("span");
+          star.className = index < score ? "is-filled" : "is-empty";
+          star.textContent = "★";
+          return star;
+        }));
+        placeRating.setAttribute("aria-label", `${score} 星演示评分`);
+        serviceTypes.replaceChildren(...marker.dataset.services.split("|").map((service) => {
+          const tag = document.createElement("span");
+          tag.className = "service-type";
+          tag.textContent = service;
+          return tag;
+        }));
+        placeCard.classList.add("is-expanded");
+        placeDetails.classList.add("is-open");
+        placeDetails.setAttribute("aria-hidden", "false");
+        placeDetails.inert = false;
+        mapView.classList.add("details-open");
+        updateAddButton();
+      }
+
+      function closePlaceDetails() {
+        placeCard.classList.remove("is-expanded");
+        placeDetails.classList.remove("is-open");
+        placeDetails.setAttribute("aria-hidden", "true");
+        placeDetails.inert = true;
+        mapView.classList.remove("details-open");
+      }
+
+      mapMarkers.addEventListener("click", (event) => {
+        const marker = event.target.closest("[data-place]");
+        if (marker) showPlace(marker);
+      });
+      mapMarkers.addEventListener("keydown", (event) => {
+        if (event.key !== "Enter" && event.key !== " ") return;
+        const marker = event.target.closest("[data-place]");
+        if (!marker) return;
+        event.preventDefault();
+        showPlace(marker);
+      });
+      mapView.addEventListener("click", (event) => {
+        if (suppressMapClick) {
+          suppressMapClick = false;
+          event.preventDefault();
+          event.stopImmediatePropagation();
+          return;
+        }
+        if (!placeCard.classList.contains("is-expanded")) return;
+        if (event.target.closest(".place-card, .map-controls, .map-count, .route-note, .ai-mascot-fab, .map-place-card")) return;
+        closePlaceDetails();
+      });
+      mapView.addEventListener("pointerdown", (event) => {
+        if (event.button !== 0 || event.target.closest("button, a, .place-card, .map-place-card, .route-note, .ai-mascot-fab")) return;
+        dragState = {
+          pointerId: event.pointerId,
+          startX: event.clientX,
+          startY: event.clientY,
+          offsetX: mapOffset.x,
+          offsetY: mapOffset.y,
+          moved: false,
+        };
+      });
+      mapView.addEventListener("pointermove", (event) => {
+        if (!dragState || dragState.pointerId !== event.pointerId) return;
+        const dx = event.clientX - dragState.startX;
+        const dy = event.clientY - dragState.startY;
+        if (!dragState.moved && Math.hypot(dx, dy) < 5) return;
+        dragState.moved = true;
+        if (!mapView.hasPointerCapture(event.pointerId)) mapView.setPointerCapture(event.pointerId);
+        mapView.classList.add("is-dragging");
+        mapOffset = clampMapOffset(dragState.offsetX + dx, dragState.offsetY + dy);
+        applyMapTransform();
+      });
+      mapView.addEventListener("pointerup", (event) => {
+        if (!dragState || dragState.pointerId !== event.pointerId) return;
+        if (dragState.moved) {
+          suppressMapClick = true;
+          if (mapView.hasPointerCapture(event.pointerId)) mapView.releasePointerCapture(event.pointerId);
+        }
+        dragState = null;
+        mapView.classList.remove("is-dragging");
+      });
+      mapView.addEventListener("pointercancel", () => {
+        dragState = null;
+        mapView.classList.remove("is-dragging");
+      });
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && placeCard.classList.contains("is-expanded")) closePlaceDetails();
+      });
+
+      addToPlan.addEventListener("click", () => {
+        if (!itinerary.size) {
+          recommendDialog.showModal();
+          return;
+        }
+        if (selectedPlaceId && selectedPlaceId !== "visitor") {
+          routeHeadline = "";
+          itinerary.add(selectedPlaceId);
+          updateItineraryCount();
+          updateAddButton();
+          if (mapView.classList.contains("route-active")) renderItinerary();
+          else routeNote.hidden = true;
+          return;
+        }
+        mapView.classList.add("route-active");
+        itineraryToggle.setAttribute("aria-pressed", "true");
+        routeNote.hidden = false;
+        renderItinerary();
+      });
+      itineraryToggle.addEventListener("click", () => {
+        if (!itinerary.size) {
+          routeNoteTitle.textContent = "行程还是空的";
+          routeNoteText.textContent = "先在地点详情中加入规划";
+          routeNote.hidden = !routeNote.hidden;
+          return;
+        }
+        const active = mapView.classList.toggle("route-active");
+        itineraryToggle.setAttribute("aria-pressed", String(active));
+        routeNote.hidden = !active;
+        renderItinerary();
+      });
+
+      recommendClose.addEventListener("click", () => recommendDialog.close());
+      recommendDialog.addEventListener("click", (event) => {
+        if (event.target === recommendDialog) recommendDialog.close();
+      });
+      recommendForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const data = new FormData(recommendForm);
+        const duration = data.get("duration");
+        const style = data.get("style");
+        const sequences = {
+          relaxed: ["dolphin", "penguin", "theater"],
+          shows: ["theater", "dolphin", "penguin"],
+          family: ["penguin", "dolphin", "theater"],
+        };
+        const limits = { short: 1, medium: 2, long: 3 };
+        const labels = {
+          short: "约 1 小时",
+          medium: "2-3 小时",
+          long: "半日游",
+        };
+        itinerary.clear();
+        sequences[style].slice(0, limits[duration]).forEach((id) => itinerary.add(id));
+        selectedPlaceId = null;
+        routeHeadline = `已生成推荐路线 · ${labels[duration]}`;
+        updateItineraryCount();
+        updateAddButton();
+        mapView.classList.add("route-active");
+        itineraryToggle.setAttribute("aria-pressed", "true");
+        routeNote.hidden = false;
+        renderItinerary();
+        recommendDialog.close();
+      });
+
+      document.querySelectorAll("[data-locate]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const point = mapMarkers.createSVGPoint();
+          point.x = 361;
+          point.y = 1696;
+          const bounds = mapView.getBoundingClientRect();
+          const currentPoint = point.matrixTransform(mapMarkers.getScreenCTM());
+          const centerX = bounds.left + bounds.width / 2;
+          const centerY = bounds.top + bounds.height / 2;
+          const baseX = centerX + (currentPoint.x - centerX - mapOffset.x) / mapScale;
+          const baseY = centerY + (currentPoint.y - centerY - mapOffset.y) / mapScale;
+          mapScale = Math.min(3, Math.max(mapScale, 1.25));
+          mapOffset.x = -(baseX - centerX) * (mapScale - 1);
+          mapOffset.y = -(baseY - centerY) * (mapScale - 1);
+          applyMapTransform();
+          mapView.classList.add("location-centered");
+        });
+      });
+      document.querySelectorAll("[data-zoom]").forEach((button) => {
+        button.addEventListener("click", () => zoomMap(button.dataset.zoom === "in" ? 1.2 : 1 / 1.2));
+      });
+      window.addEventListener("resize", applyMapTransform);
+      document.querySelector(".ai-mascot-fab").addEventListener("click", () => {
+        window.location.href = "./index.html#/chat";
+      });
+      document.getElementById("profileButton").addEventListener("click", () => {
+        window.location.href = "./index.html#/profile";
+      });
+      updateItineraryCount();
+      updateAddButton();
+      requestAnimationFrame(() => document.querySelector("[data-locate]").click());
+      }
+    </script>
+    <script type="module" src="./assets/map-design-page.mjs?v=22"></script>
+  </body>
+</html>

@@ -1,0 +1,468 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1800" height="2400" viewBox="0 0 1800 2400" preserveAspectRatio="none" data-network-directed="false" role="img" aria-labelledby="map-title">
+<title id="map-title">ocean-park-map-restyled-hd.png 地图标注</title>
+<g data-id="edge-mvzbnmvm-xf0ao" data-kind="road-edge" data-node-a="node-mvzbnm38-hzwje" data-node-b="node-mvzbnmvm-ffqqb">
+<path d="M 218 1977 C 265.6666666666667 1902.3333333333333, 314.3333333333333 1817.3333333333333, 361 1753" fill="none" stroke="#fff" stroke-width="23" stroke-linecap="round"/>
+<path d="M 218 1977 C 265.6666666666667 1902.3333333333333, 314.3333333333333 1817.3333333333333, 361 1753" fill="none" stroke="#0b78dc" stroke-width="12" stroke-linecap="round"/>
+</g>
+<g data-id="edge-mvzbnnkw-kkdc5" data-kind="road-edge" data-node-a="node-mvzbnmvm-ffqqb" data-node-b="node-mvzbnnkw-ubbxh">
+<path d="M 361 1753 C 407.6666666666667 1688.6666666666667, 463.6666666666667 1630.3333333333333, 498 1591" fill="none" stroke="#fff" stroke-width="23" stroke-linecap="round"/>
+<path d="M 361 1753 C 407.6666666666667 1688.6666666666667, 463.6666666666667 1630.3333333333333, 498 1591" fill="none" stroke="#0b78dc" stroke-width="12" stroke-linecap="round"/>
+</g>
+<g data-id="edge-mvzbnp1b-ktq9c" data-kind="road-edge" data-node-a="node-mvzbnnkw-ubbxh" data-node-b="node-mvzbnp1b-790ru">
+<path d="M 498 1591 C 532.3333333333334 1551.6666666666667, 554.5 1553.1666666666667, 567 1517" fill="none" stroke="#fff" stroke-width="23" stroke-linecap="round"/>
+<path d="M 498 1591 C 532.3333333333334 1551.6666666666667, 554.5 1553.1666666666667, 567 1517" fill="none" stroke="#0b78dc" stroke-width="12" stroke-linecap="round"/>
+</g>
+<g data-id="edge-mvzbnpmg-zj49h" data-kind="road-edge" data-node-a="node-mvzbnp1b-790ru" data-node-b="node-mvzbnpmg-peglw">
+<path d="M 567 1517 C 579.5 1480.8333333333333, 562.6666666666666 1423.8333333333333, 573 1374" fill="none" stroke="#fff" stroke-width="23" stroke-linecap="round"/>
+<path d="M 567 1517 C 579.5 1480.8333333333333, 562.6666666666666 1423.8333333333333, 573 1374" fill="none" stroke="#0b78dc" stroke-width="12" stroke-linecap="round"/>
+</g>
+<g data-id="edge-mvzbnqhr-vmw5k" data-kind="road-edge" data-node-a="node-mvzbnpmg-peglw" data-node-b="node-mvzbnqhr-1a6mk">
+<path d="M 573 1374 C 583.3333333333334 1324.1666666666667, 609.3333333333334 1268.8333333333333, 629 1218" fill="none" stroke="#fff" stroke-width="23" stroke-linecap="round"/>
+<path d="M 573 1374 C 583.3333333333334 1324.1666666666667, 609.3333333333334 1268.8333333333333, 629 1218" fill="none" stroke="#0b78dc" stroke-width="12" stroke-linecap="round"/>
+</g>
+<g data-id="edge-mvzbnr8g-hnja4" data-kind="road-edge" data-node-a="node-mvzbnqhr-1a6mk" data-node-b="node-mvzbnr8g-89mq7">
+<path d="M 629 1218 C 648.6666666666666 1167.1666666666667, 666 1115.5, 691 1069" fill="none" stroke="#fff" stroke-width="23" stroke-linecap="round"/>
+<path d="M 629 1218 C 648.6666666666666 1167.1666666666667, 666 1115.5, 691 1069" fill="none" stroke="#0b78dc" stroke-width="12" stroke-linecap="round"/>
+</g>
+<g data-id="edge-mvzbns0a-dfyvu" data-kind="road-edge" data-node-a="node-mvzbnr8g-89mq7" data-node-b="node-mvzbns0a-5syj4">
+<path d="M 691 1069 C 716 1022.5, 754 982.5, 779 939" fill="none" stroke="#fff" stroke-width="23" stroke-linecap="round"/>
+<path d="M 691 1069 C 716 1022.5, 754 982.5, 779 939" fill="none" stroke="#0b78dc" stroke-width="12" stroke-linecap="round"/>
+</g>
+<g data-id="edge-mvzbnu93-aw00m" data-kind="road-edge" data-node-a="node-mvzbns0a-5syj4" data-node-b="node-mvzbnu92-1g11q">
+<path d="M 779 939 C 804 895.5, 786 865, 841 808" fill="none" stroke="#fff" stroke-width="23" stroke-linecap="round"/>
+<path d="M 779 939 C 804 895.5, 786 865, 841 808" fill="none" stroke="#0b78dc" stroke-width="12" stroke-linecap="round"/>
+</g>
+<g data-id="edge-mvzbnvik-zxk0a" data-kind="road-edge" data-node-a="node-mvzbnu92-1g11q" data-node-b="node-mvzbnvik-wg4n7">
+<path d="M 841 808 C 896 751, 1061.3333333333333 651.8333333333334, 1109 597" fill="none" stroke="#fff" stroke-width="23" stroke-linecap="round"/>
+<path d="M 841 808 C 896 751, 1061.3333333333333 651.8333333333334, 1109 597" fill="none" stroke="#0b78dc" stroke-width="12" stroke-linecap="round"/>
+</g>
+<g data-id="edge-mvzbnwja-76p1r" data-kind="road-edge" data-node-a="node-mvzbnvik-wg4n7" data-node-b="node-mvzbnwja-rjnfa">
+<path d="M 1109 597 C 1156.6666666666667 542.1666666666666, 1134.3333333333333 523.6666666666666, 1127 479" fill="none" stroke="#fff" stroke-width="23" stroke-linecap="round"/>
+<path d="M 1109 597 C 1156.6666666666667 542.1666666666666, 1134.3333333333333 523.6666666666666, 1127 479" fill="none" stroke="#0b78dc" stroke-width="12" stroke-linecap="round"/>
+</g>
+<g data-id="edge-mvzbnxfi-rtqav" data-kind="road-edge" data-node-a="node-mvzbnwja-rjnfa" data-node-b="node-mvzbnxfi-twxge">
+<path d="M 1127 479 C 1119.6666666666667 434.3333333333333, 1080.5 376.6666666666667, 1065 329" fill="none" stroke="#fff" stroke-width="23" stroke-linecap="round"/>
+<path d="M 1127 479 C 1119.6666666666667 434.3333333333333, 1080.5 376.6666666666667, 1065 329" fill="none" stroke="#0b78dc" stroke-width="12" stroke-linecap="round"/>
+</g>
+<g data-id="edge-mvzbny6v-cusf0" data-kind="road-edge" data-node-a="node-mvzbnxfi-twxge" data-node-b="node-mvzbny6u-7uiwe">
+<path d="M 1065 329 C 1049.5 281.3333333333333, 1021.5 229.16666666666666, 1034 193" fill="none" stroke="#fff" stroke-width="23" stroke-linecap="round"/>
+<path d="M 1065 329 C 1049.5 281.3333333333333, 1021.5 229.16666666666666, 1034 193" fill="none" stroke="#0b78dc" stroke-width="12" stroke-linecap="round"/>
+</g>
+<g data-id="edge-mvzbnyxj-xso1e" data-kind="road-edge" data-node-a="node-mvzbny6u-7uiwe" data-node-b="node-mvzbnyxj-h4i0r">
+<path d="M 1034 193 C 1046.5 156.83333333333334, 1092.3333333333333 131.66666666666666, 1140 112" fill="none" stroke="#fff" stroke-width="23" stroke-linecap="round"/>
+<path d="M 1034 193 C 1046.5 156.83333333333334, 1092.3333333333333 131.66666666666666, 1140 112" fill="none" stroke="#0b78dc" stroke-width="12" stroke-linecap="round"/>
+</g>
+<g data-id="edge-mvzbnzux-6mhib" data-kind="road-edge" data-node-a="node-mvzbnyxj-h4i0r" data-node-b="node-mvzbnzux-angth">
+<path d="M 1140 112 C 1187.6666666666667 92.33333333333333, 1276.5 63.666666666666664, 1320 75" fill="none" stroke="#fff" stroke-width="23" stroke-linecap="round"/>
+<path d="M 1140 112 C 1187.6666666666667 92.33333333333333, 1276.5 63.666666666666664, 1320 75" fill="none" stroke="#0b78dc" stroke-width="12" stroke-linecap="round"/>
+</g>
+<g data-id="edge-mvzbo0kc-nnt94" data-kind="road-edge" data-node-a="node-mvzbnzux-angth" data-node-b="node-mvzbo0kc-iuttf">
+<path d="M 1320 75 C 1363.5 86.33333333333333, 1347 144.83333333333334, 1401 180" fill="none" stroke="#fff" stroke-width="23" stroke-linecap="round"/>
+<path d="M 1320 75 C 1363.5 86.33333333333333, 1347 144.83333333333334, 1401 180" fill="none" stroke="#0b78dc" stroke-width="12" stroke-linecap="round"/>
+</g>
+<g data-id="edge-mvzbo1c6-bqjuu" data-kind="road-edge" data-node-a="node-mvzbo0kc-iuttf" data-node-b="node-mvzbo1c6-0pmnp">
+<path d="M 1401 180 C 1455 215.16666666666666, 1609.6666666666667 247.66666666666666, 1644 286" fill="none" stroke="#fff" stroke-width="23" stroke-linecap="round"/>
+<path d="M 1401 180 C 1455 215.16666666666666, 1609.6666666666667 247.66666666666666, 1644 286" fill="none" stroke="#0b78dc" stroke-width="12" stroke-linecap="round"/>
+</g>
+<g data-id="edge-mvzbo4nv-adb3m" data-kind="road-edge" data-node-a="node-mvzbo1c6-0pmnp" data-node-b="node-mvzbo4nu-v9fz7">
+<path d="M 1644 286 C 1678.3333333333333 324.3333333333333, 1639.1666666666667 383, 1607 410" fill="none" stroke="#fff" stroke-width="23" stroke-linecap="round"/>
+<path d="M 1644 286 C 1678.3333333333333 324.3333333333333, 1639.1666666666667 383, 1607 410" fill="none" stroke="#0b78dc" stroke-width="12" stroke-linecap="round"/>
+</g>
+<g data-id="edge-mvzbo5q3-wma7j" data-kind="road-edge" data-node-a="node-mvzbo4nu-v9fz7" data-node-b="node-mvzbo5q3-zqu1h">
+<path d="M 1607 410 C 1574.8333333333333 437, 1499.8333333333333 447, 1451 448" fill="none" stroke="#fff" stroke-width="23" stroke-linecap="round"/>
+<path d="M 1607 410 C 1574.8333333333333 437, 1499.8333333333333 447, 1451 448" fill="none" stroke="#0b78dc" stroke-width="12" stroke-linecap="round"/>
+</g>
+<g data-id="edge-mvzbo6dt-50zwp" data-kind="road-edge" data-node-a="node-mvzbo5q3-zqu1h" data-node-b="node-mvzbo6dt-hzndr">
+<path d="M 1451 448 C 1402.1666666666667 449, 1368 410.8333333333333, 1314 416" fill="none" stroke="#fff" stroke-width="23" stroke-linecap="round"/>
+<path d="M 1451 448 C 1402.1666666666667 449, 1368 410.8333333333333, 1314 416" fill="none" stroke="#0b78dc" stroke-width="12" stroke-linecap="round"/>
+</g>
+<g data-id="edge-mvzbo861-4r8ot" data-kind="road-edge" data-node-a="node-mvzbo6dt-hzndr" data-node-b="node-mvzbnwja-rjnfa">
+<path d="M 1314 416 C 1260 421.1666666666667, 1189.3333333333333 458, 1127 479" fill="none" stroke="#fff" stroke-width="23" stroke-linecap="round"/>
+<path d="M 1314 416 C 1260 421.1666666666667, 1189.3333333333333 458, 1127 479" fill="none" stroke="#0b78dc" stroke-width="12" stroke-linecap="round"/>
+</g>
+<g data-id="edge-mvzbolsv-z43mk" data-kind="road-edge" data-node-a="node-mvzbnqhr-1a6mk" data-node-b="node-mvzbolsv-ugpwh">
+<path d="M 629 1218 C 706 1251.3333333333333, 790.5 1278.6666666666667, 860 1318" fill="none" stroke="#fff" stroke-width="23" stroke-linecap="round"/>
+<path d="M 629 1218 C 706 1251.3333333333333, 790.5 1278.6666666666667, 860 1318" fill="none" stroke="#0b78dc" stroke-width="12" stroke-linecap="round"/>
+</g>
+<g data-id="edge-mvzbomrd-amr7v" data-kind="road-edge" data-node-a="node-mvzbolsv-ugpwh" data-node-b="node-mvzbomrd-b3tcw">
+<path d="M 860 1318 C 929.5 1357.3333333333333, 978.6666666666666 1395, 1046 1454" fill="none" stroke="#fff" stroke-width="23" stroke-linecap="round"/>
+<path d="M 860 1318 C 929.5 1357.3333333333333, 978.6666666666666 1395, 1046 1454" fill="none" stroke="#0b78dc" stroke-width="12" stroke-linecap="round"/>
+</g>
+<g data-id="edge-mvzbonjy-j3tjq" data-kind="road-edge" data-node-a="node-mvzbomrd-b3tcw" data-node-b="node-mvzbonjy-dyd60">
+<path d="M 1046 1454 C 1113.3333333333333 1513, 1239 1623.1666666666667, 1264 1672" fill="none" stroke="#fff" stroke-width="23" stroke-linecap="round"/>
+<path d="M 1046 1454 C 1113.3333333333333 1513, 1239 1623.1666666666667, 1264 1672" fill="none" stroke="#0b78dc" stroke-width="12" stroke-linecap="round"/>
+</g>
+<g data-id="edge-mvzbop2h-tdm58" data-kind="road-edge" data-node-a="node-mvzbonjy-dyd60" data-node-b="node-mvzbop2h-uc559">
+<path d="M 1264 1672 C 1289 1720.8333333333333, 1261.3333333333333 1748, 1196 1747" fill="none" stroke="#fff" stroke-width="23" stroke-linecap="round"/>
+<path d="M 1264 1672 C 1289 1720.8333333333333, 1261.3333333333333 1748, 1196 1747" fill="none" stroke="#0b78dc" stroke-width="12" stroke-linecap="round"/>
+</g>
+<g data-id="edge-mvzbor32-ysyug" data-kind="road-edge" data-node-a="node-mvzbop2h-uc559" data-node-b="node-mvzbor32-yhb0u">
+<path d="M 1196 1747 C 1130.6666666666667 1746, 953 1698.1666666666667, 872 1666" fill="none" stroke="#fff" stroke-width="23" stroke-linecap="round"/>
+<path d="M 1196 1747 C 1130.6666666666667 1746, 953 1698.1666666666667, 872 1666" fill="none" stroke="#0b78dc" stroke-width="12" stroke-linecap="round"/>
+</g>
+<g data-id="edge-mvzbortp-byfmm" data-kind="road-edge" data-node-a="node-mvzbor32-yhb0u" data-node-b="node-mvzbortp-w3er9">
+<path d="M 872 1666 C 791 1633.8333333333333, 760.8333333333334 1578.8333333333333, 710 1554" fill="none" stroke="#fff" stroke-width="23" stroke-linecap="round"/>
+<path d="M 872 1666 C 791 1633.8333333333333, 760.8333333333334 1578.8333333333333, 710 1554" fill="none" stroke="#0b78dc" stroke-width="12" stroke-linecap="round"/>
+</g>
+<g data-id="edge-mvzbou5x-mkuos" data-kind="road-edge" data-node-a="node-mvzbortp-w3er9" data-node-b="node-mvzbnp1b-790ru">
+<path d="M 710 1554 C 659.1666666666666 1529.1666666666667, 614.6666666666666 1529.3333333333333, 567 1517" fill="none" stroke="#fff" stroke-width="23" stroke-linecap="round"/>
+<path d="M 710 1554 C 659.1666666666666 1529.1666666666667, 614.6666666666666 1529.3333333333333, 567 1517" fill="none" stroke="#0b78dc" stroke-width="12" stroke-linecap="round"/>
+</g>
+<g data-id="edge-mvzbp6nk-qo9yy" data-kind="road-edge" data-node-a="node-mvzbor32-yhb0u" data-node-b="node-mvzbp6nk-0qg3w">
+<path d="M 872 1666 C 824.3333333333334 1703.3333333333333, 770.5 1744.8333333333333, 729 1778" fill="none" stroke="#fff" stroke-width="23" stroke-linecap="round"/>
+<path d="M 872 1666 C 824.3333333333334 1703.3333333333333, 770.5 1744.8333333333333, 729 1778" fill="none" stroke="#0b78dc" stroke-width="12" stroke-linecap="round"/>
+</g>
+<g data-id="edge-mvzbp889-20ulf" data-kind="road-edge" data-node-a="node-mvzbp6nk-0qg3w" data-node-b="node-mvzbp889-1px5n">
+<path d="M 729 1778 C 687.5 1811.1666666666667, 658.3333333333334 1836, 623 1865" fill="none" stroke="#fff" stroke-width="23" stroke-linecap="round"/>
+<path d="M 729 1778 C 687.5 1811.1666666666667, 658.3333333333334 1836, 623 1865" fill="none" stroke="#0b78dc" stroke-width="12" stroke-linecap="round"/>
+</g>
+<g data-id="edge-mvzbphdr-8052s" data-kind="road-edge" data-node-a="node-mvzbolsv-ugpwh" data-node-b="node-mvzbphdr-qe8cy">
+<path d="M 860 1318 C 884.6666666666666 1293, 901.8333333333334 1269, 934 1243" fill="none" stroke="#fff" stroke-width="23" stroke-linecap="round"/>
+<path d="M 860 1318 C 884.6666666666666 1293, 901.8333333333334 1269, 934 1243" fill="none" stroke="#0b78dc" stroke-width="12" stroke-linecap="round"/>
+</g>
+<g data-id="edge-mvzbpi5e-kmnz5" data-kind="road-edge" data-node-a="node-mvzbphdr-qe8cy" data-node-b="node-mvzbpi5e-axb0d">
+<path d="M 934 1243 C 966.1666666666666 1217, 1022.8333333333334 1190, 1053 1162" fill="none" stroke="#fff" stroke-width="23" stroke-linecap="round"/>
+<path d="M 934 1243 C 966.1666666666666 1217, 1022.8333333333334 1190, 1053 1162" fill="none" stroke="#0b78dc" stroke-width="12" stroke-linecap="round"/>
+</g>
+<g data-id="edge-mvzbpj1l-ykr1j" data-kind="road-edge" data-node-a="node-mvzbpi5e-axb0d" data-node-b="node-mvzbpj1l-4kwcu">
+<path d="M 1053 1162 C 1083.1666666666667 1134, 1084 1096.6666666666667, 1115 1075" fill="none" stroke="#fff" stroke-width="23" stroke-linecap="round"/>
+<path d="M 1053 1162 C 1083.1666666666667 1134, 1084 1096.6666666666667, 1115 1075" fill="none" stroke="#0b78dc" stroke-width="12" stroke-linecap="round"/>
+</g>
+<g data-id="edge-mvzbpjkf-ii3ce" data-kind="road-edge" data-node-a="node-mvzbpj1l-4kwcu" data-node-b="node-mvzbpjkf-p0jr8">
+<path d="M 1115 1075 C 1146 1053.3333333333333, 1199.6666666666667 1039.1666666666667, 1239 1032" fill="none" stroke="#fff" stroke-width="23" stroke-linecap="round"/>
+<path d="M 1115 1075 C 1146 1053.3333333333333, 1199.6666666666667 1039.1666666666667, 1239 1032" fill="none" stroke="#0b78dc" stroke-width="12" stroke-linecap="round"/>
+</g>
+<g data-id="edge-mvzbpmr6-zej0i" data-kind="road-edge" data-node-a="node-mvzbpjkf-p0jr8" data-node-b="node-mvzbpmr6-38jw7">
+<path d="M 1239 1032 C 1278.3333333333333 1024.8333333333333, 1313.6666666666667 1032, 1351 1032" fill="none" stroke="#fff" stroke-width="23" stroke-linecap="round"/>
+<path d="M 1239 1032 C 1278.3333333333333 1024.8333333333333, 1313.6666666666667 1032, 1351 1032" fill="none" stroke="#0b78dc" stroke-width="12" stroke-linecap="round"/>
+</g>
+<g data-id="edge-mvzbpyvs-izscb" data-kind="road-edge" data-node-a="node-mvzbnvik-wg4n7" data-node-b="node-mvzbpyvs-ewod6">
+<path d="M 1109 597 C 1173.3333333333333 619.6666666666666, 1253.3333333333333 655.6666666666666, 1302 665" fill="none" stroke="#fff" stroke-width="23" stroke-linecap="round"/>
+<path d="M 1109 597 C 1173.3333333333333 619.6666666666666, 1253.3333333333333 655.6666666666666, 1302 665" fill="none" stroke="#0b78dc" stroke-width="12" stroke-linecap="round"/>
+</g>
+<g data-id="edge-mvzbq04q-1q9yz" data-kind="road-edge" data-node-a="node-mvzbpyvs-ewod6" data-node-b="node-mvzbq04q-9ikja">
+<path d="M 1302 665 C 1350.6666666666667 674.3333333333334, 1364.6666666666667 652, 1401 653" fill="none" stroke="#fff" stroke-width="23" stroke-linecap="round"/>
+<path d="M 1302 665 C 1350.6666666666667 674.3333333333334, 1364.6666666666667 652, 1401 653" fill="none" stroke="#0b78dc" stroke-width="12" stroke-linecap="round"/>
+</g>
+<g data-id="edge-mvzbq1im-wg1oc" data-kind="road-edge" data-node-a="node-mvzbq04q-9ikja" data-node-b="node-mvzbq1im-0tx06">
+<path d="M 1401 653 C 1437.3333333333333 654, 1481.5 672.1666666666666, 1520 671" fill="none" stroke="#fff" stroke-width="23" stroke-linecap="round"/>
+<path d="M 1401 653 C 1437.3333333333333 654, 1481.5 672.1666666666666, 1520 671" fill="none" stroke="#0b78dc" stroke-width="12" stroke-linecap="round"/>
+</g>
+<g data-id="edge-mvzbq2o6-45l9q" data-kind="road-edge" data-node-a="node-mvzbq1im-0tx06" data-node-b="node-mvzbq2o6-mx38w">
+<path d="M 1520 671 C 1558.5 669.8333333333334, 1594.6666666666667 654.3333333333334, 1632 646" fill="none" stroke="#fff" stroke-width="23" stroke-linecap="round"/>
+<path d="M 1520 671 C 1558.5 669.8333333333334, 1594.6666666666667 654.3333333333334, 1632 646" fill="none" stroke="#0b78dc" stroke-width="12" stroke-linecap="round"/>
+</g>
+<g data-id="edge-mvzdwc4z-6l4a0" data-kind="road-edge" data-node-a="node-mvzbnyxj-h4i0r" data-node-b="node-mvzdwc4z-mqq2w">
+<path d="M 1140 112 C 1167 157.66666666666666, 1187.8333333333333 219, 1221 249" fill="none" stroke="#fff" stroke-width="23" stroke-linecap="round"/>
+<path d="M 1140 112 C 1167 157.66666666666666, 1187.8333333333333 219, 1221 249" fill="none" stroke="#0b78dc" stroke-width="12" stroke-linecap="round"/>
+</g>
+<g data-id="edge-mvzdwdjt-op10s" data-kind="road-edge" data-node-a="node-mvzdwc4z-mqq2w" data-node-b="node-mvzdwdjt-u27ud">
+<path d="M 1221 249 C 1254.1666666666667 279, 1300.6666666666667 258.8333333333333, 1339 292" fill="none" stroke="#fff" stroke-width="23" stroke-linecap="round"/>
+<path d="M 1221 249 C 1254.1666666666667 279, 1300.6666666666667 258.8333333333333, 1339 292" fill="none" stroke="#0b78dc" stroke-width="12" stroke-linecap="round"/>
+</g>
+<g data-id="edge-mvzdwew3-q4gx9" data-kind="road-edge" data-node-a="node-mvzdwdjt-u27ud" data-node-b="node-mvzbo5q3-zqu1h">
+<path d="M 1339 292 C 1377.3333333333333 325.1666666666667, 1413.6666666666667 396, 1451 448" fill="none" stroke="#fff" stroke-width="23" stroke-linecap="round"/>
+<path d="M 1339 292 C 1377.3333333333333 325.1666666666667, 1413.6666666666667 396, 1451 448" fill="none" stroke="#0b78dc" stroke-width="12" stroke-linecap="round"/>
+</g>
+<g data-id="edge-mvzdwse7-m7pjv" data-kind="road-edge" data-node-a="node-mvzdwc4z-mqq2w" data-node-b="node-mvzbnxfi-twxge">
+<path d="M 1221 249 C 1169 275.6666666666667, 1117 302.3333333333333, 1065 329" fill="none" stroke="#fff" stroke-width="23" stroke-linecap="round"/>
+<path d="M 1221 249 C 1169 275.6666666666667, 1117 302.3333333333333, 1065 329" fill="none" stroke="#0b78dc" stroke-width="12" stroke-linecap="round"/>
+</g>
+<circle data-id="node-mvzbnm38-hzwje" data-kind="road-node" data-label="P1" cx="218" cy="1977" r="13" fill="#fff" stroke="#0b78dc" stroke-width="6"/>
+<circle data-id="node-mvzbnmvm-ffqqb" data-kind="road-node" data-label="P2" cx="361" cy="1753" r="13" fill="#fff" stroke="#0b78dc" stroke-width="6"/>
+<circle data-id="node-mvzbnnkw-ubbxh" data-kind="road-node" data-label="P3" cx="498" cy="1591" r="13" fill="#fff" stroke="#0b78dc" stroke-width="6"/>
+<circle data-id="node-mvzbnp1b-790ru" data-kind="road-node" data-label="P4" cx="567" cy="1517" r="13" fill="#fff" stroke="#0b78dc" stroke-width="6"/>
+<circle data-id="node-mvzbnpmg-peglw" data-kind="road-node" data-label="P5" cx="573" cy="1374" r="13" fill="#fff" stroke="#0b78dc" stroke-width="6"/>
+<circle data-id="node-mvzbnqhr-1a6mk" data-kind="road-node" data-label="P6" cx="629" cy="1218" r="13" fill="#fff" stroke="#0b78dc" stroke-width="6"/>
+<circle data-id="node-mvzbnr8g-89mq7" data-kind="road-node" data-label="P7" cx="691" cy="1069" r="13" fill="#fff" stroke="#0b78dc" stroke-width="6"/>
+<circle data-id="node-mvzbns0a-5syj4" data-kind="road-node" data-label="P8" cx="779" cy="939" r="13" fill="#fff" stroke="#0b78dc" stroke-width="6"/>
+<circle data-id="node-mvzbnu92-1g11q" data-kind="road-node" data-label="P9" cx="841" cy="808" r="13" fill="#fff" stroke="#0b78dc" stroke-width="6"/>
+<circle data-id="node-mvzbnvik-wg4n7" data-kind="road-node" data-label="P10" cx="1109" cy="597" r="13" fill="#fff" stroke="#0b78dc" stroke-width="6"/>
+<circle data-id="node-mvzbnwja-rjnfa" data-kind="road-node" data-label="P11" cx="1127" cy="479" r="13" fill="#fff" stroke="#0b78dc" stroke-width="6"/>
+<circle data-id="node-mvzbnxfi-twxge" data-kind="road-node" data-label="P12" cx="1065" cy="329" r="13" fill="#fff" stroke="#0b78dc" stroke-width="6"/>
+<circle data-id="node-mvzbny6u-7uiwe" data-kind="road-node" data-label="P13" cx="1034" cy="193" r="13" fill="#fff" stroke="#0b78dc" stroke-width="6"/>
+<circle data-id="node-mvzbnyxj-h4i0r" data-kind="road-node" data-label="P14" cx="1140" cy="112" r="13" fill="#fff" stroke="#0b78dc" stroke-width="6"/>
+<circle data-id="node-mvzbnzux-angth" data-kind="road-node" data-label="P15" cx="1320" cy="75" r="13" fill="#fff" stroke="#0b78dc" stroke-width="6"/>
+<circle data-id="node-mvzbo0kc-iuttf" data-kind="road-node" data-label="P16" cx="1401" cy="180" r="13" fill="#fff" stroke="#0b78dc" stroke-width="6"/>
+<circle data-id="node-mvzbo1c6-0pmnp" data-kind="road-node" data-label="P17" cx="1644" cy="286" r="13" fill="#fff" stroke="#0b78dc" stroke-width="6"/>
+<circle data-id="node-mvzbo4nu-v9fz7" data-kind="road-node" data-label="P18" cx="1607" cy="410" r="13" fill="#fff" stroke="#0b78dc" stroke-width="6"/>
+<circle data-id="node-mvzbo5q3-zqu1h" data-kind="road-node" data-label="P19" cx="1451" cy="448" r="13" fill="#fff" stroke="#0b78dc" stroke-width="6"/>
+<circle data-id="node-mvzbo6dt-hzndr" data-kind="road-node" data-label="P20" cx="1314" cy="416" r="13" fill="#fff" stroke="#0b78dc" stroke-width="6"/>
+<circle data-id="node-mvzbolsv-ugpwh" data-kind="road-node" data-label="P21" cx="860" cy="1318" r="13" fill="#fff" stroke="#0b78dc" stroke-width="6"/>
+<circle data-id="node-mvzbomrd-b3tcw" data-kind="road-node" data-label="P22" cx="1046" cy="1454" r="13" fill="#fff" stroke="#0b78dc" stroke-width="6"/>
+<circle data-id="node-mvzbonjy-dyd60" data-kind="road-node" data-label="P23" cx="1264" cy="1672" r="13" fill="#fff" stroke="#0b78dc" stroke-width="6"/>
+<circle data-id="node-mvzbop2h-uc559" data-kind="road-node" data-label="P24" cx="1196" cy="1747" r="13" fill="#fff" stroke="#0b78dc" stroke-width="6"/>
+<circle data-id="node-mvzbor32-yhb0u" data-kind="road-node" data-label="P25" cx="872" cy="1666" r="13" fill="#fff" stroke="#0b78dc" stroke-width="6"/>
+<circle data-id="node-mvzbortp-w3er9" data-kind="road-node" data-label="P26" cx="710" cy="1554" r="13" fill="#fff" stroke="#0b78dc" stroke-width="6"/>
+<circle data-id="node-mvzbp6nk-0qg3w" data-kind="road-node" data-label="P27" cx="729" cy="1778" r="13" fill="#fff" stroke="#0b78dc" stroke-width="6"/>
+<circle data-id="node-mvzbp889-1px5n" data-kind="road-node" data-label="P28" cx="623" cy="1865" r="13" fill="#fff" stroke="#0b78dc" stroke-width="6"/>
+<circle data-id="node-mvzbphdr-qe8cy" data-kind="road-node" data-label="P29" cx="934" cy="1243" r="13" fill="#fff" stroke="#0b78dc" stroke-width="6"/>
+<circle data-id="node-mvzbpi5e-axb0d" data-kind="road-node" data-label="P30" cx="1053" cy="1162" r="13" fill="#fff" stroke="#0b78dc" stroke-width="6"/>
+<circle data-id="node-mvzbpj1l-4kwcu" data-kind="road-node" data-label="P31" cx="1115" cy="1075" r="13" fill="#fff" stroke="#0b78dc" stroke-width="6"/>
+<circle data-id="node-mvzbpjkf-p0jr8" data-kind="road-node" data-label="P32" cx="1239" cy="1032" r="13" fill="#fff" stroke="#0b78dc" stroke-width="6"/>
+<circle data-id="node-mvzbpmr6-38jw7" data-kind="road-node" data-label="P33" cx="1351" cy="1032" r="13" fill="#fff" stroke="#0b78dc" stroke-width="6"/>
+<circle data-id="node-mvzbpyvs-ewod6" data-kind="road-node" data-label="P34" cx="1302" cy="665" r="13" fill="#fff" stroke="#0b78dc" stroke-width="6"/>
+<circle data-id="node-mvzbq04q-9ikja" data-kind="road-node" data-label="P35" cx="1401" cy="653" r="13" fill="#fff" stroke="#0b78dc" stroke-width="6"/>
+<circle data-id="node-mvzbq1im-0tx06" data-kind="road-node" data-label="P36" cx="1520" cy="671" r="13" fill="#fff" stroke="#0b78dc" stroke-width="6"/>
+<circle data-id="node-mvzbq2o6-mx38w" data-kind="road-node" data-label="P37" cx="1632" cy="646" r="13" fill="#fff" stroke="#0b78dc" stroke-width="6"/>
+<circle data-id="node-mvzdwc4z-mqq2w" data-kind="road-node" data-label="P38" cx="1221" cy="249" r="13" fill="#fff" stroke="#0b78dc" stroke-width="6"/>
+<circle data-id="node-mvzdwdjt-u27ud" data-kind="road-node" data-label="P39" cx="1339" cy="292" r="13" fill="#fff" stroke="#0b78dc" stroke-width="6"/>
+<path data-kind="planned-route-halo" d="M 424 2176 L 218 1977" fill="none" stroke="#fff" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+<path data-kind="planned-route" d="M 424 2176 L 218 1977" fill="none" stroke="#e65e36" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="11 9"/>
+<path data-kind="planned-route-halo" d="M 218 1977 C 265.6666666666667 1902.3333333333333, 314.3333333333333 1817.3333333333333, 361 1753" fill="none" stroke="#fff" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+<path data-kind="planned-route" d="M 218 1977 C 265.6666666666667 1902.3333333333333, 314.3333333333333 1817.3333333333333, 361 1753" fill="none" stroke="#e65e36" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<path data-kind="planned-route-halo" d="M 361 1753 C 407.6666666666667 1688.6666666666667, 463.6666666666667 1630.3333333333333, 498 1591" fill="none" stroke="#fff" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+<path data-kind="planned-route" d="M 361 1753 C 407.6666666666667 1688.6666666666667, 463.6666666666667 1630.3333333333333, 498 1591" fill="none" stroke="#e65e36" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<path data-kind="planned-route-halo" d="M 498 1591 C 532.3333333333334 1551.6666666666667, 554.5 1553.1666666666667, 567 1517" fill="none" stroke="#fff" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+<path data-kind="planned-route" d="M 498 1591 C 532.3333333333334 1551.6666666666667, 554.5 1553.1666666666667, 567 1517" fill="none" stroke="#e65e36" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<path data-kind="planned-route-halo" d="M 567 1517 C 614.6666666666666 1529.3333333333333, 659.1666666666666 1529.1666666666667, 710 1554" fill="none" stroke="#fff" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+<path data-kind="planned-route" d="M 567 1517 C 614.6666666666666 1529.3333333333333, 659.1666666666666 1529.1666666666667, 710 1554" fill="none" stroke="#e65e36" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<path data-kind="planned-route-halo" d="M 710 1554 C 760.8333333333334 1578.8333333333333, 791 1633.8333333333333, 872 1666" fill="none" stroke="#fff" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+<path data-kind="planned-route" d="M 710 1554 C 760.8333333333334 1578.8333333333333, 791 1633.8333333333333, 872 1666" fill="none" stroke="#e65e36" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<path data-kind="planned-route-halo" d="M 872 1666 C 833.9594127186831 1695.7940264021504, 791.9913332089312 1728.2417637694596, 755.4988174022985 1756.989795931958" fill="none" stroke="#fff" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+<path data-kind="planned-route" d="M 872 1666 C 833.9594127186831 1695.7940264021504, 791.9913332089312 1728.2417637694596, 755.4988174022985 1756.989795931958" fill="none" stroke="#e65e36" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<path data-kind="planned-route-halo" d="M 755.4988174022985 1756.9897959319583 L 698 1684" fill="none" stroke="#fff" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+<path data-kind="planned-route" d="M 755.4988174022985 1756.9897959319583 L 698 1684" fill="none" stroke="#e65e36" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="11 9"/>
+<path data-kind="planned-route-halo" d="M 698 1684 L 755.4988174022985 1756.9897959319583" fill="none" stroke="#fff" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+<path data-kind="planned-route" d="M 698 1684 L 755.4988174022985 1756.9897959319583" fill="none" stroke="#e65e36" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="11 9"/>
+<path data-kind="planned-route-halo" d="M 755.4988174022985 1756.989795931958 C 791.9913332089312 1728.2417637694596, 833.9594127186831 1695.7940264021504, 872 1666" fill="none" stroke="#fff" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+<path data-kind="planned-route" d="M 755.4988174022985 1756.989795931958 C 791.9913332089312 1728.2417637694596, 833.9594127186831 1695.7940264021504, 872 1666" fill="none" stroke="#e65e36" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<path data-kind="planned-route-halo" d="M 872 1666 C 953 1698.1666666666667, 1130.6666666666667 1746, 1196 1747" fill="none" stroke="#fff" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+<path data-kind="planned-route" d="M 872 1666 C 953 1698.1666666666667, 1130.6666666666667 1746, 1196 1747" fill="none" stroke="#e65e36" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<path data-kind="planned-route-halo" d="M 1196 1747 C 1261.3333333333333 1748, 1289 1720.8333333333333, 1264 1672" fill="none" stroke="#fff" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+<path data-kind="planned-route" d="M 1196 1747 C 1261.3333333333333 1748, 1289 1720.8333333333333, 1264 1672" fill="none" stroke="#e65e36" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<path data-kind="planned-route-halo" d="M 1264 1672 C 1239 1623.1666666666667, 1113.3333333333333 1513, 1046 1454" fill="none" stroke="#fff" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+<path data-kind="planned-route" d="M 1264 1672 C 1239 1623.1666666666667, 1113.3333333333333 1513, 1046 1454" fill="none" stroke="#e65e36" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<path data-kind="planned-route-halo" d="M 1046 1454 C 1024.2996839846408 1434.985366659809, 1004.4862603678139 1418.1865335674358, 985.2709794989951 1402.8335983342556" fill="none" stroke="#fff" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+<path data-kind="planned-route" d="M 1046 1454 C 1024.2996839846408 1434.985366659809, 1004.4862603678139 1418.1865335674358, 985.2709794989951 1402.8335983342556" fill="none" stroke="#e65e36" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<path data-kind="planned-route-halo" d="M 985.2709794989951 1402.8335983342556 L 934 1467" fill="none" stroke="#fff" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+<path data-kind="planned-route" d="M 985.2709794989951 1402.8335983342556 L 934 1467" fill="none" stroke="#e65e36" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="11 9"/>
+<path data-kind="planned-route-halo" d="M 934 1467 L 985.2709794989951 1402.8335983342556" fill="none" stroke="#fff" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+<path data-kind="planned-route" d="M 934 1467 L 985.2709794989951 1402.8335983342556" fill="none" stroke="#e65e36" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="11 9"/>
+<path data-kind="planned-route-halo" d="M 985.2709794989951 1402.8335983342556 C 944.8636764884802 1370.5483192221186, 907.101406489097 1344.6569111065394, 860 1318" fill="none" stroke="#fff" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+<path data-kind="planned-route" d="M 985.2709794989951 1402.8335983342556 C 944.8636764884802 1370.5483192221186, 907.101406489097 1344.6569111065394, 860 1318" fill="none" stroke="#e65e36" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<path data-kind="planned-route-halo" d="M 860 1318 C 883.7596048626734 1293.919319395939, 900.5606595850894 1270.7664454772457, 930.5111589746342 1245.8603122696018" fill="none" stroke="#fff" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+<path data-kind="planned-route" d="M 860 1318 C 883.7596048626734 1293.919319395939, 900.5606595850894 1270.7664454772457, 930.5111589746342 1245.8603122696018" fill="none" stroke="#e65e36" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<path data-kind="planned-route-halo" d="M 930.5111589746343 1245.8603122696018 L 835 1131" fill="none" stroke="#fff" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+<path data-kind="planned-route" d="M 930.5111589746343 1245.8603122696018 L 835 1131" fill="none" stroke="#e65e36" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="11 9"/>
+<path data-kind="planned-route-halo" d="M 835 1131 L 930.5111589746343 1245.8603122696018" fill="none" stroke="#fff" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+<path data-kind="planned-route" d="M 835 1131 L 930.5111589746343 1245.8603122696018" fill="none" stroke="#e65e36" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="11 9"/>
+<path data-kind="planned-route-halo" d="M 930.5111589746342 1245.8603122696018 C 900.5606595850894 1270.7664454772457, 883.7596048626734 1293.919319395939, 860 1318" fill="none" stroke="#fff" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+<path data-kind="planned-route" d="M 930.5111589746342 1245.8603122696018 C 900.5606595850894 1270.7664454772457, 883.7596048626734 1293.919319395939, 860 1318" fill="none" stroke="#e65e36" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<path data-kind="planned-route-halo" d="M 860 1318 C 790.5 1278.6666666666667, 706 1251.3333333333333, 629 1218" fill="none" stroke="#fff" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+<path data-kind="planned-route" d="M 860 1318 C 790.5 1278.6666666666667, 706 1251.3333333333333, 629 1218" fill="none" stroke="#e65e36" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<path data-kind="planned-route-halo" d="M 629 1218 C 648.6666666666666 1167.1666666666667, 666 1115.5, 691 1069" fill="none" stroke="#fff" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+<path data-kind="planned-route" d="M 629 1218 C 648.6666666666666 1167.1666666666667, 666 1115.5, 691 1069" fill="none" stroke="#e65e36" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<path data-kind="planned-route-halo" d="M 691 1069 C 716 1022.5, 754 982.5, 779 939" fill="none" stroke="#fff" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+<path data-kind="planned-route" d="M 691 1069 C 716 1022.5, 754 982.5, 779 939" fill="none" stroke="#e65e36" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<path data-kind="planned-route-halo" d="M 779 939 C 804 895.5, 786 865, 841 808" fill="none" stroke="#fff" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+<path data-kind="planned-route" d="M 779 939 C 804 895.5, 786 865, 841 808" fill="none" stroke="#e65e36" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<path data-kind="planned-route-halo" d="M 841 808 C 896 751, 1061.3333333333333 651.8333333333334, 1109 597" fill="none" stroke="#fff" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+<path data-kind="planned-route" d="M 841 808 C 896 751, 1061.3333333333333 651.8333333333334, 1109 597" fill="none" stroke="#e65e36" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<path data-kind="planned-route-halo" d="M 1109 597 C 1156.6666666666667 542.1666666666666, 1134.3333333333333 523.6666666666666, 1127 479" fill="none" stroke="#fff" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+<path data-kind="planned-route" d="M 1109 597 C 1156.6666666666667 542.1666666666666, 1134.3333333333333 523.6666666666666, 1127 479" fill="none" stroke="#e65e36" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<path data-kind="planned-route-halo" d="M 1127 479 C 1119.6666666666667 434.3333333333333, 1080.5 376.6666666666667, 1065 329" fill="none" stroke="#fff" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+<path data-kind="planned-route" d="M 1127 479 C 1119.6666666666667 434.3333333333333, 1080.5 376.6666666666667, 1065 329" fill="none" stroke="#e65e36" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<path data-kind="planned-route-halo" d="M 1065 329 C 1051.10262214027 286.2618272270668, 1027.1564871850085 239.90610189974234, 1031.3630033509585 204.7088404037478" fill="none" stroke="#fff" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+<path data-kind="planned-route" d="M 1065 329 C 1051.10262214027 286.2618272270668, 1027.1564871850085 239.90610189974234, 1031.3630033509585 204.7088404037478" fill="none" stroke="#e65e36" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<path data-kind="planned-route-halo" d="M 1031.3630033509585 204.70884040374779 L 1084 211" fill="none" stroke="#fff" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+<path data-kind="planned-route" d="M 1031.3630033509585 204.70884040374779 L 1084 211" fill="none" stroke="#e65e36" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="11 9"/>
+<g data-id="place-mvzbzcaq-soqdn" data-kind="place" data-name="游客中心" data-tags="venue,leisure,gift" data-category="venue">
+<ellipse cx="424" cy="2199" rx="20" ry="7" fill="rgba(10,74,140,.12)"/>
+<circle cx="424" cy="2176" r="20" fill="#fff" stroke="#0b78dc" stroke-width="5"/>
+<circle cx="424" cy="2176" r="7" fill="#0b78dc"/>
+<text x="454" y="2185" fill="#12263f" stroke="#fff" stroke-width="8" stroke-linejoin="round" paint-order="stroke" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="29" font-weight="700">游客中心</text>
+<circle cx="442" cy="2158" r="16" fill="#f5b81e" stroke="#fff" stroke-width="5"/>
+<text x="442" y="2159" fill="#12263f" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="20" font-weight="800" text-anchor="middle" dominant-baseline="central">1</text>
+</g>
+<g data-id="place-mvzc5m79-a3ts3" data-kind="place" data-name="钱塘江流域" data-tags="venue" data-category="venue">
+<ellipse cx="399" cy="1580" rx="20" ry="7" fill="rgba(10,74,140,.12)"/>
+<circle cx="399" cy="1557" r="20" fill="#fff" stroke="#0b78dc" stroke-width="5"/>
+<circle cx="399" cy="1557" r="7" fill="#0b78dc"/>
+<text x="429" y="1566" fill="#12263f" stroke="#fff" stroke-width="8" stroke-linejoin="round" paint-order="stroke" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="29" font-weight="700">钱塘江流域</text>
+<circle cx="417" cy="1539" r="16" fill="#f5b81e" stroke="#fff" stroke-width="5"/>
+<text x="417" y="1540" fill="#12263f" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="20" font-weight="800" text-anchor="middle" dominant-baseline="central">3</text>
+</g>
+<g data-id="place-mvzcbakq-dhosr" data-kind="place" data-name="美人鱼餐厅" data-tags="dining" data-category="dining">
+<ellipse cx="480" cy="1481" rx="20" ry="7" fill="rgba(10,74,140,.12)"/>
+<circle cx="480" cy="1458" r="20" fill="#fff" stroke="#e6a818" stroke-width="5"/>
+<circle cx="480" cy="1458" r="7" fill="#e6a818"/>
+<text x="510" y="1467" fill="#12263f" stroke="#fff" stroke-width="8" stroke-linejoin="round" paint-order="stroke" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="29" font-weight="700">美人鱼餐厅</text>
+<circle cx="498" cy="1440" r="16" fill="#f5b81e" stroke="#fff" stroke-width="5"/>
+<text x="498" y="1441" fill="#12263f" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="20" font-weight="800" text-anchor="middle" dominant-baseline="central">4</text>
+</g>
+<g data-id="place-mvzd7t20-r9cz1" data-kind="place" data-name="公园入口" data-tags="entrance" data-category="entrance">
+<ellipse cx="256" cy="1875" rx="20" ry="7" fill="rgba(10,74,140,.12)"/>
+<circle cx="256" cy="1852" r="20" fill="#fff" stroke="#f25e36" stroke-width="5"/>
+<circle cx="256" cy="1852" r="7" fill="#f25e36"/>
+<text x="286" y="1861" fill="#12263f" stroke="#fff" stroke-width="8" stroke-linejoin="round" paint-order="stroke" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="29" font-weight="700">公园入口</text>
+<circle cx="274" cy="1834" r="16" fill="#f5b81e" stroke="#fff" stroke-width="5"/>
+<text x="274" y="1835" fill="#12263f" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="20" font-weight="800" text-anchor="middle" dominant-baseline="central">2</text>
+</g>
+<g data-id="place-mvzd8va9-91zwh" data-kind="place" data-name="梦幻水母宫" data-tags="venue,restroom" data-category="venue">
+<ellipse cx="698" cy="1707" rx="20" ry="7" fill="rgba(10,74,140,.12)"/>
+<circle cx="698" cy="1684" r="20" fill="#fff" stroke="#0b78dc" stroke-width="5"/>
+<circle cx="698" cy="1684" r="7" fill="#0b78dc"/>
+<text x="728" y="1693" fill="#12263f" stroke="#fff" stroke-width="8" stroke-linejoin="round" paint-order="stroke" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="29" font-weight="700">梦幻水母宫</text>
+<circle cx="716" cy="1666" r="16" fill="#f5b81e" stroke="#fff" stroke-width="5"/>
+<text x="716" y="1667" fill="#12263f" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="20" font-weight="800" text-anchor="middle" dominant-baseline="central">5</text>
+</g>
+<g data-id="place-mvzd9r7f-1zluk" data-kind="place" data-name="海象剧场" data-tags="venue" data-category="venue">
+<ellipse cx="679" cy="1403" rx="20" ry="7" fill="rgba(10,74,140,.12)"/>
+<circle cx="679" cy="1380" r="20" fill="#fff" stroke="#0b78dc" stroke-width="5"/>
+<circle cx="679" cy="1380" r="7" fill="#0b78dc"/>
+<text x="709" y="1389" fill="#12263f" stroke="#fff" stroke-width="8" stroke-linejoin="round" paint-order="stroke" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="29" font-weight="700">海象剧场</text>
+<circle cx="697" cy="1362" r="16" fill="#f5b81e" stroke="#fff" stroke-width="5"/>
+<text x="697" y="1363" fill="#12263f" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="20" font-weight="800" text-anchor="middle" dominant-baseline="central">6</text>
+</g>
+<g data-id="place-mvzdde68-z4pml" data-kind="place" data-name="海牛馆" data-tags="venue,leisure" data-category="venue">
+<ellipse cx="934" cy="1490" rx="20" ry="7" fill="rgba(10,74,140,.12)"/>
+<circle cx="934" cy="1467" r="20" fill="#fff" stroke="#0b78dc" stroke-width="5"/>
+<circle cx="934" cy="1467" r="7" fill="#0b78dc"/>
+<text x="964" y="1476" fill="#12263f" stroke="#fff" stroke-width="8" stroke-linejoin="round" paint-order="stroke" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="29" font-weight="700">海牛馆</text>
+<circle cx="952" cy="1449" r="16" fill="#f5b81e" stroke="#fff" stroke-width="5"/>
+<text x="952" y="1450" fill="#12263f" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="20" font-weight="800" text-anchor="middle" dominant-baseline="central">7</text>
+</g>
+<g data-id="place-mvzdeatl-0sv4d" data-kind="place" data-name="水豚部落" data-tags="venue,restroom" data-category="venue">
+<ellipse cx="835" cy="1154" rx="20" ry="7" fill="rgba(10,74,140,.12)"/>
+<circle cx="835" cy="1131" r="20" fill="#fff" stroke="#0b78dc" stroke-width="5"/>
+<circle cx="835" cy="1131" r="7" fill="#0b78dc"/>
+<text x="865" y="1140" fill="#12263f" stroke="#fff" stroke-width="8" stroke-linejoin="round" paint-order="stroke" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="29" font-weight="700">水豚部落</text>
+<circle cx="853" cy="1113" r="16" fill="#f5b81e" stroke="#fff" stroke-width="5"/>
+<text x="853" y="1114" fill="#12263f" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="20" font-weight="800" text-anchor="middle" dominant-baseline="central">8</text>
+</g>
+<g data-id="place-mvzdeq91-cts4x" data-kind="place" data-name="北极狼谷" data-tags="venue" data-category="venue">
+<ellipse cx="536" cy="1024" rx="20" ry="7" fill="rgba(10,74,140,.12)"/>
+<circle cx="536" cy="1001" r="20" fill="#fff" stroke="#0b78dc" stroke-width="5"/>
+<circle cx="536" cy="1001" r="7" fill="#0b78dc"/>
+<text x="566" y="1010" fill="#12263f" stroke="#fff" stroke-width="8" stroke-linejoin="round" paint-order="stroke" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="29" font-weight="700">北极狼谷</text>
+<circle cx="554" cy="983" r="16" fill="#f5b81e" stroke="#fff" stroke-width="5"/>
+<text x="554" y="984" fill="#12263f" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="20" font-weight="800" text-anchor="middle" dominant-baseline="central">9</text>
+</g>
+<g data-id="place-mvzdfsvn-ky3v9" data-kind="place" data-name="水獭 海狸鼠馆" data-tags="venue" data-category="venue">
+<ellipse cx="685" cy="753" rx="20" ry="7" fill="rgba(10,74,140,.12)"/>
+<circle cx="685" cy="730" r="20" fill="#fff" stroke="#0b78dc" stroke-width="5"/>
+<circle cx="685" cy="730" r="7" fill="#0b78dc"/>
+<text x="715" y="739" fill="#12263f" stroke="#fff" stroke-width="8" stroke-linejoin="round" paint-order="stroke" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="29" font-weight="700">水獭 海狸鼠馆</text>
+<circle cx="703" cy="712" r="16" fill="#f5b81e" stroke="#fff" stroke-width="5"/>
+<text x="703" y="713" fill="#12263f" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="20" font-weight="800" text-anchor="middle" dominant-baseline="central">10</text>
+</g>
+<g data-id="place-mvzdgedi-bijov" data-kind="place" data-name="海象馆" data-tags="venue" data-category="venue">
+<ellipse cx="1046" cy="816" rx="20" ry="7" fill="rgba(10,74,140,.12)"/>
+<circle cx="1046" cy="793" r="20" fill="#fff" stroke="#0b78dc" stroke-width="5"/>
+<circle cx="1046" cy="793" r="7" fill="#0b78dc"/>
+<text x="1076" y="802" fill="#12263f" stroke="#fff" stroke-width="8" stroke-linejoin="round" paint-order="stroke" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="29" font-weight="700">海象馆</text>
+<circle cx="1064" cy="775" r="16" fill="#f5b81e" stroke="#fff" stroke-width="5"/>
+<text x="1064" y="776" fill="#12263f" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="20" font-weight="800" text-anchor="middle" dominant-baseline="central">11</text>
+</g>
+<g data-id="place-mvzdh9c1-9bmyx" data-kind="place" data-name="北海狮馆" data-tags="venue,leisure" data-category="venue">
+<ellipse cx="1513" cy="784" rx="20" ry="7" fill="rgba(10,74,140,.12)"/>
+<circle cx="1513" cy="761" r="20" fill="#fff" stroke="#0b78dc" stroke-width="5"/>
+<circle cx="1513" cy="761" r="7" fill="#0b78dc"/>
+<text x="1543" y="770" fill="#12263f" stroke="#fff" stroke-width="8" stroke-linejoin="round" paint-order="stroke" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="29" font-weight="700">北海狮馆</text>
+<circle cx="1531" cy="743" r="16" fill="#f5b81e" stroke="#fff" stroke-width="5"/>
+<text x="1531" y="744" fill="#12263f" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="20" font-weight="800" text-anchor="middle" dominant-baseline="central">12</text>
+</g>
+<g data-id="place-mvzdisxb-zh2bi" data-kind="place" data-name="雨林海豚湾" data-tags="venue" data-category="venue">
+<ellipse cx="922" cy="374" rx="20" ry="7" fill="rgba(10,74,140,.12)"/>
+<circle cx="922" cy="351" r="20" fill="#fff" stroke="#0b78dc" stroke-width="5"/>
+<circle cx="922" cy="351" r="7" fill="#0b78dc"/>
+<text x="952" y="360" fill="#12263f" stroke="#fff" stroke-width="8" stroke-linejoin="round" paint-order="stroke" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="29" font-weight="700">雨林海豚湾</text>
+<circle cx="940" cy="333" r="16" fill="#f5b81e" stroke="#fff" stroke-width="5"/>
+<text x="940" y="334" fill="#12263f" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="20" font-weight="800" text-anchor="middle" dominant-baseline="central">13</text>
+</g>
+<g data-id="place-mvzdj7x4-lvtom" data-kind="place" data-name="海狮剧场 鲸鱼天地" data-tags="venue,dining" data-category="venue">
+<ellipse cx="1314" cy="561" rx="20" ry="7" fill="rgba(10,74,140,.12)"/>
+<circle cx="1314" cy="538" r="20" fill="#fff" stroke="#0b78dc" stroke-width="5"/>
+<circle cx="1314" cy="538" r="7" fill="#0b78dc"/>
+<text x="1344" y="547" fill="#12263f" stroke="#fff" stroke-width="8" stroke-linejoin="round" paint-order="stroke" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="29" font-weight="700">海狮剧场 鲸鱼天地</text>
+<circle cx="1332" cy="520" r="16" fill="#f5b81e" stroke="#fff" stroke-width="5"/>
+<text x="1332" y="521" fill="#12263f" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="20" font-weight="800" text-anchor="middle" dominant-baseline="central">14</text>
+</g>
+<g data-id="place-mvzdjzo2-de64d" data-kind="place" data-name="白鲸海" data-tags="venue,dining,gift,restroom" data-category="venue">
+<ellipse cx="1601" cy="526" rx="20" ry="7" fill="rgba(10,74,140,.12)"/>
+<circle cx="1601" cy="503" r="20" fill="#fff" stroke="#0b78dc" stroke-width="5"/>
+<circle cx="1601" cy="503" r="7" fill="#0b78dc"/>
+<text x="1631" y="512" fill="#12263f" stroke="#fff" stroke-width="8" stroke-linejoin="round" paint-order="stroke" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="29" font-weight="700">白鲸海</text>
+<circle cx="1619" cy="485" r="16" fill="#f5b81e" stroke="#fff" stroke-width="5"/>
+<text x="1619" y="486" fill="#12263f" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="20" font-weight="800" text-anchor="middle" dominant-baseline="central">16</text>
+</g>
+<g data-id="place-mvzdrj1m-4ovn4" data-kind="place" data-name="企鹅岛" data-tags="venue,dining,gift,restroom" data-category="venue">
+<ellipse cx="1470" cy="290" rx="20" ry="7" fill="rgba(10,74,140,.12)"/>
+<circle cx="1470" cy="267" r="20" fill="#fff" stroke="#0b78dc" stroke-width="5"/>
+<circle cx="1470" cy="267" r="7" fill="#0b78dc"/>
+<text x="1500" y="276" fill="#12263f" stroke="#fff" stroke-width="8" stroke-linejoin="round" paint-order="stroke" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="29" font-weight="700">企鹅岛</text>
+<circle cx="1488" cy="249" r="16" fill="#f5b81e" stroke="#fff" stroke-width="5"/>
+<text x="1488" y="250" fill="#12263f" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="20" font-weight="800" text-anchor="middle" dominant-baseline="central">17</text>
+</g>
+<g data-id="place-mvzds2ub-agrkr" data-kind="place" data-name="棕熊馆" data-tags="venue" data-category="venue">
+<ellipse cx="1221" cy="359" rx="20" ry="7" fill="rgba(10,74,140,.12)"/>
+<circle cx="1221" cy="336" r="20" fill="#fff" stroke="#0b78dc" stroke-width="5"/>
+<circle cx="1221" cy="336" r="7" fill="#0b78dc"/>
+<text x="1251" y="345" fill="#12263f" stroke="#fff" stroke-width="8" stroke-linejoin="round" paint-order="stroke" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="29" font-weight="700">棕熊馆</text>
+<circle cx="1239" cy="318" r="16" fill="#f5b81e" stroke="#fff" stroke-width="5"/>
+<text x="1239" y="319" fill="#12263f" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="20" font-weight="800" text-anchor="middle" dominant-baseline="central">18</text>
+</g>
+<g data-id="place-mvzdtwtq-3ud6q" data-kind="place" data-name="北极熊馆" data-tags="venue" data-category="venue">
+<ellipse cx="1084" cy="234" rx="20" ry="7" fill="rgba(10,74,140,.12)"/>
+<circle cx="1084" cy="211" r="20" fill="#fff" stroke="#0b78dc" stroke-width="5"/>
+<circle cx="1084" cy="211" r="7" fill="#0b78dc"/>
+<text x="1114" y="220" fill="#12263f" stroke="#fff" stroke-width="8" stroke-linejoin="round" paint-order="stroke" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="29" font-weight="700">北极熊馆</text>
+<circle cx="1102" cy="193" r="16" fill="#f5b81e" stroke="#fff" stroke-width="5"/>
+<text x="1102" y="194" fill="#12263f" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="20" font-weight="800" text-anchor="middle" dominant-baseline="central">19</text>
+</g>
+<g data-id="place-mvzdutgq-l9exs" data-kind="place" data-name="海豹馆" data-tags="venue,restroom" data-category="venue">
+<ellipse cx="1233" cy="178" rx="20" ry="7" fill="rgba(10,74,140,.12)"/>
+<circle cx="1233" cy="155" r="20" fill="#fff" stroke="#0b78dc" stroke-width="5"/>
+<circle cx="1233" cy="155" r="7" fill="#0b78dc"/>
+<text x="1263" y="164" fill="#12263f" stroke="#fff" stroke-width="8" stroke-linejoin="round" paint-order="stroke" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="29" font-weight="700">海豹馆</text>
+<circle cx="1251" cy="137" r="16" fill="#f5b81e" stroke="#fff" stroke-width="5"/>
+<text x="1251" y="138" fill="#12263f" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="20" font-weight="800" text-anchor="middle" dominant-baseline="central">20</text>
+</g>
+<g data-id="place-mvzdvh2f-ihrw6" data-kind="place" data-name="杭州长乔海洋研学院" data-tags="venue,restroom,dining" data-category="venue">
+<ellipse cx="797" cy="589" rx="20" ry="7" fill="rgba(10,74,140,.12)"/>
+<circle cx="797" cy="566" r="20" fill="#fff" stroke="#0b78dc" stroke-width="5"/>
+<circle cx="797" cy="566" r="7" fill="#0b78dc"/>
+<text x="827" y="575" fill="#12263f" stroke="#fff" stroke-width="8" stroke-linejoin="round" paint-order="stroke" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="29" font-weight="700">杭州长乔海洋研学院</text>
+<circle cx="815" cy="548" r="16" fill="#f5b81e" stroke="#fff" stroke-width="5"/>
+<text x="815" y="549" fill="#12263f" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="20" font-weight="800" text-anchor="middle" dominant-baseline="central">21</text>
+</g>
+<g data-id="place-mvzdymxk-6sq75" data-kind="place" data-name="入口卫生间" data-tags="restroom" data-category="restroom">
+<ellipse cx="237" cy="1757" rx="20" ry="7" fill="rgba(10,74,140,.12)"/>
+<circle cx="237" cy="1734" r="20" fill="#fff" stroke="#2fa76b" stroke-width="5"/>
+<circle cx="237" cy="1734" r="7" fill="#2fa76b"/>
+<text x="267" y="1743" fill="#12263f" stroke="#fff" stroke-width="8" stroke-linejoin="round" paint-order="stroke" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="29" font-weight="700">入口卫生间</text>
+<circle cx="255" cy="1716" r="16" fill="#f5b81e" stroke="#fff" stroke-width="5"/>
+<text x="255" y="1717" fill="#12263f" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="20" font-weight="800" text-anchor="middle" dominant-baseline="central">22</text>
+</g>
+<g data-id="place-mvze5hg2-3sdoo" data-kind="place" data-name="休闲餐吧" data-tags="leisure,dining" data-category="rest">
+<ellipse cx="461" cy="1266" rx="20" ry="7" fill="rgba(10,74,140,.12)"/>
+<circle cx="461" cy="1243" r="20" fill="#fff" stroke="#9a72d6" stroke-width="5"/>
+<circle cx="461" cy="1243" r="7" fill="#9a72d6"/>
+<text x="491" y="1252" fill="#12263f" stroke="#fff" stroke-width="8" stroke-linejoin="round" paint-order="stroke" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="29" font-weight="700">休闲餐吧</text>
+<circle cx="479" cy="1225" r="16" fill="#f5b81e" stroke="#fff" stroke-width="5"/>
+<text x="479" y="1226" fill="#12263f" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="20" font-weight="800" text-anchor="middle" dominant-baseline="central">23</text>
+</g>
+<g data-id="place-mvze5nz7-3jowo" data-kind="place" data-name="休闲餐吧" data-tags="leisure,dining" data-category="rest">
+<ellipse cx="1451" cy="1030" rx="20" ry="7" fill="rgba(10,74,140,.12)"/>
+<circle cx="1451" cy="1007" r="20" fill="#fff" stroke="#9a72d6" stroke-width="5"/>
+<circle cx="1451" cy="1007" r="7" fill="#9a72d6"/>
+<text x="1481" y="1016" fill="#12263f" stroke="#fff" stroke-width="8" stroke-linejoin="round" paint-order="stroke" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="29" font-weight="700">休闲餐吧</text>
+<circle cx="1469" cy="989" r="16" fill="#f5b81e" stroke="#fff" stroke-width="5"/>
+<text x="1469" y="990" fill="#12263f" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="20" font-weight="800" text-anchor="middle" dominant-baseline="central">24</text>
+</g>
+<g data-id="place-mvzgsyeh-amsb4" data-kind="place" data-name="卫生间" data-tags="restroom" data-category="restroom">
+<ellipse cx="1395" cy="645" rx="20" ry="7" fill="rgba(10,74,140,.12)"/>
+<circle cx="1395" cy="622" r="20" fill="#fff" stroke="#2fa76b" stroke-width="5"/>
+<circle cx="1395" cy="622" r="7" fill="#2fa76b"/>
+<text x="1425" y="631" fill="#12263f" stroke="#fff" stroke-width="8" stroke-linejoin="round" paint-order="stroke" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="29" font-weight="700">卫生间</text>
+<circle cx="1413" cy="604" r="16" fill="#f5b81e" stroke="#fff" stroke-width="5"/>
+<text x="1413" y="605" fill="#12263f" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="20" font-weight="800" text-anchor="middle" dominant-baseline="central">15</text>
+</g>
+<g data-kind="route-step" data-place-id="place-mvzbzcaq-soqdn" data-step="1" data-name="游客中心"><circle cx="451" cy="2149" r="16" fill="#e65e36" stroke="#fff" stroke-width="5"/><text x="451" y="2150" fill="#fff" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="19" font-weight="800" text-anchor="middle" dominant-baseline="central">1</text></g>
+<g data-kind="route-step" data-place-id="place-mvzd8va9-91zwh" data-step="2" data-name="梦幻水母宫"><circle cx="725" cy="1657" r="16" fill="#e65e36" stroke="#fff" stroke-width="5"/><text x="725" y="1658" fill="#fff" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="19" font-weight="800" text-anchor="middle" dominant-baseline="central">2</text></g>
+<g data-kind="route-step" data-place-id="place-mvzdde68-z4pml" data-step="3" data-name="海牛馆"><circle cx="961" cy="1440" r="16" fill="#e65e36" stroke="#fff" stroke-width="5"/><text x="961" y="1441" fill="#fff" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="19" font-weight="800" text-anchor="middle" dominant-baseline="central">3</text></g>
+<g data-kind="route-step" data-place-id="place-mvzdeatl-0sv4d" data-step="4" data-name="水豚部落"><circle cx="862" cy="1104" r="16" fill="#e65e36" stroke="#fff" stroke-width="5"/><text x="862" y="1105" fill="#fff" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="19" font-weight="800" text-anchor="middle" dominant-baseline="central">4</text></g>
+<g data-kind="route-step" data-place-id="place-mvzdtwtq-3ud6q" data-step="5" data-name="北极熊馆"><circle cx="1111" cy="184" r="16" fill="#e65e36" stroke="#fff" stroke-width="5"/><text x="1111" y="185" fill="#fff" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="19" font-weight="800" text-anchor="middle" dominant-baseline="central">5</text></g>
+</svg>

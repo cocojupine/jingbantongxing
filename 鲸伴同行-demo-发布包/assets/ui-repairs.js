@@ -3,6 +3,8 @@ const PREFIX = "jingban.ui.v2:";
 const legacyKeys = { profile: "userProfile", bindings: "bindings", booking: "backpackBooking" };
 const memory = new Map();
 
+if (typeof document !== "undefined") import("./map-entry.mjs");
+
 function store(session = false) {
   try { return session ? window.sessionStorage : window.localStorage; } catch { return null; }
 }

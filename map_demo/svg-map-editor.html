@@ -1,0 +1,2191 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f3f7fc">
+  <title>鲸伴同行 · 地图 SVG 标注器</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --sea-50: #f0f7ff;
+      --sea-100: #ddeeff;
+      --sea-200: #bbdfff;
+      --sea-500: #1e93f7;
+      --sea-600: #0b78dc;
+      --sea-700: #0b5faf;
+      --ink-900: #12263f;
+      --ink-600: #4a5e78;
+      --ink-400: #8496ac;
+      --line: rgba(18, 60, 110, .09);
+      --page: #f3f7fc;
+      --shadow: 0 8px 24px rgba(14, 75, 133, .08);
+      font-family: "PingFang SC", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink-900);
+      background: var(--page);
+      font-synthesis: none;
+    }
+
+    * { box-sizing: border-box; }
+    body { margin: 0; min-width: 320px; min-height: 100vh; }
+    button, input, select { font: inherit; }
+    button { color: inherit; }
+
+    .topbar {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 14px 28px;
+      background: rgba(255, 255, 255, .94);
+      border-bottom: 1px solid var(--line);
+    }
+    .brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
+    .brand-mark {
+      display: grid;
+      width: 42px;
+      height: 42px;
+      flex: 0 0 auto;
+      place-items: center;
+      border-radius: 14px;
+      color: #fff;
+      background: linear-gradient(145deg, #54afff, #0b78dc);
+      box-shadow: 0 5px 12px rgba(11, 120, 220, .2);
+      font-size: 21px;
+    }
+    h1 { margin: 0; font-size: 17px; line-height: 1.35; letter-spacing: .01em; }
+    .subtitle { margin: 3px 0 0; color: var(--ink-400); font-size: 12px; }
+    .top-actions { display: flex; align-items: center; gap: 8px; }
+
+    .workspace {
+      width: min(1440px, 100%);
+      min-height: calc(100vh - 76px);
+      margin: 0 auto;
+      padding: 22px;
+      display: grid;
+      grid-template-columns: 316px minmax(0, 1fr);
+      gap: 18px;
+    }
+    .panel, .stage-card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+    }
+    .panel { padding: 18px; align-self: start; }
+    .section + .section { margin-top: 20px; padding-top: 18px; border-top: 1px solid #edf2f8; }
+    .section-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin: 0 0 11px;
+      color: var(--ink-900);
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .section-title small { color: var(--ink-400); font-size: 11px; font-weight: 500; }
+    .field-label { display: block; margin: 10px 0 6px; color: var(--ink-600); font-size: 12px; }
+    .field, .select {
+      width: 100%;
+      min-height: 40px;
+      padding: 9px 11px;
+      color: var(--ink-900);
+      background: #fff;
+      border: 1px solid #dce6f1;
+      border-radius: 10px;
+      outline: none;
+    }
+    .field:focus, .select:focus { border-color: var(--sea-500); box-shadow: 0 0 0 3px rgba(30, 147, 247, .13); }
+    .field::placeholder { color: #aab8c8; }
+
+    .btn {
+      display: inline-flex;
+      min-height: 40px;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      padding: 8px 12px;
+      border: 1px solid transparent;
+      border-radius: 11px;
+      background: #fff;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 650;
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn:active { transform: translateY(0); }
+    .btn:focus-visible { outline: 3px solid rgba(30, 147, 247, .3); outline-offset: 2px; }
+    .btn-primary { color: #fff; background: var(--sea-600); box-shadow: 0 3px 8px rgba(11, 120, 220, .16); }
+    .btn-primary:hover { background: var(--sea-700); }
+    .btn-soft { color: var(--sea-700); background: var(--sea-50); border-color: #dfedfa; }
+    .btn-plain { color: var(--ink-600); border-color: #e3ebf4; }
+    .btn-danger { color: #bd4c43; background: #fff8f6; border-color: #f6dfdc; }
+    .btn-block { width: 100%; }
+    .button-row { display: flex; gap: 8px; }
+    .button-row > .btn { flex: 1; }
+    .tools { display: grid; grid-template-columns: repeat(3, 1fr); gap: 7px; }
+    .tool-btn {
+      display: grid;
+      min-height: 65px;
+      align-content: center;
+      justify-items: center;
+      gap: 5px;
+      padding: 7px 4px;
+      color: var(--ink-600);
+      background: #fff;
+      border: 1px solid #e4ebf3;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 11px;
+    }
+    .tool-btn span:first-child { font-size: 19px; line-height: 1; }
+    .tool-btn[aria-pressed="true"] {
+      color: var(--sea-700);
+      background: var(--sea-50);
+      border-color: #acd5f8;
+      box-shadow: inset 0 0 0 1px rgba(30, 147, 247, .06);
+    }
+    .hint {
+      margin: 10px 0 0;
+      color: var(--ink-400);
+      font-size: 11px;
+      line-height: 1.6;
+    }
+    .check-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin-top: 12px;
+      color: var(--ink-600);
+      font-size: 12px;
+      line-height: 1.5;
+      cursor: pointer;
+    }
+    .check-row input { margin: 2px 0 0; accent-color: var(--sea-600); }
+    .tag-options { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 7px; }
+    .tag-option {
+      display: flex;
+      min-height: 38px;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      border: 1px solid #e4ebf3;
+      border-radius: 10px;
+      color: var(--ink-600);
+      cursor: pointer;
+      font-size: 12px;
+    }
+    .tag-option:has(input:checked) { color: var(--sea-700); background: var(--sea-50); border-color: #acd5f8; }
+    .tag-option input { margin: 0; accent-color: var(--sea-600); }
+    .object-list { display: grid; gap: 5px; max-height: 180px; overflow: auto; }
+    .object-row {
+      display: flex;
+      width: 100%;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 9px;
+      text-align: left;
+      background: #fff;
+      border: 1px solid transparent;
+      border-radius: 9px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+    .object-row:hover { background: #f7faff; }
+    .object-row[aria-current="true"] { color: var(--sea-700); background: var(--sea-50); border-color: #d8eafd; }
+    .object-icon {
+      display: grid;
+      width: 24px;
+      height: 24px;
+      flex: 0 0 auto;
+      place-items: center;
+      color: var(--sea-700);
+      background: var(--sea-100);
+      border-radius: 8px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+    .object-name { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .empty-list { padding: 10px 4px; color: var(--ink-400); font-size: 11px; }
+    .hidden { display: none !important; }
+
+    .stage-card { min-width: 0; padding: 14px; display: flex; flex-direction: column; }
+    .stage-toolbar {
+      display: flex;
+      min-height: 40px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 0 2px 12px;
+    }
+    .stage-name { min-width: 0; overflow: hidden; color: var(--ink-600); font-size: 12px; text-overflow: ellipsis; white-space: nowrap; }
+    .stage-meta { flex: 0 0 auto; color: var(--ink-400); font-size: 11px; }
+    .canvas-wrap {
+      position: relative;
+      width: 100%;
+      min-height: 280px;
+      overflow: hidden;
+      align-self: center;
+      background-color: #edf4fb;
+      background-image: linear-gradient(45deg, #e6edf5 25%, transparent 25%), linear-gradient(-45deg, #e6edf5 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #e6edf5 75%), linear-gradient(-45deg, transparent 75%, #e6edf5 75%);
+      background-size: 20px 20px;
+      background-position: 0 0, 0 10px, 10px -10px, -10px 0;
+      border: 1px solid #e1eaf3;
+      border-radius: 14px;
+      touch-action: none;
+    }
+    .canvas-wrap.has-image { min-height: 0; }
+    .canvas-wrap img, .canvas-wrap svg {
+      position: absolute;
+      inset: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+    .canvas-wrap img { object-fit: fill; user-select: none; pointer-events: none; }
+    #overlay { overflow: visible; }
+    #overlay[data-tool="place"], #overlay[data-tool="route"] { cursor: crosshair; }
+    #overlay[data-tool="select"] { cursor: default; }
+    .canvas-empty {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      align-content: center;
+      justify-items: center;
+      padding: 25px;
+      text-align: center;
+      color: var(--ink-400);
+      pointer-events: none;
+    }
+    .empty-illustration {
+      display: grid;
+      width: 62px;
+      height: 62px;
+      place-items: center;
+      margin-bottom: 12px;
+      color: var(--sea-600);
+      background: #fff;
+      border: 1px solid #deebf8;
+      border-radius: 22px;
+      box-shadow: 0 6px 18px rgba(14, 75, 133, .08);
+      font-size: 28px;
+    }
+    .canvas-empty strong { margin-bottom: 5px; color: var(--ink-600); font-size: 14px; }
+    .canvas-empty span { max-width: 300px; font-size: 12px; line-height: 1.6; }
+    .statusbar { display: flex; justify-content: space-between; gap: 10px; padding: 11px 2px 0; color: var(--ink-400); font-size: 11px; }
+    #status { color: var(--ink-600); }
+
+    .marker { cursor: pointer; }
+    .marker .marker-shadow { fill: rgba(10, 74, 140, .12); }
+    .marker .marker-pin { fill: #fff; stroke: #0b78dc; stroke-width: 5; }
+    .marker .marker-core { fill: #1e93f7; }
+    .marker.type-restroom .marker-pin { stroke: #2fa76b; }
+    .marker.type-restroom .marker-core { fill: #2fa76b; }
+    .marker.type-entrance .marker-pin { stroke: #f25e36; }
+    .marker.type-entrance .marker-core { fill: #f25e36; }
+    .marker.type-rest .marker-pin { stroke: #9a72d6; }
+    .marker.type-rest .marker-core { fill: #9a72d6; }
+    .marker.type-dining .marker-pin { stroke: #e6a818; }
+    .marker.type-dining .marker-core { fill: #e6a818; }
+    .marker.type-gift .marker-pin { stroke: #cb6898; }
+    .marker.type-gift .marker-core { fill: #cb6898; }
+    .marker.is-selected .marker-pin { stroke-width: 9; }
+    .map-label {
+      fill: #12263f;
+      stroke: #fff;
+      stroke-width: 8px;
+      stroke-linejoin: round;
+      paint-order: stroke;
+      font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: 29px;
+      font-weight: 700;
+      pointer-events: none;
+    }
+    .number-disc { fill: #f5b81e; stroke: #fff; stroke-width: 5; }
+    .place-sequence-disc { fill: #f5b81e; stroke: #fff; stroke-width: 5; }
+    .place-sequence-text {
+      fill: #12263f;
+      font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: 20px;
+      font-weight: 800;
+      text-anchor: middle;
+      dominant-baseline: central;
+      pointer-events: none;
+    }
+    .number-text {
+      fill: #12263f;
+      font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: 24px;
+      font-weight: 800;
+      text-anchor: middle;
+      dominant-baseline: central;
+      pointer-events: none;
+    }
+    .route-line {
+      fill: none;
+      stroke: #0b78dc;
+      stroke-width: 12;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      opacity: .92;
+      pointer-events: none;
+    }
+    .route-halo {
+      fill: none;
+      stroke: #fff;
+      stroke-width: 23;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      pointer-events: none;
+    }
+    .selection-ring { fill: none; stroke: #0b78dc; stroke-width: 6; stroke-dasharray: 9 7; }
+    .network-node { fill: #fff; stroke: #0b78dc; stroke-width: 6; cursor: pointer; }
+    .network-node.is-active { fill: #f5b81e; stroke: #0b5faf; stroke-width: 8; }
+    .network-node.is-isolated { stroke: #e68b38; }
+    .network-edge { pointer-events: none; }
+    .network-edge.is-selected .route-line { stroke-width: 19; }
+    .network-muted { opacity: .17; }
+    .network-summary { padding: 12px; background: var(--sea-50); border-radius: 11px; color: var(--ink-600); font-size: 12px; line-height: 1.6; }
+    .network-summary strong { color: var(--ink-900); }
+    .component-list { display: grid; gap: 6px; margin-top: 10px; max-height: 180px; overflow: auto; }
+    .component-row { display: flex; justify-content: space-between; width: 100%; text-align: left; }
+    .component-row[aria-pressed="true"] { border-color: var(--sea-500); background: var(--sea-50); color: var(--sea-700); }
+    .route-place-list { display: grid; gap: 5px; max-height: 210px; overflow: auto; }
+    .route-place-option {
+      display: flex;
+      min-height: 38px;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 9px;
+      border: 1px solid #e4ebf3;
+      border-radius: 9px;
+      color: var(--ink-600);
+      cursor: pointer;
+      font-size: 11px;
+    }
+    .route-place-option:has(input:checked) { color: var(--sea-700); background: var(--sea-50); border-color: #acd5f8; }
+    .route-place-option input, .route-return-option input { accent-color: var(--sea-600); }
+    .route-place-name { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .route-order { display: grid; gap: 4px; margin: 9px 0 0; padding-left: 22px; color: var(--ink-600); font-size: 11px; }
+    .route-return-option { display: flex; align-items: center; gap: 8px; margin: 10px 0; color: var(--ink-600); font-size: 12px; cursor: pointer; }
+    .route-plan-path, .route-plan-connector { fill: none; stroke: #e65e36; stroke-width: 12; stroke-linecap: round; stroke-linejoin: round; pointer-events: none; }
+    .route-plan-halo { fill: none; stroke: #fff; stroke-width: 24; stroke-linecap: round; stroke-linejoin: round; pointer-events: none; }
+    .route-plan-connector { stroke-dasharray: 11 9; }
+    .route-plan-step circle { fill: #e65e36; stroke: #fff; stroke-width: 5; }
+    .route-plan-step text { fill: #fff; font-size: 19px; font-weight: 800; text-anchor: middle; dominant-baseline: central; }
+    .mode-options { display: grid; gap: 6px; margin: 10px 0; }
+    .mode-options label { display: flex; align-items: center; gap: 8px; padding: 9px; border: 1px solid #e4ebf3; border-radius: 10px; color: var(--ink-600); font-size: 12px; cursor: pointer; }
+    .mode-options input { accent-color: var(--sea-600); }
+
+    .toast {
+      position: fixed;
+      z-index: 5;
+      right: 20px;
+      bottom: 20px;
+      max-width: min(420px, calc(100vw - 40px));
+      padding: 11px 15px;
+      color: #fff;
+      background: #123c63;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(18, 38, 63, .2);
+      font-size: 12px;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity .2s ease, transform .2s ease;
+      pointer-events: none;
+    }
+    .toast.show { opacity: 1; transform: translateY(0); }
+    input[type="file"] { display: none; }
+
+    @media (max-width: 820px) {
+      .workspace { grid-template-columns: 280px minmax(0, 1fr); padding: 14px; gap: 12px; }
+      .panel { padding: 14px; }
+      .topbar { padding: 12px 16px; }
+    }
+    @media (max-width: 650px) {
+      .topbar { min-height: 68px; align-items: flex-start; }
+      .subtitle { display: none; }
+      .brand-mark { width: 38px; height: 38px; }
+      .top-actions .btn { min-height: 38px; padding-inline: 9px; }
+      .top-actions .btn .wide-label { display: none; }
+      .workspace { min-height: calc(100vh - 68px); grid-template-columns: 1fr; padding: 10px; }
+      .panel { order: 2; }
+      .stage-card { order: 1; padding: 9px; border-radius: 16px; }
+      .canvas-wrap { min-height: 330px; max-height: 62vh; }
+      .canvas-wrap.has-image { width: auto; max-width: 100%; height: min(62vh, 690px); aspect-ratio: var(--map-ratio, 3 / 4); }
+      .statusbar { font-size: 10px; }
+      .section + .section { margin-top: 15px; padding-top: 14px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true">〰</div>
+      <div>
+        <h1>地图 SVG 标注器</h1>
+        <p class="subtitle">载入手绘底图，标注地点与道路网络</p>
+      </div>
+    </div>
+    <div class="top-actions">
+      <button class="btn btn-plain" id="openProjectButton" type="button">打开项目</button>
+      <button class="btn btn-soft" id="saveProjectButton" type="button">保存项目</button>
+      <button class="btn btn-primary" id="exportButton" type="button">导出 SVG</button>
+    </div>
+  </header>
+
+  <main class="workspace">
+    <aside class="panel" aria-label="地图标注工具">
+      <section class="section">
+        <h2 class="section-title">底图 <small id="imageState">正在载入…</small></h2>
+        <button class="btn btn-soft btn-block" id="loadImageButton" type="button">＋ 载入地图图片</button>
+        <p class="hint">选择 PNG、JPG 或 WebP。建议在载入后保持底图构图不变，导出 SVG 会使用相同画布坐标。</p>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">绘制工具</h2>
+        <div class="tools" role="group" aria-label="选择绘制工具">
+          <button class="tool-btn" data-tool="select" aria-pressed="true" type="button"><span>↖</span><span>选择</span></button>
+          <button class="tool-btn" data-tool="place" aria-pressed="false" type="button"><span>⌖</span><span>地点</span></button>
+          <button class="tool-btn" data-tool="route" aria-pressed="false" type="button"><span>⌁</span><span>路网</span></button>
+        </div>
+        <p class="hint" id="toolHint">选择工具：点击标记或道路段进行选中，可拖动地点标记微调位置。</p>
+      </section>
+
+      <section class="section" id="placeSettings">
+        <h2 class="section-title">地点设置 <small>点击地图放置</small></h2>
+        <label class="field-label" for="placeName">地点名称</label>
+        <input class="field" id="placeName" value="新地点" maxlength="24" autocomplete="off">
+        <span class="field-label">类型标签（可多选）</span>
+        <div class="tag-options" id="placeTagOptions" role="group" aria-label="新地点类型标签">
+          <label class="tag-option"><input type="checkbox" value="venue" checked>场馆</label>
+          <label class="tag-option"><input type="checkbox" value="dining">餐饮</label>
+          <label class="tag-option"><input type="checkbox" value="leisure">休闲</label>
+          <label class="tag-option"><input type="checkbox" value="gift">礼品</label>
+          <label class="tag-option"><input type="checkbox" value="restroom">卫生间</label>
+          <label class="tag-option"><input type="checkbox" value="entrance">出入口</label>
+        </div>
+        <label class="check-row">
+          <input id="placeNumberEnabled" type="checkbox">
+          <span>为地点添加地图序号</span>
+        </label>
+        <div id="placeNumberControls" class="hidden">
+          <label class="field-label" for="placeNumber">下一个序号</label>
+          <input class="field" id="placeNumber" type="number" min="1" step="1" value="1">
+        </div>
+      </section>
+
+      <section class="section hidden" id="routeSettings">
+        <h2 class="section-title">路网连接 <small id="routePointCount">连续连接</small></h2>
+        <div class="mode-options" role="radiogroup" aria-label="路网操作">
+          <label><input name="networkMode" type="radio" value="chain" checked>连续点连接</label>
+          <label><input name="networkMode" type="radio" value="pair">选中两点连接</label>
+        </div>
+        <label class="field-label" for="routeColor">道路颜色</label>
+        <select class="select" id="routeColor">
+          <option value="#0b78dc">海洋蓝</option>
+          <option value="#2fa76b">生态绿</option>
+          <option value="#f25e36">珊瑚橙</option>
+          <option value="#8a65c7">薰衣草紫</option>
+          <option value="#e2a715">暖阳黄</option>
+        </select>
+        <button class="btn btn-soft btn-block" id="cancelRouteButton" type="button" style="margin-top: 10px">结束当前连接</button>
+        <p class="hint" id="networkModeHint">点击空白处新建节点，点击现有节点复用；每次点击即建立连接。点回任意旧节点可成环，点在线上可插入路口。结束连接后可从任何节点继续绘制。</p>
+      </section>
+
+      <section class="section hidden" id="selectionSettings">
+        <h2 class="section-title">选中对象</h2>
+        <div id="selectedNameControls">
+          <label class="field-label" for="selectedName">显示名称</label>
+          <input class="field" id="selectedName" maxlength="24" autocomplete="off">
+        </div>
+        <div id="selectedPlaceTags" class="hidden">
+          <span class="field-label">类型标签（可多选）</span>
+          <div class="tag-options" id="selectedTagOptions" role="group" aria-label="选中地点类型标签">
+            <label class="tag-option"><input type="checkbox" value="venue">场馆</label>
+            <label class="tag-option"><input type="checkbox" value="dining">餐饮</label>
+            <label class="tag-option"><input type="checkbox" value="leisure">休闲</label>
+            <label class="tag-option"><input type="checkbox" value="gift">礼品</label>
+            <label class="tag-option"><input type="checkbox" value="restroom">卫生间</label>
+            <label class="tag-option"><input type="checkbox" value="entrance">出入口</label>
+          </div>
+        </div>
+        <p class="hint hidden" id="selectedNetworkInfo"></p>
+        <div id="selectedPlaceNumberControls" class="hidden">
+          <label class="field-label" for="selectedPlaceNumber">地点序号（留空表示不编号）</label>
+          <input class="field" id="selectedPlaceNumber" type="number" min="1" step="1" inputmode="numeric">
+        </div>
+        <div class="button-row" style="margin-top: 10px">
+          <button class="btn btn-plain" id="duplicateButton" type="button">复制</button>
+          <button class="btn btn-danger" id="deleteButton" type="button">删除</button>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">路网联通检查 <small id="networkCount">0 点 · 0 边</small></h2>
+        <div class="network-summary" id="networkStats" role="status">尚无路网节点</div>
+        <div class="component-list" id="networkComponents"></div>
+        <button class="btn btn-plain btn-block hidden" id="showAllComponents" type="button" style="margin-top: 8px">显示全部路网</button>
+        <p class="hint">点击片区可在地图上高亮；不同片区无法沿路网到达。仅共享节点的道路算联通，视觉交叉不算路口。打开旧版项目时会自动转换，原文件保持不变。</p>
+      </section>
+
+      <section class="section" aria-label="多地点路线规划">
+        <h2 class="section-title">路线规划 <small id="routeSelectionCount">0 / 8 个地点</small></h2>
+        <span class="field-label">选择途经地点（2–8 个）</span>
+        <div class="route-place-list" id="routePlaceList" role="group" aria-label="选择路线途经地点"></div>
+        <label class="field-label" for="routeStartPlace">路线起点</label>
+        <select class="select" id="routeStartPlace" disabled>
+          <option value="">先选择途经地点</option>
+        </select>
+        <label class="route-return-option">
+          <input id="routeReturnToStart" type="checkbox">
+          <span>规划后返回起点</span>
+        </label>
+        <button class="btn btn-primary btn-block" id="planRouteButton" type="button">规划最短路线</button>
+        <div class="network-summary" id="routePlanResult" role="status" aria-live="polite" style="margin-top: 9px">
+          选择 2–8 个地点后规划路线。访问顺序按路网曲线距离优化。
+        </div>
+        <button class="btn btn-plain btn-block hidden" id="clearRoutePlanButton" type="button" style="margin-top: 8px">清除路线</button>
+        <p class="hint">路线会吸附到最近道路曲线；虚线表示地点到道路的步行接入段。长度按地图坐标估算，当前没有比例尺，暂不换算实际距离或耗时。</p>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">地点列表 <small id="objectCount">0 项</small></h2>
+        <div class="object-list" id="objectList"></div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">编辑与导出</h2>
+        <div class="button-row">
+          <button class="btn btn-plain" id="undoButton" type="button">↶ 撤销</button>
+          <button class="btn btn-plain" id="clearButton" type="button">清空标注</button>
+        </div>
+        <label class="check-row">
+          <input id="embedBackground" type="checkbox">
+          <span>将底图嵌入导出文件<br><span style="color:var(--ink-400)">关闭时导出透明 SVG 覆盖层，文件更小</span></span>
+        </label>
+        <p class="hint">透明覆盖层和底图使用同一 viewBox。前端叠加时让两者同宽同高即可精准对齐。</p>
+      </section>
+    </aside>
+
+    <section class="stage-card" aria-label="地图画布">
+      <div class="stage-toolbar">
+        <div class="stage-name" id="stageName">正在载入默认底图</div>
+        <div class="stage-meta" id="stageDimensions">坐标画布 —</div>
+      </div>
+      <div class="canvas-wrap" id="canvasWrap">
+        <img id="mapImage" alt="地图底图" draggable="false" class="hidden">
+        <svg id="overlay" xmlns="http://www.w3.org/2000/svg" role="application" aria-label="地图 SVG 标注画布" data-tool="select"></svg>
+        <div class="canvas-empty" id="canvasEmpty">
+          <div class="empty-illustration" aria-hidden="true">▧</div>
+          <strong>先载入手绘地图底图</strong>
+          <span>载入后选择「地点」或「路网」即可标注。连续连接道路节点，也可选中任意两点添加无向连接。</span>
+        </div>
+      </div>
+      <div class="statusbar">
+        <span id="status">正在载入默认手绘地图…</span>
+        <span>快捷键：Ctrl/⌘ + Z 撤销 · Delete 删除</span>
+      </div>
+    </section>
+  </main>
+
+  <input id="imageInput" type="file" accept="image/png,image/jpeg,image/webp">
+  <input id="projectInput" type="file" accept="application/json,.json">
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const SVG_NS = "http://www.w3.org/2000/svg";
+      const $ = (selector) => document.querySelector(selector);
+      const PLACE_TAGS = {
+        venue: "场馆",
+        dining: "餐饮",
+        leisure: "休闲",
+        gift: "礼品",
+        restroom: "卫生间",
+        entrance: "出入口"
+      };
+      const state = {
+        imageData: "",
+        imageName: "",
+        width: 1800,
+        height: 2400,
+        items: [],
+        network: { nodes: [], edges: [] },
+        selectedId: null,
+        tool: "select",
+        networkMode: "chain",
+        chain: [],
+        pairStartId: null,
+        focusedComponent: null,
+        history: [],
+        drag: null,
+        routeSelection: [],
+        routeStartId: null,
+        routeReturnToStart: false,
+        routePlan: null
+      };
+
+      const elements = {
+        imageInput: $("#imageInput"),
+        projectInput: $("#projectInput"),
+        image: $("#mapImage"),
+        overlay: $("#overlay"),
+        wrap: $("#canvasWrap"),
+        empty: $("#canvasEmpty"),
+        list: $("#objectList"),
+        toast: $("#toast"),
+        status: $("#status")
+      };
+
+      function escapeXml(value) {
+        return String(value).replace(/[<>&"']/g, (char) => ({
+          "<": "&lt;", ">": "&gt;", "&": "&amp;", '"': "&quot;", "'": "&apos;"
+        })[char]);
+      }
+
+      function makeId(prefix) {
+        return `${prefix}-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 7)}`;
+      }
+
+      function toast(message) {
+        elements.toast.textContent = message;
+        elements.toast.classList.add("show");
+        clearTimeout(toast.timer);
+        toast.timer = setTimeout(() => elements.toast.classList.remove("show"), 2400);
+      }
+
+      function saveHistory() {
+        state.routePlan = null;
+        state.history.push(JSON.stringify({
+          items: state.items,
+          network: state.network,
+          selectedId: state.selectedId
+        }));
+        if (state.history.length > 80) state.history.shift();
+        $("#undoButton").disabled = false;
+      }
+
+      function undo() {
+        const snapshot = state.history.pop();
+        if (!snapshot) return toast("没有可撤销的操作");
+        const previous = JSON.parse(snapshot);
+        state.items = previous.items;
+        state.network = previous.network;
+        state.selectedId = previous.selectedId;
+        resetConnection();
+        render();
+        toast("已撤销上一步");
+      }
+
+      function setImage(file, dataUrl) {
+        if (!file && !dataUrl) return;
+        state.routePlan = null;
+        const source = dataUrl || URL.createObjectURL(file);
+        const image = new Image();
+        image.onload = () => {
+          state.imageData = dataUrl || "";
+          state.imageName = file ? file.name : state.imageName || "项目底图";
+          state.width = image.naturalWidth;
+          state.height = image.naturalHeight;
+          elements.image.src = source;
+          elements.image.classList.remove("hidden");
+          elements.empty.classList.add("hidden");
+          elements.wrap.classList.add("has-image");
+          elements.wrap.style.aspectRatio = `${state.width} / ${state.height}`;
+          elements.wrap.style.setProperty("--map-ratio", `${state.width} / ${state.height}`);
+          $("#imageState").textContent = `${state.width} × ${state.height}`;
+          $("#stageName").textContent = state.imageName;
+          $("#stageDimensions").textContent = `坐标画布 ${state.width} × ${state.height}`;
+          elements.overlay.setAttribute("viewBox", `0 0 ${state.width} ${state.height}`);
+          elements.overlay.setAttribute("preserveAspectRatio", "none");
+          render();
+          elements.status.textContent = "底图已就绪，选择左侧工具开始标注";
+          if (!dataUrl) URL.revokeObjectURL(source);
+        };
+        image.onerror = () => toast("图片载入失败，请换一张 PNG、JPG 或 WebP");
+        image.src = source;
+      }
+
+      async function loadDefaultMap() {
+        const projectFilename = "ocean-park-map-restyled-hd-map-project.json";
+        try {
+          const projectResponse = await fetch(new URL(projectFilename, document.baseURI));
+          if (projectResponse.ok) {
+            const project = await projectResponse.json();
+            if (await openProject(project)) return;
+          }
+        } catch (error) {
+          console.warn("原有地图项目载入失败，将仅载入默认底图。", error);
+        }
+
+        const filename = "ocean-park-map-restyled-hd.png";
+        try {
+          const response = await fetch(new URL(filename, document.baseURI));
+          if (!response.ok) throw new Error(`HTTP ${response.status}`);
+          const blob = await response.blob();
+          const reader = new FileReader();
+          reader.onload = () => {
+            if (!state.imageData && !state.items.length && !state.network.nodes.length) {
+              setImage({ name: filename }, reader.result);
+            }
+          };
+          reader.onerror = () => {
+            $("#imageState").textContent = "载入失败";
+            elements.status.textContent = "默认底图读取失败，请手动载入地图图片";
+            toast("默认底图读取失败，请手动载入地图图片");
+          };
+          reader.readAsDataURL(blob);
+        } catch (error) {
+          $("#imageState").textContent = "载入失败";
+          $("#stageName").textContent = "等待载入底图";
+          elements.status.textContent = "默认底图载入失败，请手动载入地图图片";
+          toast("默认底图载入失败，请确认图片文件与页面位于同一目录");
+        }
+      }
+
+      function currentTool(tool) {
+        state.tool = tool;
+        resetConnection();
+        document.querySelectorAll(".tool-btn").forEach((button) => {
+          button.setAttribute("aria-pressed", String(button.dataset.tool === tool));
+        });
+        elements.overlay.dataset.tool = tool;
+        $("#placeSettings").classList.toggle("hidden", tool !== "place");
+        $("#routeSettings").classList.toggle("hidden", tool !== "route");
+        $("#selectionSettings").classList.toggle("hidden", tool !== "select" || !state.selectedId);
+        const hints = {
+          select: "选择工具：点击地点、路网节点或道路连接查看信息；地点可拖动。",
+          place: "地点工具：点击地图放置地点；可在地点设置中选择是否添加序号。",
+          route: "路网工具：连续点连接，或选中两点直接建立无向连接。"
+        };
+        $("#toolHint").textContent = hints[tool];
+        render();
+      }
+
+      function svgElement(name, attributes = {}) {
+        const node = document.createElementNS(SVG_NS, name);
+        Object.entries(attributes).forEach(([key, value]) => node.setAttribute(key, value));
+        return node;
+      }
+
+      function placeTags(item) {
+        if (Array.isArray(item.tags)) {
+          return [...new Set(item.tags.filter((tag) => Object.hasOwn(PLACE_TAGS, tag)))];
+        }
+        const legacy = item.category === "rest" ? "leisure" : item.category;
+        return [Object.hasOwn(PLACE_TAGS, legacy) ? legacy : "venue"];
+      }
+
+      function categoryForTags(tags) {
+        return tags[0] === "leisure" ? "rest" : tags[0] || "venue";
+      }
+
+      function checkedTags(container) {
+        return [...container.querySelectorAll("input:checked")].map((input) => input.value);
+      }
+
+      function categoryClass(item) {
+        return `type-${categoryForTags(placeTags(item))}`;
+      }
+
+      function addMarker(item, parent, selected = false) {
+        const group = svgElement("g", {
+          class: `marker ${categoryClass(item)}${selected ? " is-selected" : ""}`,
+          "data-id": item.id,
+          "data-kind": item.kind,
+          tabindex: "0",
+          role: "button",
+          "aria-label": item.kind === "number"
+            ? `序号 ${item.number}`
+            : `${item.name}${item.number != null ? `，序号 ${item.number}` : ""}，类型：${placeTags(item).map((tag) => PLACE_TAGS[tag]).join("、")}`
+        });
+        if (selected) group.appendChild(svgElement("circle", {
+          class: "selection-ring", cx: item.x, cy: item.y, r: item.kind === "number" ? 35 : 40
+        }));
+
+        if (item.kind === "number") {
+          group.appendChild(svgElement("circle", {
+            class: "number-disc", cx: item.x, cy: item.y, r: 25
+          }));
+          const text = svgElement("text", {
+            class: "number-text", x: item.x, y: item.y + 1
+          });
+          text.textContent = item.number;
+          group.appendChild(text);
+        } else {
+          group.appendChild(svgElement("ellipse", {
+            class: "marker-shadow", cx: item.x, cy: item.y + 23, rx: 20, ry: 7
+          }));
+          group.appendChild(svgElement("circle", {
+            class: "marker-pin", cx: item.x, cy: item.y, r: 20
+          }));
+          group.appendChild(svgElement("circle", {
+            class: "marker-core", cx: item.x, cy: item.y, r: 7
+          }));
+          if (item.name) {
+            const label = svgElement("text", {
+              class: "map-label", x: item.x + 30, y: item.y + 9
+            });
+            label.textContent = item.name;
+            group.appendChild(label);
+          }
+          if (item.number != null) {
+            const badgeX = item.x + 18;
+            const badgeY = item.y - 18;
+            group.appendChild(svgElement("circle", {
+              class: "place-sequence-disc", cx: badgeX, cy: badgeY, r: 16
+            }));
+            const sequence = svgElement("text", {
+              class: "place-sequence-text", x: badgeX, y: badgeY + 1
+            });
+            sequence.textContent = item.number;
+            group.appendChild(sequence);
+          }
+        }
+        parent.appendChild(group);
+      }
+
+      function networkNode(id) {
+        return state.network.nodes.find((node) => node.id === id);
+      }
+
+      function edgeSegment(edge) {
+        return {
+          start: networkNode(edge.a),
+          control1: edge.control1,
+          control2: edge.control2,
+          end: networkNode(edge.b)
+        };
+      }
+
+      function edgePath(edge) {
+        const start = networkNode(edge.a);
+        const end = networkNode(edge.b);
+        if (!start || !end) return "";
+        return `M ${start.x} ${start.y} C ${edge.control1.x} ${edge.control1.y}, ${edge.control2.x} ${edge.control2.y}, ${end.x} ${end.y}`;
+      }
+
+      function networkDiagnostics() {
+        const adjacency = new Map(state.network.nodes.map((node) => [node.id, new Set()]));
+        state.network.edges.forEach((edge) => {
+          if (!adjacency.has(edge.a) || !adjacency.has(edge.b)) return;
+          adjacency.get(edge.a).add(edge.b);
+          adjacency.get(edge.b).add(edge.a);
+        });
+        const membership = new Map();
+        const components = [];
+        state.network.nodes.forEach((node) => {
+          if (membership.has(node.id)) return;
+          const component = { nodes: [], edges: 0 };
+          const queue = [node.id];
+          membership.set(node.id, components.length);
+          while (queue.length) {
+            const current = queue.shift();
+            component.nodes.push(current);
+            adjacency.get(current).forEach((next) => {
+              if (membership.has(next)) return;
+              membership.set(next, components.length);
+              queue.push(next);
+            });
+          }
+          components.push(component);
+        });
+        state.network.edges.forEach((edge) => {
+          const index = membership.get(edge.a);
+          if (index != null && index === membership.get(edge.b)) components[index].edges += 1;
+        });
+        return { adjacency, membership, components };
+      }
+
+      function renderNetwork() {
+        const { adjacency, membership } = networkDiagnostics();
+        state.network.edges.forEach((edge) => {
+          const path = edgePath(edge);
+          if (!path) return;
+          const muted = state.focusedComponent != null &&
+            membership.get(edge.a) !== state.focusedComponent ? " network-muted" : "";
+          const group = svgElement("g", {
+            class: `network-edge${state.selectedId === edge.id ? " is-selected" : ""}${muted}`,
+            "data-id": edge.id,
+            "data-kind": "edge",
+            "data-node-a": edge.a,
+            "data-node-b": edge.b,
+            "aria-label": "无向道路连接"
+          });
+          group.appendChild(svgElement("path", { class: "route-halo", d: path }));
+          group.appendChild(svgElement("path", {
+            class: "route-line", d: path, stroke: edge.color || "#0b78dc"
+          }));
+          elements.overlay.appendChild(group);
+        });
+        state.network.nodes.forEach((node) => {
+          const degree = adjacency.get(node.id)?.size || 0;
+          const active = state.selectedId === node.id ||
+            state.pairStartId === node.id ||
+            state.chain[state.chain.length - 1] === node.id;
+          const muted = state.focusedComponent != null &&
+            membership.get(node.id) !== state.focusedComponent ? " network-muted" : "";
+          elements.overlay.appendChild(svgElement("circle", {
+            class: `network-node${active ? " is-active" : ""}${degree ? "" : " is-isolated"}${muted}`,
+            "data-id": node.id,
+            "data-kind": "node",
+            cx: node.x, cy: node.y, r: active ? 17 : 13,
+            tabindex: "0", role: "button",
+            "aria-label": `${node.label}，连接 ${degree} 个节点`
+          }));
+        });
+      }
+
+      function routeGeometryPath(geometry) {
+        return geometry.kind === "road"
+          ? `M ${geometry.segment.start.x} ${geometry.segment.start.y} C ${geometry.segment.control1.x} ${geometry.segment.control1.y}, ${geometry.segment.control2.x} ${geometry.segment.control2.y}, ${geometry.segment.end.x} ${geometry.segment.end.y}`
+          : `M ${geometry.start.x} ${geometry.start.y} L ${geometry.end.x} ${geometry.end.y}`;
+      }
+
+      function renderRoutePlanPaths() {
+        if (!state.routePlan) return;
+        const group = svgElement("g", {
+          class: "route-plan-overlay",
+          "aria-label": "多地点规划路线"
+        });
+        state.routePlan.legs.forEach((leg) => {
+          leg.links.forEach((link) => {
+            const geometry = link.geometry;
+            const path = routeGeometryPath(geometry);
+            group.appendChild(svgElement("path", { class: "route-plan-halo", d: path }));
+            group.appendChild(svgElement("path", {
+              class: geometry.kind === "connector" ? "route-plan-connector" : "route-plan-path",
+              d: path
+            }));
+          });
+        });
+        elements.overlay.appendChild(group);
+      }
+
+      function renderRoutePlanSteps() {
+        if (!state.routePlan) return;
+        state.routePlan.order.forEach((placeId, index) => {
+          const place = state.items.find((item) => item.id === placeId);
+          if (!place) return;
+          const x = Math.max(18, Math.min(state.width - 18, place.x + 27));
+          const y = Math.max(18, Math.min(state.height - 18, place.y - 27));
+          const step = svgElement("g", {
+            class: "route-plan-step",
+            "aria-label": `第 ${index + 1} 站：${place.name || "未命名地点"}`
+          });
+          step.appendChild(svgElement("circle", { cx: x, cy: y, r: 16 }));
+          const text = svgElement("text", { x, y: y + 1 });
+          text.textContent = String(index + 1);
+          step.appendChild(text);
+          elements.overlay.appendChild(step);
+        });
+      }
+
+      function renderRoutePlanner() {
+        const places = state.items.filter((item) => item.kind === "place");
+        const placeIds = new Set(places.map((place) => place.id));
+        state.routeSelection = state.routeSelection.filter((id) => placeIds.has(id));
+        if (state.routePlan && state.routePlan.order.some((id) => !placeIds.has(id))) {
+          state.routePlan = null;
+        }
+        if (!placeIds.has(state.routeStartId)) state.routeStartId = state.routeSelection[0] || null;
+
+        const list = $("#routePlaceList");
+        list.replaceChildren();
+        if (!places.length) {
+          const empty = document.createElement("div");
+          empty.className = "empty-list";
+          empty.textContent = "请先添加地点标注";
+          list.appendChild(empty);
+        } else {
+          places.forEach((place) => {
+            const label = document.createElement("label");
+            label.className = "route-place-option";
+            const checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            checkbox.dataset.routePlace = place.id;
+            checkbox.checked = state.routeSelection.includes(place.id);
+            const name = document.createElement("span");
+            name.className = "route-place-name";
+            name.textContent = `${place.name || "未命名"} · ${placeTags(place).map((tag) => PLACE_TAGS[tag]).join("、")}`;
+            label.append(checkbox, name);
+            list.appendChild(label);
+          });
+        }
+
+        $("#routeSelectionCount").textContent = `${state.routeSelection.length} / 8 个地点`;
+        const startSelect = $("#routeStartPlace");
+        startSelect.replaceChildren();
+        if (!state.routeSelection.length) {
+          const option = document.createElement("option");
+          option.value = "";
+          option.textContent = "先选择途经地点";
+          startSelect.appendChild(option);
+        } else {
+          state.routeSelection.forEach((id) => {
+            const place = places.find((item) => item.id === id);
+            if (!place) return;
+            const option = document.createElement("option");
+            option.value = id;
+            option.textContent = place.name || "未命名地点";
+            option.selected = id === state.routeStartId;
+            startSelect.appendChild(option);
+          });
+        }
+        startSelect.disabled = state.routeSelection.length === 0;
+        $("#routeReturnToStart").checked = state.routeReturnToStart;
+        $("#planRouteButton").disabled = state.routeSelection.length < 2;
+
+        const result = $("#routePlanResult");
+        result.replaceChildren();
+        if (!state.routePlan) {
+          result.textContent = state.routeSelection.length < 2
+            ? "选择 2–8 个地点后规划路线。访问顺序按路网曲线距离优化。"
+            : "已选择地点。可调整起点，再生成路线。";
+          $("#clearRoutePlanButton").classList.add("hidden");
+          return;
+        }
+
+        const summary = document.createElement("strong");
+        summary.textContent = `路线长度约 ${Math.round(state.routePlan.distance).toLocaleString()} 地图单位`;
+        result.appendChild(summary);
+        const order = document.createElement("ol");
+        order.className = "route-order";
+        state.routePlan.order.forEach((id) => {
+          const place = places.find((item) => item.id === id);
+          const row = document.createElement("li");
+          row.textContent = place?.name || "未命名地点";
+          order.appendChild(row);
+        });
+        if (state.routePlan.returnToStart) {
+          const row = document.createElement("li");
+          row.textContent = `返回起点：${places.find((item) => item.id === state.routePlan.order[0])?.name || "起点"}`;
+          order.appendChild(row);
+        }
+        result.appendChild(order);
+        $("#clearRoutePlanButton").classList.remove("hidden");
+      }
+
+      function isClosedRoad(points) {
+        return points.length >= 4 &&
+          points[0].x === points[points.length - 1].x &&
+          points[0].y === points[points.length - 1].y;
+      }
+
+      function roadCurveSegments(points) {
+        const segments = [];
+        const closed = isClosedRoad(points);
+        for (let index = 0; index < points.length - 1; index += 1) {
+          const start = points[index];
+          const end = points[index + 1];
+          const previous = index === 0 && closed ? points[points.length - 2] : points[Math.max(0, index - 1)];
+          const next = index === points.length - 2 && closed ? points[1] : points[Math.min(points.length - 1, index + 2)];
+          segments.push({
+            start,
+            control1: {
+              x: start.x + (end.x - previous.x) / 6,
+              y: start.y + (end.y - previous.y) / 6
+            },
+            control2: {
+              x: end.x - (next.x - start.x) / 6,
+              y: end.y - (next.y - start.y) / 6
+            },
+            end
+          });
+        }
+        return segments;
+      }
+
+      function roadSegments(routeOrPoints) {
+        if (Array.isArray(routeOrPoints)) return roadCurveSegments(routeOrPoints);
+        if (Array.isArray(routeOrPoints.curveSegments)) return routeOrPoints.curveSegments;
+        return roadCurveSegments(routeOrPoints.points || []);
+      }
+
+      function splitCubic(segment, ratio) {
+        const interpolate = (start, end) => ({
+          x: start.x + (end.x - start.x) * ratio,
+          y: start.y + (end.y - start.y) * ratio
+        });
+        const first = interpolate(segment.start, segment.control1);
+        const second = interpolate(segment.control1, segment.control2);
+        const third = interpolate(segment.control2, segment.end);
+        const firstMid = interpolate(first, second);
+        const secondMid = interpolate(second, third);
+        const junction = interpolate(firstMid, secondMid);
+        return [
+          { start: segment.start, control1: first, control2: firstMid, end: junction },
+          { start: junction, control1: secondMid, control2: third, end: segment.end }
+        ];
+      }
+
+      function cubicPoint(segment, ratio) {
+        const inverse = 1 - ratio;
+        const startWeight = inverse ** 3;
+        const control1Weight = 3 * inverse ** 2 * ratio;
+        const control2Weight = 3 * inverse * ratio ** 2;
+        const endWeight = ratio ** 3;
+        return {
+          x: startWeight * segment.start.x +
+            control1Weight * segment.control1.x +
+            control2Weight * segment.control2.x +
+            endWeight * segment.end.x,
+          y: startWeight * segment.start.y +
+            control1Weight * segment.control1.y +
+            control2Weight * segment.control2.y +
+            endWeight * segment.end.y
+        };
+      }
+
+      function cubicLength(segment, steps = 32) {
+        let length = 0;
+        let previous = segment.start;
+        for (let step = 1; step <= steps; step += 1) {
+          const point = cubicPoint(segment, step / steps);
+          length += Math.hypot(point.x - previous.x, point.y - previous.y);
+          previous = point;
+        }
+        return length;
+      }
+
+      function reverseRouteGeometry(geometry) {
+        if (geometry.kind === "road") {
+          return {
+            kind: "road",
+            segment: {
+              start: geometry.segment.end,
+              control1: geometry.segment.control2,
+              control2: geometry.segment.control1,
+              end: geometry.segment.start
+            }
+          };
+        }
+        return { kind: "connector", start: geometry.end, end: geometry.start };
+      }
+
+      function buildRoutingGraph(placeIds) {
+        const nodes = new Map(state.network.nodes.map((node) => [node.id, node]));
+        const adjacency = new Map(state.network.nodes.map((node) => [node.id, []]));
+        const anchorsByEdge = new Map(state.network.edges.map((edge) => [edge.id, []]));
+        const stopNodes = new Map();
+
+        const addLink = (from, to, distance, geometry) => {
+          if (!adjacency.has(from) || !adjacency.has(to)) return;
+          adjacency.get(from).push({ to, distance, geometry });
+          adjacency.get(to).push({
+            to: from, distance, geometry: reverseRouteGeometry(geometry)
+          });
+        };
+
+        for (const placeId of placeIds) {
+          const place = state.items.find((item) => item.id === placeId && item.kind === "place");
+          if (!place) return { error: "选择的地点已不存在，请重新选择" };
+
+          let anchorId = null;
+          let anchorPoint = null;
+          if (state.network.edges.length) {
+            const projection = state.network.edges
+              .map((edge) => ({ edge, point: closestPointOnEdge(edge, place) }))
+              .filter((entry) => entry.point)
+              .sort((left, right) => left.point.distance - right.point.distance)[0];
+            if (projection) {
+              const { edge, point } = projection;
+              if (point.ratio <= .001) {
+                anchorId = edge.a;
+                anchorPoint = networkNode(edge.a);
+              } else if (point.ratio >= .999) {
+                anchorId = edge.b;
+                anchorPoint = networkNode(edge.b);
+              } else {
+                anchorId = `route-anchor-${place.id}`;
+                anchorPoint = { id: anchorId, x: point.x, y: point.y };
+                nodes.set(anchorId, anchorPoint);
+                adjacency.set(anchorId, []);
+                anchorsByEdge.get(edge.id).push({ id: anchorId, ratio: point.ratio });
+              }
+            }
+          } else {
+            const nearestNode = state.network.nodes
+              .map((node) => ({ node, distance: Math.hypot(place.x - node.x, place.y - node.y) }))
+              .sort((left, right) => left.distance - right.distance)[0];
+            if (nearestNode) {
+              anchorId = nearestNode.node.id;
+              anchorPoint = nearestNode.node;
+            }
+          }
+
+          if (!anchorId || !anchorPoint) return { error: "路网中没有可供地点接入的道路节点" };
+          const stopId = `route-place-${place.id}`;
+          nodes.set(stopId, place);
+          adjacency.set(stopId, []);
+          stopNodes.set(place.id, stopId);
+          addLink(stopId, anchorId, Math.hypot(place.x - anchorPoint.x, place.y - anchorPoint.y), {
+            kind: "connector",
+            start: { x: place.x, y: place.y },
+            end: { x: anchorPoint.x, y: anchorPoint.y }
+          });
+        }
+
+        state.network.edges.forEach((edge) => {
+          const anchors = (anchorsByEdge.get(edge.id) || [])
+            .sort((left, right) => left.ratio - right.ratio);
+          let segment = edgeSegment(edge);
+          let previousRatio = 0;
+          let fromId = edge.a;
+          anchors.forEach((anchor) => {
+            const localRatio = previousRatio === 1
+              ? 0
+              : (anchor.ratio - previousRatio) / (1 - previousRatio);
+            const [before, after] = splitCubic(segment, localRatio);
+            addLink(fromId, anchor.id, cubicLength(before), { kind: "road", segment: before });
+            segment = after;
+            previousRatio = anchor.ratio;
+            fromId = anchor.id;
+          });
+          addLink(fromId, edge.b, cubicLength(segment), { kind: "road", segment });
+        });
+
+        return { adjacency, nodes, stopNodes };
+      }
+
+      function shortestPath(graph, startId, endId) {
+        if (!graph.adjacency.has(startId) || !graph.adjacency.has(endId)) return null;
+        if (startId === endId) return { distance: 0, links: [] };
+        const distances = new Map([...graph.adjacency.keys()].map((id) => [id, Infinity]));
+        const previous = new Map();
+        const visited = new Set();
+        distances.set(startId, 0);
+
+        while (visited.size < graph.adjacency.size) {
+          let current = null;
+          let bestDistance = Infinity;
+          distances.forEach((distance, id) => {
+            if (!visited.has(id) && distance < bestDistance) {
+              current = id;
+              bestDistance = distance;
+            }
+          });
+          if (current == null) break;
+          if (current === endId) break;
+          visited.add(current);
+          graph.adjacency.get(current).forEach((link) => {
+            if (visited.has(link.to)) return;
+            const candidate = bestDistance + link.distance;
+            if (candidate < distances.get(link.to)) {
+              distances.set(link.to, candidate);
+              previous.set(link.to, { from: current, link });
+            }
+          });
+        }
+
+        if (!Number.isFinite(distances.get(endId))) return null;
+        const links = [];
+        let current = endId;
+        while (current !== startId) {
+          const step = previous.get(current);
+          if (!step) return null;
+          links.push(step.link);
+          current = step.from;
+        }
+        links.reverse();
+        return { distance: distances.get(endId), links };
+      }
+
+      function optimizeVisitOrder(placeIds, startId, returnToStart) {
+        const uniqueIds = [...new Set(placeIds)];
+        if (uniqueIds.length < 2) return { error: "至少选择两个地点" };
+        if (uniqueIds.length > 8) return { error: "一次最多规划 8 个地点" };
+        if (!uniqueIds.includes(startId)) return { error: "请选择一个已勾选的路线起点" };
+        if (!state.network.edges.length) return { error: "当前没有路网连接，暂时无法规划" };
+
+        const graph = buildRoutingGraph(uniqueIds);
+        if (graph.error) return graph;
+        const shortest = new Map();
+        for (const fromId of uniqueIds) {
+          const fromNode = graph.stopNodes.get(fromId);
+          shortest.set(fromId, new Map());
+          for (const toId of uniqueIds) {
+            if (fromId === toId) continue;
+            const path = shortestPath(graph, fromNode, graph.stopNodes.get(toId));
+            if (!path) return { error: "所选地点之间存在路网断点，无法全部连通" };
+            shortest.get(fromId).set(toId, path);
+          }
+        }
+
+        const remaining = uniqueIds.filter((id) => id !== startId);
+        const completeMask = (1 << remaining.length) - 1;
+        const memo = new Map();
+        const findBestTail = (currentId, mask) => {
+          const key = `${currentId}:${mask}`;
+          if (memo.has(key)) return memo.get(key);
+          if (mask === completeMask) {
+            const result = returnToStart
+              ? { distance: shortest.get(currentId).get(startId).distance, order: [] }
+              : { distance: 0, order: [] };
+            memo.set(key, result);
+            return result;
+          }
+
+          let best = null;
+          remaining.forEach((nextId, index) => {
+            const bit = 1 << index;
+            if (mask & bit) return;
+            const tail = findBestTail(nextId, mask | bit);
+            const candidate = {
+              distance: shortest.get(currentId).get(nextId).distance + tail.distance,
+              order: [nextId, ...tail.order]
+            };
+            if (!best || candidate.distance < best.distance) best = candidate;
+          });
+          memo.set(key, best);
+          return best;
+        };
+
+        const best = findBestTail(startId, 0);
+        const order = [startId, ...best.order];
+        const legs = [];
+        for (let index = 0; index < order.length - 1; index += 1) {
+          legs.push({
+            from: order[index],
+            to: order[index + 1],
+            ...shortest.get(order[index]).get(order[index + 1])
+          });
+        }
+        if (returnToStart) {
+          legs.push({
+            from: order.at(-1),
+            to: startId,
+            ...shortest.get(order.at(-1)).get(startId)
+          });
+        }
+        return { order, legs, distance: best.distance, returnToStart };
+      }
+
+      function renderList() {
+        const items = state.items.slice().reverse();
+        $("#objectCount").textContent = `${items.length} 项`;
+        elements.list.replaceChildren();
+        if (!items.length) {
+          const empty = document.createElement("div");
+          empty.className = "empty-list";
+          empty.textContent = "还没有标注对象";
+          elements.list.appendChild(empty);
+          return;
+        }
+        items.forEach((item) => {
+          const button = document.createElement("button");
+          button.type = "button";
+          button.className = "object-row";
+          button.setAttribute("aria-current", String(item.id === state.selectedId));
+          const icon = document.createElement("span");
+          icon.className = "object-icon";
+          icon.textContent = item.kind === "number" || item.number != null ? item.number : "⌖";
+          const name = document.createElement("span");
+          name.className = "object-name";
+          name.textContent = item.kind === "place"
+            ? `${item.name || "未命名"} · ${placeTags(item).map((tag) => PLACE_TAGS[tag]).join("、")}`
+            : item.name || `序号 ${item.number}`;
+          button.append(icon, name);
+          button.addEventListener("click", () => {
+            state.selectedId = item.id;
+            currentTool("select");
+          });
+          elements.list.appendChild(button);
+        });
+      }
+
+      function render() {
+        elements.overlay.replaceChildren();
+        if (!state.width || !state.height) return;
+        elements.overlay.setAttribute("viewBox", `0 0 ${state.width} ${state.height}`);
+        renderNetwork();
+        renderRoutePlanPaths();
+        state.items.forEach((item) => {
+          addMarker(item, elements.overlay, item.id === state.selectedId);
+        });
+        renderRoutePlanSteps();
+        $("#routePointCount").textContent = state.networkMode === "chain"
+          ? (state.chain.length ? `从 ${networkNode(state.chain.at(-1))?.label} 继续` : "选取起点")
+          : (state.pairStartId ? `已选 ${networkNode(state.pairStartId)?.label}` : "选取两点");
+        const selected = state.items.find((item) => item.id === state.selectedId) ||
+          networkNode(state.selectedId) ||
+          state.network.edges.find((edge) => edge.id === state.selectedId);
+        const placeSelected = selected?.kind === "place";
+        const networkSelected = selected && !state.items.includes(selected);
+        $("#selectionSettings").classList.toggle("hidden", state.tool !== "select" || !selected);
+        $("#selectedNameControls").classList.toggle("hidden", networkSelected);
+        $("#selectedPlaceTags").classList.toggle("hidden", !placeSelected);
+        $("#selectedPlaceNumberControls").classList.toggle("hidden", !placeSelected);
+        $("#selectedNetworkInfo").classList.toggle("hidden", !networkSelected);
+        $("#duplicateButton").classList.toggle("hidden", networkSelected);
+        if (networkSelected) {
+          const degree = networkDiagnostics().adjacency.get(selected.id)?.size || 0;
+          $("#selectedNetworkInfo").textContent = selected.a
+            ? `连接 ${networkNode(selected.a)?.label} 与 ${networkNode(selected.b)?.label}，无方向`
+            : `${selected.label} · ${Math.round(selected.x)}, ${Math.round(selected.y)} · 连接 ${degree} 个节点`;
+        } else if (selected) {
+          $("#selectedName").value = selected.name || "";
+          if (placeSelected) {
+            $("#selectedPlaceNumber").value = selected.number ?? "";
+            const tags = placeTags(selected);
+            $("#selectedTagOptions").querySelectorAll("input").forEach((input) => {
+              input.checked = tags.includes(input.value);
+            });
+          }
+        }
+        renderList();
+        renderRoutePlanner();
+        renderNetworkStats();
+      }
+
+      function renderNetworkStats() {
+        const { adjacency, components, membership } = networkDiagnostics();
+        const nodeCount = state.network.nodes.length;
+        const edgeCount = state.network.edges.length;
+        const isolated = [...adjacency.values()].filter((neighbors) => !neighbors.size).length;
+        const cycles = edgeCount - nodeCount + components.length;
+        $("#networkCount").textContent = `${nodeCount} 点 · ${edgeCount} 边`;
+        $("#networkStats").innerHTML = nodeCount
+          ? `<strong>${edgeCount === 0 ? "尚未形成道路连接" : components.length === 1 ? "全部联通" : `存在 ${components.length} 个连通片区`}</strong><br>${nodeCount} 个节点 · ${edgeCount} 条无向边 · ${isolated} 个孤立点 · ${cycles} 个独立环`
+          : "尚无路网节点";
+        const list = $("#networkComponents");
+        list.replaceChildren();
+        components.forEach((component, index) => {
+          const button = document.createElement("button");
+          button.type = "button";
+          button.className = "btn btn-plain component-row";
+          button.setAttribute("aria-pressed", String(state.focusedComponent === index));
+          const labels = component.nodes.slice(0, 3).map((id) => networkNode(id).label).join("、");
+          button.textContent = `片区 ${index + 1} · ${component.nodes.length} 点 / ${component.edges} 边 · ${labels}${component.nodes.length > 3 ? "…" : ""}`;
+          button.addEventListener("click", () => {
+            state.focusedComponent = state.focusedComponent === index ? null : index;
+            render();
+          });
+          list.appendChild(button);
+        });
+        $("#showAllComponents").classList.toggle("hidden", state.focusedComponent == null);
+        const selectedEdge = state.network.edges.find((edge) => edge.id === state.selectedId);
+        const selectedNodeId = selectedEdge?.a || state.selectedId;
+        if (selectedNodeId && membership.has(selectedNodeId)) {
+          $("#selectedNetworkInfo").textContent += ` · 片区 ${membership.get(selectedNodeId) + 1}`;
+        }
+      }
+
+      function mapPoint(event) {
+        const point = elements.overlay.createSVGPoint();
+        point.x = event.clientX;
+        point.y = event.clientY;
+        const local = point.matrixTransform(elements.overlay.getScreenCTM().inverse());
+        return {
+          x: Math.max(0, Math.min(state.width, Math.round(local.x))),
+          y: Math.max(0, Math.min(state.height, Math.round(local.y)))
+        };
+      }
+
+      function nextNumber() {
+        const largest = state.items.reduce((max, item) => {
+          return item.number == null ? max : Math.max(max, Number(item.number) || 0);
+        }, 0);
+        return largest + 1;
+      }
+
+      function addPlace(point) {
+        saveHistory();
+        const tags = checkedTags($("#placeTagOptions"));
+        const name = $("#placeName").value.trim() || "新地点";
+        const item = {
+          id: makeId("place"),
+          kind: "place",
+          category: categoryForTags(tags),
+          tags,
+          name,
+          x: point.x,
+          y: point.y
+        };
+        if ($("#placeNumberEnabled").checked) {
+          item.number = Math.max(1, Math.floor(Number($("#placeNumber").value) || nextNumber()));
+        }
+        state.items.push(item);
+        state.selectedId = item.id;
+        $("#placeName").value = "新地点";
+        if (item.number != null) $("#placeNumber").value = nextNumber();
+        render();
+        elements.status.textContent = item.number == null
+          ? `已放置「${name}」 · ${point.x}, ${point.y}`
+          : `已放置「${name}」· 序号 ${item.number} · ${point.x}, ${point.y}`;
+      }
+
+      function routeSnapTolerance() {
+        const width = elements.overlay.getBoundingClientRect().width;
+        return width > 0 ? state.width * 16 / width : 48;
+      }
+
+      function resetConnection() {
+        state.chain = [];
+        state.lastCreatedEdgeId = null;
+        state.firstCreatedEdgeId = null;
+        state.pairStartId = null;
+      }
+
+      function nextNodeLabel() {
+        const highest = state.network.nodes.reduce((max, node) => {
+          const match = /^P(\d+)$/.exec(node.label || "");
+          return match ? Math.max(max, Number(match[1])) : max;
+        }, 0);
+        return `P${highest + 1}`;
+      }
+
+      function closestPointOnEdge(edge, point) {
+        const segment = edgeSegment(edge);
+        if (!segment.start || !segment.end) return null;
+        const steps = 64;
+        let bestRatio = 0;
+        let bestDistance = Math.hypot(point.x - segment.start.x, point.y - segment.start.y);
+        for (let step = 1; step <= steps; step += 1) {
+          const ratio = step / steps;
+          const sample = cubicPoint(segment, ratio);
+          const distance = Math.hypot(point.x - sample.x, point.y - sample.y);
+          if (distance < bestDistance) { bestRatio = ratio; bestDistance = distance; }
+        }
+        let low = Math.max(0, bestRatio - 1 / steps);
+        let high = Math.min(1, bestRatio + 1 / steps);
+        for (let pass = 0; pass < 14; pass += 1) {
+          const left = low + (high - low) / 3;
+          const right = high - (high - low) / 3;
+          const leftPoint = cubicPoint(segment, left);
+          const rightPoint = cubicPoint(segment, right);
+          if (Math.hypot(point.x - leftPoint.x, point.y - leftPoint.y) <=
+              Math.hypot(point.x - rightPoint.x, point.y - rightPoint.y)) high = right;
+          else low = left;
+        }
+        const ratio = (low + high) / 2;
+        const projected = cubicPoint(segment, ratio);
+        return {
+          edgeId: edge.id, ratio, x: projected.x, y: projected.y,
+          distance: Math.hypot(point.x - projected.x, point.y - projected.y)
+        };
+      }
+
+      function pickNetworkTarget(point, allowCreate) {
+        const tolerance = routeSnapTolerance();
+        const nearestNode = state.network.nodes
+          .map((node) => ({ node, distance: Math.hypot(point.x - node.x, point.y - node.y) }))
+          .sort((a, b) => a.distance - b.distance)[0];
+        if (nearestNode && nearestNode.distance <= tolerance) {
+          return { nodeId: nearestNode.node.id };
+        }
+        const nearestEdge = state.network.edges
+          .map((edge) => closestPointOnEdge(edge, point))
+          .filter(Boolean)
+          .sort((a, b) => a.distance - b.distance)[0];
+        if (nearestEdge && nearestEdge.distance <= tolerance) {
+          const edge = state.network.edges.find((entry) => entry.id === nearestEdge.edgeId);
+          if (nearestEdge.ratio <= .001) return { nodeId: edge.a };
+          if (nearestEdge.ratio >= .999) return { nodeId: edge.b };
+          return { split: nearestEdge };
+        }
+        return allowCreate ? { point } : null;
+      }
+
+      function splitEdge(edge, node, ratio) {
+        if (!edge || ratio <= .001 || ratio >= .999) return;
+        const [before, after] = splitCubic(edgeSegment(edge), ratio);
+        const oldEnd = edge.b;
+        edge.b = node.id;
+        edge.control1 = before.control1;
+        edge.control2 = before.control2;
+        state.network.edges.push({
+          id: makeId("edge"), a: node.id, b: oldEnd,
+          control1: after.control1, control2: after.control2, color: edge.color
+        });
+      }
+
+      function realizeNetworkTarget(target) {
+        if (target.nodeId) {
+          const node = networkNode(target.nodeId);
+          splitCrossingEdges(node);
+          return node;
+        }
+        const point = target.split || target.point;
+        const node = { id: makeId("node"), label: nextNodeLabel(), x: point.x, y: point.y };
+        state.network.nodes.push(node);
+        if (target.split) {
+          splitCrossingEdges(node);
+        }
+        return node;
+      }
+
+      function splitCrossingEdges(node) {
+        const tolerance = Math.max(2, routeSnapTolerance() / 8);
+        const crossings = state.network.edges
+          .filter((edge) => edge.a !== node.id && edge.b !== node.id)
+          .map((edge) => ({ edge, nearest: closestPointOnEdge(edge, node) }))
+          .filter(({ nearest }) => nearest &&
+            nearest.distance <= tolerance && nearest.ratio > .001 && nearest.ratio < .999);
+        crossings.forEach(({ edge, nearest }) => splitEdge(edge, node, nearest.ratio));
+      }
+
+      function existingEdge(a, b) {
+        return state.network.edges.find((edge) =>
+          (edge.a === a && edge.b === b) || (edge.a === b && edge.b === a));
+      }
+
+      function connectNodes(from, to, previousId = null) {
+        if (from.id === to.id || existingEdge(from.id, to.id)) return null;
+        const previous = networkNode(previousId);
+        const tangentX = previous ? (to.x - previous.x) / 6 : (to.x - from.x) / 3;
+        const tangentY = previous ? (to.y - previous.y) / 6 : (to.y - from.y) / 3;
+        const edge = {
+          id: makeId("edge"), a: from.id, b: to.id, color: $("#routeColor").value,
+          control1: { x: from.x + tangentX, y: from.y + tangentY },
+          control2: { x: to.x - (to.x - from.x) / 3, y: to.y - (to.y - from.y) / 3 }
+        };
+        state.network.edges.push(edge);
+        if (previous && state.lastCreatedEdgeId) {
+          const incoming = state.network.edges.find((entry) => entry.id === state.lastCreatedEdgeId);
+          if (incoming?.b === from.id) {
+            incoming.control2 = { x: from.x - tangentX, y: from.y - tangentY };
+          }
+        }
+        return edge;
+      }
+
+      function handleNetworkClick(point) {
+        const target = pickNetworkTarget(point, state.networkMode === "chain");
+        if (!target) return toast("两点连接：请点击已有节点，或点击道路中途生成路口");
+        const currentId = state.networkMode === "chain" ? state.chain.at(-1) : state.pairStartId;
+        if (target.nodeId && currentId === target.nodeId) {
+          return toast("请选择另一个节点；同一节点不能连接自己");
+        }
+        if (target.nodeId && currentId && existingEdge(currentId, target.nodeId)) {
+          if (state.networkMode === "chain") {
+            resetConnection();
+            state.chain = [target.nodeId];
+            render();
+          }
+          return toast("这两个节点已有连接，可从该节点继续连接其他点");
+        }
+        saveHistory();
+        state.focusedComponent = null;
+        const node = realizeNetworkTarget(target);
+        if (state.networkMode === "pair") {
+          if (state.pairStartId) {
+            const start = networkNode(state.pairStartId);
+            connectNodes(start, node);
+            resetConnection();
+            elements.status.textContent = `已连接 ${start.label} 与 ${node.label} · 无向`;
+          } else {
+            state.pairStartId = node.id;
+            elements.status.textContent = `已选 ${node.label}，请选择第二个节点`;
+          }
+        } else {
+          const from = networkNode(state.chain.at(-1));
+          if (from) {
+            const edge = connectNodes(from, node, state.chain.at(-2));
+            state.lastCreatedEdgeId = edge?.id || null;
+            if (!state.firstCreatedEdgeId) state.firstCreatedEdgeId = edge?.id || null;
+            if (node.id === state.chain[0] && state.chain.length >= 3) {
+              const first = state.network.edges.find((entry) => entry.id === state.firstCreatedEdgeId);
+              const next = networkNode(state.chain[1]);
+              if (first?.a === node.id && next) {
+                first.control1 = {
+                  x: node.x + (next.x - from.x) / 6,
+                  y: node.y + (next.y - from.y) / 6
+                };
+              }
+              resetConnection();
+              elements.status.textContent = `已形成闭环，可从任意节点继续连接`;
+            } else {
+              state.chain.push(node.id);
+              elements.status.textContent = `已连接至 ${node.label}；继续点击任意节点可分叉或成环`;
+            }
+          } else {
+            state.chain = [node.id];
+            elements.status.textContent = `已选起点 ${node.label}，继续点击建立连接`;
+          }
+        }
+        render();
+      }
+
+      function selectItem(id) {
+        state.selectedId = id;
+        render();
+      }
+
+      function deleteSelected() {
+        if (!state.selectedId) return toast("请先选择一个对象");
+        saveHistory();
+        if (networkNode(state.selectedId)) {
+          state.network.nodes = state.network.nodes.filter((node) => node.id !== state.selectedId);
+          state.network.edges = state.network.edges.filter((edge) =>
+            edge.a !== state.selectedId && edge.b !== state.selectedId);
+        } else {
+          state.network.edges = state.network.edges.filter((edge) => edge.id !== state.selectedId);
+          state.items = state.items.filter((item) => item.id !== state.selectedId);
+        }
+        state.selectedId = null;
+        state.focusedComponent = null;
+        resetConnection();
+        render();
+        toast("已删除选中对象");
+      }
+
+      function svgString(includeBackground) {
+        const items = state.items;
+        const parts = [];
+        if (includeBackground && state.imageData) {
+          parts.push(`<image href="${state.imageData}" x="0" y="0" width="${state.width}" height="${state.height}" preserveAspectRatio="none"/>`);
+        }
+        state.network.edges.forEach((edge) => {
+          const path = edgePath(edge);
+          if (!path) return;
+          parts.push(`<g data-id="${escapeXml(edge.id)}" data-kind="road-edge" data-node-a="${escapeXml(edge.a)}" data-node-b="${escapeXml(edge.b)}">`);
+          parts.push(`<path d="${path}" fill="none" stroke="#fff" stroke-width="23" stroke-linecap="round"/>`);
+          parts.push(`<path d="${path}" fill="none" stroke="${escapeXml(edge.color || "#0b78dc")}" stroke-width="12" stroke-linecap="round"/>`);
+          parts.push("</g>");
+        });
+        state.network.nodes.forEach((node) => {
+          parts.push(`<circle data-id="${escapeXml(node.id)}" data-kind="road-node" data-label="${escapeXml(node.label)}" cx="${node.x}" cy="${node.y}" r="13" fill="#fff" stroke="#0b78dc" stroke-width="6"/>`);
+        });
+        if (state.routePlan) {
+          state.routePlan.legs.forEach((leg) => {
+            leg.links.forEach((link) => {
+              const dashed = link.geometry.kind === "connector" ? ` stroke-dasharray="11 9"` : "";
+              const path = routeGeometryPath(link.geometry);
+              parts.push(`<path data-kind="planned-route-halo" d="${path}" fill="none" stroke="#fff" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>`);
+              parts.push(`<path data-kind="planned-route" d="${path}" fill="none" stroke="#e65e36" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"${dashed}/>`);
+            });
+          });
+        }
+        items.forEach((item) => {
+          const tags = item.kind === "place" ? placeTags(item) : [];
+          const tagsAttribute = item.kind === "place"
+            ? ` data-tags="${escapeXml(tags.join(","))}" data-category="${escapeXml(item.category || categoryForTags(tags))}"`
+            : "";
+          parts.push(`<g data-id="${escapeXml(item.id)}" data-kind="${escapeXml(item.kind)}" data-name="${escapeXml(item.name || "")}"${tagsAttribute}>`);
+          if (item.kind === "number") {
+            parts.push(`<circle cx="${item.x}" cy="${item.y}" r="25" fill="#f5b81e" stroke="#fff" stroke-width="5"/>`);
+            parts.push(`<text x="${item.x}" y="${item.y + 1}" fill="#12263f" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="24" font-weight="800" text-anchor="middle" dominant-baseline="central">${escapeXml(item.number)}</text>`);
+          } else {
+            const colors = {
+              venue: "#0b78dc",
+              restroom: "#2fa76b",
+              entrance: "#f25e36",
+              rest: "#9a72d6",
+              dining: "#e6a818",
+              gift: "#cb6898"
+            };
+            const color = colors[categoryForTags(tags)] || colors.venue;
+            parts.push(`<ellipse cx="${item.x}" cy="${item.y + 23}" rx="20" ry="7" fill="rgba(10,74,140,.12)"/>`);
+            parts.push(`<circle cx="${item.x}" cy="${item.y}" r="20" fill="#fff" stroke="${color}" stroke-width="5"/>`);
+            parts.push(`<circle cx="${item.x}" cy="${item.y}" r="7" fill="${color}"/>`);
+            if (item.name) {
+              parts.push(`<text x="${item.x + 30}" y="${item.y + 9}" fill="#12263f" stroke="#fff" stroke-width="8" stroke-linejoin="round" paint-order="stroke" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="29" font-weight="700">${escapeXml(item.name)}</text>`);
+            }
+            if (item.number != null) {
+              const badgeX = item.x + 18;
+              const badgeY = item.y - 18;
+              parts.push(`<circle cx="${badgeX}" cy="${badgeY}" r="16" fill="#f5b81e" stroke="#fff" stroke-width="5"/>`);
+              parts.push(`<text x="${badgeX}" y="${badgeY + 1}" fill="#12263f" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="20" font-weight="800" text-anchor="middle" dominant-baseline="central">${escapeXml(item.number)}</text>`);
+            }
+          }
+          parts.push("</g>");
+        });
+        if (state.routePlan) {
+          state.routePlan.order.forEach((placeId, index) => {
+            const place = state.items.find((item) => item.id === placeId);
+            if (!place) return;
+            const x = Math.max(18, Math.min(state.width - 18, place.x + 27));
+            const y = Math.max(18, Math.min(state.height - 18, place.y - 27));
+            parts.push(`<g data-kind="route-step" data-place-id="${escapeXml(place.id)}" data-step="${index + 1}" data-name="${escapeXml(place.name || "")}"><circle cx="${x}" cy="${y}" r="16" fill="#e65e36" stroke="#fff" stroke-width="5"/><text x="${x}" y="${y + 1}" fill="#fff" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="19" font-weight="800" text-anchor="middle" dominant-baseline="central">${index + 1}</text></g>`);
+          });
+        }
+        const title = escapeXml(state.imageName ? `${state.imageName} 地图标注` : "地图标注");
+        return `<?xml version="1.0" encoding="UTF-8"?>\n<svg xmlns="${SVG_NS}" xmlns:xlink="http://www.w3.org/1999/xlink" width="${state.width}" height="${state.height}" viewBox="0 0 ${state.width} ${state.height}" preserveAspectRatio="none" data-network-directed="false" role="img" aria-labelledby="map-title">\n<title id="map-title">${title}</title>\n${parts.join("\n")}\n</svg>`;
+      }
+
+      function download(filename, content, type) {
+        const blob = new Blob([content], { type });
+        const url = URL.createObjectURL(blob);
+        const anchor = document.createElement("a");
+        anchor.href = url;
+        anchor.download = filename;
+        document.body.appendChild(anchor);
+        anchor.click();
+        anchor.remove();
+        setTimeout(() => URL.revokeObjectURL(url), 1500);
+      }
+
+      function safeBaseName(value) {
+        return (value || "map").replace(/\.[^.]+$/, "").replace(/[\\/:*?"<>|]/g, "-").slice(0, 60) || "map";
+      }
+
+      function exportSvg() {
+        if (!state.width || !state.height) return toast("请先载入地图底图");
+        if (!state.items.length && !state.network.nodes.length) return toast("还没有标注内容可导出");
+        if ($("#embedBackground").checked && !state.imageData) {
+          return toast("该图片来自临时预览，请重新载入后再嵌入底图导出");
+        }
+        const suffix = $("#embedBackground").checked ? "-with-background" : "-overlay";
+        download(`${safeBaseName(state.imageName)}${suffix}.svg`, svgString($("#embedBackground").checked), "image/svg+xml;charset=utf-8");
+        const routeNote = state.routePlan ? "（含当前路线）" : "";
+        toast(`${$("#embedBackground").checked ? "已导出带底图的 SVG" : "已导出透明 SVG 覆盖层"}${routeNote}`);
+      }
+
+      function saveProject() {
+        const project = {
+          format: "jingbantongxing-map-editor",
+          version: 3,
+          imageName: state.imageName,
+          imageData: state.imageData,
+          width: state.width,
+          height: state.height,
+          items: state.items,
+          network: { directed: false, nodes: state.network.nodes, edges: state.network.edges }
+        };
+        download(`${safeBaseName(state.imageName)}-map-project.json`, JSON.stringify(project, null, 2), "application/json;charset=utf-8");
+        toast("项目 JSON 已保存，可稍后重新打开继续编辑");
+      }
+
+      function migrateLegacyRoutes(items) {
+        const nodes = [];
+        const edges = [];
+        const byCoordinate = new Map();
+        items.filter((item) => item.kind === "route").forEach((route) => {
+          const points = route.points || [];
+          const segments = roadSegments(route);
+          const ids = points.map((point) => {
+            const key = `${point.x},${point.y}`;
+            if (!byCoordinate.has(key)) {
+              const node = {
+                id: makeId("node"), label: `P${nodes.length + 1}`,
+                x: point.x, y: point.y
+              };
+              nodes.push(node);
+              byCoordinate.set(key, node.id);
+            }
+            return byCoordinate.get(key);
+          });
+          segments.forEach((segment, index) => {
+            if (ids[index] === ids[index + 1]) return;
+            edges.push({
+              id: makeId("edge"), a: ids[index], b: ids[index + 1],
+              control1: { ...segment.control1 }, control2: { ...segment.control2 },
+              color: route.color || "#0b78dc"
+            });
+          });
+        });
+        return { nodes, edges };
+      }
+
+      async function openProject(file) {
+        try {
+          const project = file && typeof file.text === "function"
+            ? JSON.parse(await file.text())
+            : file;
+          if (project.format !== "jingbantongxing-map-editor" || !Array.isArray(project.items)) {
+            throw new Error("这不是地图标注器项目文件");
+          }
+          if (project.network &&
+              (!Array.isArray(project.network.nodes) || !Array.isArray(project.network.edges))) {
+            throw new Error("路网数据格式不正确");
+          }
+          if (project.network?.directed === true) {
+            throw new Error("仅支持无向路网项目");
+          }
+          const network = project.network || migrateLegacyRoutes(project.items);
+          const ids = new Set(network.nodes.map((node) => node.id));
+          if (network.edges.some((edge) => !ids.has(edge.a) || !ids.has(edge.b) ||
+              !edge.control1 || !edge.control2)) {
+            throw new Error("路网连接引用了不存在的节点");
+          }
+          state.network = network;
+          state.items = project.items
+            .filter((item) => item.kind !== "route")
+            .map((item) => item.kind === "place" ? { ...item, tags: placeTags(item) } : item);
+          state.width = Number(project.width) || 1800;
+          state.height = Number(project.height) || 2400;
+          state.imageName = project.imageName || "项目底图";
+          state.imageData = project.imageData || "";
+          state.history = [];
+          state.selectedId = null;
+          state.focusedComponent = null;
+          state.routeSelection = [];
+          state.routeStartId = null;
+          state.routePlan = null;
+          resetConnection();
+          if (state.imageData) {
+            setImage(null, state.imageData);
+          } else {
+            elements.image.classList.add("hidden");
+            elements.empty.classList.remove("hidden");
+            elements.wrap.classList.remove("has-image");
+            elements.wrap.style.aspectRatio = `${state.width} / ${state.height}`;
+            elements.overlay.setAttribute("viewBox", `0 0 ${state.width} ${state.height}`);
+            $("#stageName").textContent = `${state.imageName}（需重新载入底图）`;
+            $("#stageDimensions").textContent = `坐标画布 ${state.width} × ${state.height}`;
+            render();
+            toast("项目已打开，请重新载入对应底图以继续定位");
+          }
+          toast(`已打开项目：${state.network.nodes.length} 个节点，${state.network.edges.length} 条连接`);
+          return true;
+        } catch (error) {
+          toast(error.message || "项目文件读取失败");
+          return false;
+        }
+      }
+
+      $("#loadImageButton").addEventListener("click", () => elements.imageInput.click());
+      $("#openProjectButton").addEventListener("click", () => elements.projectInput.click());
+      $("#saveProjectButton").addEventListener("click", saveProject);
+      $("#exportButton").addEventListener("click", exportSvg);
+      $("#undoButton").addEventListener("click", undo);
+      $("#deleteButton").addEventListener("click", deleteSelected);
+      $("#routePlaceList").addEventListener("change", (event) => {
+        const checkbox = event.target.closest("input[data-route-place]");
+        if (!checkbox) return;
+        const placeId = checkbox.dataset.routePlace;
+        if (checkbox.checked) {
+          if (state.routeSelection.length >= 8) {
+            checkbox.checked = false;
+            return toast("一次最多选择 8 个地点规划");
+          }
+          if (!state.routeSelection.includes(placeId)) state.routeSelection.push(placeId);
+          if (!state.routeStartId) state.routeStartId = placeId;
+        } else {
+          state.routeSelection = state.routeSelection.filter((id) => id !== placeId);
+          if (state.routeStartId === placeId) state.routeStartId = state.routeSelection[0] || null;
+        }
+        state.routePlan = null;
+        render();
+      });
+      $("#routeStartPlace").addEventListener("change", (event) => {
+        state.routeStartId = event.target.value || null;
+        state.routePlan = null;
+        render();
+      });
+      $("#routeReturnToStart").addEventListener("change", (event) => {
+        state.routeReturnToStart = event.target.checked;
+        state.routePlan = null;
+        render();
+      });
+      $("#planRouteButton").addEventListener("click", () => {
+        const plan = optimizeVisitOrder(
+          state.routeSelection, state.routeStartId, state.routeReturnToStart
+        );
+        if (plan.error) {
+          state.routePlan = null;
+          render();
+          $("#routePlanResult").textContent = plan.error;
+          return toast(plan.error);
+        }
+        state.routePlan = plan;
+        state.focusedComponent = null;
+        render();
+        elements.status.textContent = `路线规划完成，共 ${plan.order.length} 个地点，长度约 ${Math.round(plan.distance)} 地图单位`;
+      });
+      $("#clearRoutePlanButton").addEventListener("click", () => {
+        state.routePlan = null;
+        render();
+      });
+      $("#cancelRouteButton").addEventListener("click", () => {
+        resetConnection();
+        render();
+        toast("已结束当前连接，可从任意节点重新开始");
+      });
+      $("#showAllComponents").addEventListener("click", () => {
+        state.focusedComponent = null;
+        render();
+      });
+      $("#clearButton").addEventListener("click", () => {
+        if (!state.items.length && !state.network.nodes.length) return toast("当前没有标注内容");
+        if (!confirm("确定清空全部地点和道路网络吗？")) return;
+        saveHistory();
+        state.items = [];
+        state.network = { nodes: [], edges: [] };
+        state.selectedId = null;
+        state.focusedComponent = null;
+        resetConnection();
+        render();
+        toast("所有标注已清空");
+      });
+      $("#duplicateButton").addEventListener("click", () => {
+        const original = state.items.find((item) => item.id === state.selectedId);
+        if (!original) return;
+        saveHistory();
+        const copy = JSON.parse(JSON.stringify(original));
+        copy.id = makeId(original.kind);
+        copy.name = `${original.name || "地点"} 副本`;
+        if (copy.number != null) copy.number = nextNumber();
+        copy.x = Math.min(state.width, copy.x + 30);
+        copy.y = Math.min(state.height, copy.y + 30);
+        state.items.push(copy);
+        state.selectedId = copy.id;
+        render();
+        toast("已复制对象，可拖动调整位置");
+      });
+      $("#selectedName").addEventListener("input", (event) => {
+        const item = state.items.find((entry) => entry.id === state.selectedId);
+        if (!item) return;
+        item.name = event.target.value;
+        render();
+        event.target.focus();
+        event.target.setSelectionRange(event.target.value.length, event.target.value.length);
+      });
+      $("#placeNumberEnabled").addEventListener("change", (event) => {
+        $("#placeNumberControls").classList.toggle("hidden", !event.target.checked);
+        if (event.target.checked) $("#placeNumber").value = nextNumber();
+      });
+      $("#placeTagOptions").addEventListener("change", (event) => {
+        if (checkedTags($("#placeTagOptions")).length) return;
+        event.target.checked = true;
+        toast("地点至少保留一个类型标签");
+      });
+      $("#selectedTagOptions").addEventListener("change", (event) => {
+        const item = state.items.find((entry) => entry.id === state.selectedId);
+        if (!item || item.kind !== "place") return;
+        const selected = checkedTags($("#selectedTagOptions"));
+        if (!selected.length) {
+          event.target.checked = true;
+          return toast("地点至少保留一个类型标签");
+        }
+        const original = placeTags(item);
+        const tags = [
+          ...original.filter((tag) => selected.includes(tag)),
+          ...selected.filter((tag) => !original.includes(tag))
+        ];
+        saveHistory();
+        item.tags = tags;
+        item.category = categoryForTags(tags);
+        render();
+        elements.status.textContent = `「${item.name}」的类型标签：${tags.map((tag) => PLACE_TAGS[tag]).join("、")}`;
+      });
+      $("#selectedPlaceNumber").addEventListener("change", (event) => {
+        const item = state.items.find((entry) => entry.id === state.selectedId);
+        if (!item || item.kind !== "place") return;
+        const value = event.target.value.trim();
+        if (value && (!Number.isInteger(Number(value)) || Number(value) < 1)) {
+          event.target.value = item.number ?? "";
+          return toast("地点序号需为大于 0 的整数");
+        }
+        saveHistory();
+        if (value) item.number = Number(value);
+        else delete item.number;
+        render();
+      });
+      document.querySelectorAll('input[name="networkMode"]').forEach((input) => {
+        input.addEventListener("change", () => {
+          state.networkMode = input.value;
+          resetConnection();
+          $("#networkModeHint").textContent = input.value === "chain"
+            ? "点击空白处新建节点，点击现有节点复用；每次点击即建立连接。点回任意旧节点可成环，点在线上可插入路口。结束连接后可从任何节点继续绘制。"
+            : "先选第一个节点，再选第二个节点即建立无向连接。可重复从同一点向不同节点连线；点击道路中途可插入共享路口。";
+          render();
+        });
+      });
+      document.querySelectorAll(".tool-btn").forEach((button) => {
+        button.addEventListener("click", () => currentTool(button.dataset.tool));
+      });
+      elements.imageInput.addEventListener("change", (event) => {
+        const file = event.target.files && event.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = () => setImage(file, reader.result);
+        reader.onerror = () => toast("图片读取失败");
+        reader.readAsDataURL(file);
+        event.target.value = "";
+      });
+      elements.projectInput.addEventListener("change", (event) => {
+        const file = event.target.files && event.target.files[0];
+        if (file) openProject(file);
+        event.target.value = "";
+      });
+
+      elements.overlay.addEventListener("click", (event) => {
+        if (!state.width || !state.height || state.drag) return;
+        const itemGroup = event.target.closest("[data-id]");
+        if (itemGroup && state.tool === "select") {
+          selectItem(itemGroup.dataset.id);
+          return;
+        }
+        const point = mapPoint(event);
+        if (state.tool === "place") return addPlace(point);
+        if (state.tool === "route") return handleNetworkClick(point);
+        const target = pickNetworkTarget(point, false);
+        if (target?.nodeId) {
+          selectItem(target.nodeId);
+          return;
+        }
+        if (target?.split) return selectItem(target.split.edgeId);
+        selectItem(null);
+      });
+
+      elements.overlay.addEventListener("pointerdown", (event) => {
+        if (state.tool !== "select") return;
+        const group = event.target.closest("[data-id]");
+        if (!group || group.dataset.id === "draft") return;
+        const item = state.items.find((entry) => entry.id === group.dataset.id);
+        if (!item || item.kind === "route") return;
+        saveHistory();
+        state.drag = { id: item.id, moved: false };
+        elements.overlay.setPointerCapture(event.pointerId);
+      });
+      elements.overlay.addEventListener("pointermove", (event) => {
+        if (!state.drag) return;
+        const item = state.items.find((entry) => entry.id === state.drag.id);
+        if (!item) return;
+        const point = mapPoint(event);
+        if (point.x !== item.x || point.y !== item.y) state.drag.moved = true;
+        item.x = point.x;
+        item.y = point.y;
+        state.selectedId = item.id;
+        render();
+      });
+      elements.overlay.addEventListener("pointerup", () => {
+        if (state.drag && !state.drag.moved) {
+          state.history.pop();
+        }
+        state.drag = null;
+      });
+      elements.overlay.addEventListener("pointercancel", () => { state.drag = null; });
+
+      document.addEventListener("keydown", (event) => {
+        if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "z") {
+          event.preventDefault();
+          undo();
+        } else if ((event.key === "Delete" || event.key === "Backspace") && state.selectedId &&
+          !["INPUT", "TEXTAREA", "SELECT"].includes(document.activeElement.tagName)) {
+          event.preventDefault();
+          deleteSelected();
+        } else if (event.key === "Escape" && state.tool === "route") {
+          resetConnection();
+          render();
+        }
+      });
+
+      window.addEventListener("dragover", (event) => event.preventDefault());
+      window.addEventListener("drop", (event) => {
+        event.preventDefault();
+        const file = event.dataTransfer && event.dataTransfer.files[0];
+        if (file && file.type.startsWith("image/")) {
+          const reader = new FileReader();
+          reader.onload = () => setImage(file, reader.result);
+          reader.readAsDataURL(file);
+        }
+      });
+
+      currentTool("select");
+      loadDefaultMap();
+    })();
+  </script>
+</body>
+</html>

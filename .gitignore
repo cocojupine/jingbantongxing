@@ -27,3 +27,22 @@ playwright-report/
 test-results/
 
 # The static release bundle and UI images are intentionally tracked.
+
+# ── 大体积 / 冗余设计素材（本地留档，不提交）────────────
+# 地图设计源文件：手绘底图、切图、SVG 编辑器工程（最终底图已导出到 鲸伴同行-demo-发布包/assets/park-map.png）
+map_demo/*.png
+map_demo/*.json
+
+# 地点卡片素材里未被代码引用的备选图
+鲸伴同行-demo-发布包/assets/animals/penguin-left.png
+鲸伴同行-demo-发布包/assets/animals/capybara-dr.png
+鲸伴同行-demo-发布包/assets/animals/capybara-ur.png
+鲸伴同行-demo-发布包/assets/animals/otter-2.png
+鲸伴同行-demo-发布包/assets/animals/sealion.png
+鲸伴同行-demo-发布包/assets/animals/wolf-stand.png
+
+# 临时生成脚本
+scripts/compose-map-reference.py
+
+# 源素材图（800方形透明PNG 等，保留在仓库根目录，不提交）
+素材切分/
